@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<import resource="datasource-context.xml" />
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath*:META-INF/mybatis/**/*.xml" />
+	</bean>
+
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+		<constructor-arg index="1" value="BATCH" />
+	</bean>
+
+	<bean id="SpringMyBatisCacheStore"
+		class="tool.coherence.cachestore.spring.mybatis.SpringMyBatisCacheStore">
+		<property name="sqlSession" ref="sqlSession" />
+		<property name="selectSql"
+			value="test.tool.coherence.cachestore.spring.mybatis.mapper.selectParentEntity" />
+		<property name="insertSql"
+			value="test.tool.coherence.cachestore.spring.mybatis.mapper.insertParentEntity" />
+		<property name="updateSql"
+			value="test.tool.coherence.cachestore.spring.mybatis.mapper.updateParentEntity" />
+		<property name="deleteSql"
+			value="test.tool.coherence.cachestore.spring.mybatis.mapper.deleteParentEntity" />
+	</bean>
+
+	<bean id="SpringMyBatisCacheStoreWriteOnly"
+		class="tool.coherence.cachestore.spring.mybatis.SpringMyBatisCacheStoreWriteOnly">
+		<property name="sqlSession" ref="sqlSession" />
+		<property name="insertSql"
+			value="test.tool.coherence.cachestore.spring.mybatis.mapper.insertParentEntity" />
+	</bean>
+
+	<bean id="SpringMyBatisCacheStoreWriteOnceOnly"
+		class="tool.coherence.cachestore.spring.mybatis.SpringMyBatisCacheStoreWriteOnceOnly">
+		<property name="sqlSession" ref="sqlSession" />
+		<property name="selectSql"
+			value="test.tool.coherence.cachestore.spring.mybatis.mapper.selectParentEntity" />
+	</bean>
+
+	<bean id="SpringMyBatisCacheStoreReadOnly"
+		class="tool.coherence.cachestore.spring.mybatis.SpringMyBatisCacheStoreReadOnly">
+		<property name="sqlSession" ref="sqlSession" />
+		<property name="insertSql"
+			value="test.tool.coherence.cachestore.spring.mybatis.mapper.insertParentEntity" />
+	</bean>
+
+	<bean id="SpringMyBatisCacheStoreWithChildEntities"
+		class="tool.coherence.cachestore.spring.mybatis.SpringMyBatisCacheStoreWithChildEntities">
+		<property name="sqlSession" ref="sqlSession" />
+		<property name="selectSql"
+			value="test.tool.coherence.cachestore.spring.mybatis.mapper.selectParentEntity" />
+		<property name="insertSql"
+			value="test.tool.coherence.cachestore.spring.mybatis.mapper.insertParentEntity" />
+		<property name="updateSql"
+			value="test.tool.coherence.cachestore.spring.mybatis.mapper.updateParentEntity" />
+		<property name="deleteSql"
+			value="test.tool.coherence.cachestore.spring.mybatis.mapper.deleteParentEntity" />
+		<property name="selectOneChildSql"
+			value="test.tool.coherence.cachestore.spring.mybatis.mapper.selectOneChildEntity" />
+		<property name="selectChildenSql"
+			value="test.tool.coherence.cachestore.spring.mybatis.mapper.selectChildEntities" />
+		<property name="insertChildSql"
+			value="test.tool.coherence.cachestore.spring.mybatis.mapper.insertChildEntity" />
+		<property name="deleteChildenSql"
+			value="test.tool.coherence.cachestore.spring.mybatis.mapper.deleteChildEntities" />
+		<property name="entityClass">
+			<value type="java.lang.Class">test.tool.coherence.entity.TestParentEntity
+			</value>
+		</property>
+		<property name="childenField" value="children"></property>
+	</bean>
+
+	<bean id="SpringMyBatisCacheStoreWithChildEntitiesWriteOnceOnly"
+		class="tool.coherence.cachestore.spring.mybatis.SpringMyBatisCacheStoreWithChildEntitiesWriteOnceOnly">
+		<property name="sqlSession" ref="sqlSession" />
+		<property name="insertSql"
+			value="test.tool.coherence.cachestore.spring.mybatis.mapper.insertParentEntity" />
+		<property name="insertChildSql"
+			value="test.tool.coherence.cachestore.spring.mybatis.mapper.insertChildEntity" />
+		<property name="entityClass">
+			<value type="java.lang.Class">test.tool.coherence.entity.TestParentEntity
+			</value>
+		</property>
+		<property name="childenField" value="children"></property>
+	</bean>
+
+</beans>

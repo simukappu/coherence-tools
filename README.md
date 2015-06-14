@@ -33,16 +33,16 @@ $ mvn -Doracle-maven-sync.oracleHome=$ORACLE_HOME -Doracle-maven-sync.testOnly=f
 
 ## Usage
 ### Spring MyBatis CacheStore
-1. Make datasource setting in Spring context file.  
+1. Make datasource configuration in Spring context file.  
 See [src/test/resources/META-INF/spring/datasource-context.xml](https://github.com/simukappu/Coherence-tools/blob/master/spring-mybatis-cachestore/src/test/resources/META-INF/spring/datasource-context.xml).
 
-2. Make MyBatis SQL Mapper configuration in MyBatis Mapper xml file.  
+2. Make MyBatis SQL mapper configuration in MyBatis mapper xml file.  
 See [src/test/resources/META-INF/mybatis/mapper.xml](https://github.com/simukappu/Coherence-tools/blob/master/spring-mybatis-cachestore/src/test/resources/META-INF/mybatis/mapper.xml).
 
-3. Make CacheStore bean configuration in Spring context file.  
+3. Make Spring bean configuration of CacheStore in Spring context file.  
 See [src/test/resources/META-INF/spring/cachestore-context.xml](https://github.com/simukappu/Coherence-tools/blob/master/spring-mybatis-cachestore/src/test/resources/META-INF/spring/cachestore-context.xml).
 
-4. Make Coherence configration file according to Coherence Spring Integration.  
+4. Make Coherence cache configration file according to Coherence Spring Integration.  
 See [src/test/resources/spring-cache-config.xml](https://github.com/simukappu/Coherence-tools/blob/master/spring-mybatis-cachestore/src/test/resources/spring-cache-config.xml).  
 See also <https://github.com/coherence-community/coherence-spring-integration>.
 
@@ -51,6 +51,7 @@ Invoke Write Behind Tools Processor from invokeAll method.
 For example, invoke as follows:  
 ```
 Map mapResults = namedCache.invokeAll(new AlwaysFilter(), new GetWriteQueueSizeProcessor(targetCacheName));
+Map mapResults = namedCache.invokeAll(new AlwaysFilter(), new ClearWriteQueueProcessor(targetCacheName));
 ```
 See [Javadoc](https://simukappu.github.io/Coherence-tools/write-behind-tools/docs/apidocs/index.html) for more details.
 
@@ -61,7 +62,7 @@ See [Javadoc](https://simukappu.github.io/Coherence-tools/write-behind-tools/doc
 2. Edit [src/test/resources/META-INF/spring/datasource-context.xml](https://github.com/simukappu/Coherence-tools/blob/master/spring-mybatis-cachestore/src/test/resources/META-INF/spring/datasource-context.xml) for your environment.
 
 3. Create table in your Database.  
-Sample SQL Script for MySQL or Oracle is provided.  
+Sample SQL script for MySQL and Oracle is provided.  
 For MySQL, 
     ```
 $ mysql -u root
@@ -87,4 +88,4 @@ Just run [test.tool.coherence.util.writequeue.IntegrationTest.java](https://gith
 <https://simukappu.github.io/Coherence-tools/write-behind-tools/docs/project-reports.html>
 
 ## License
-[Apache License](https://github.com/simukappu/Oracle-tools/blob/master/LICENSE)
+[Apache License](https://github.com/simukappu/Coherence-tools/blob/master/LICENSE)

@@ -5,7 +5,7 @@
 	<artifactId>spring-mybatis-cachestore</artifactId>
 	<version>0.0.1</version>
 	<name>spring-mybatis-cachestore</name>
-	<description>Cache store implementation integrated with Spring and MyBatis framework</description>
+	<description>CacheStore implementation integrated with Spring and MyBatis framework</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

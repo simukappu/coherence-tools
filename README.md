@@ -21,12 +21,12 @@ Installing Oracle Coherence (Oracle Coherence license is needed)
 <http://www.oracle.com/technetwork/jp/middleware/coherence/downloads/index.html>
 
 2. Run installer as following command
-    ```
+    ```sh
 $ java -jar fmw_12.1.3.0.0_coherence_Disk1_1of1.jar
 ```
 
 3. Register Coherence to local Maven repository
-    ```
+    ```sh
 $ mvn -DpomFile=$ORACLE_HOME/oracle_common/plugins/maven/com/oracle/maven/oracle-maven-sync/12.1.3/oracle-maven-sync-12.1.3.pom -Dfile=$ORACLE_HOME/oracle_common/plugins/maven/com/oracle/maven/oracle-maven-sync/12.1.3/oracle-maven-sync-12.1.3.jar install:install-file`
 $ mvn -Doracle-maven-sync.oracleHome=$ORACLE_HOME -Doracle-maven-sync.testOnly=false com.oracle.maven:oracle-maven-sync:12.1.3-0-0:push`
 ```
@@ -49,13 +49,13 @@ See also <https://github.com/coherence-community/coherence-spring-integration>.
 ### Write Behind Tools
 Invoke Write Behind Tools Processor from invokeAll method.  
 For example, invoke as follows:  
-```
+```java
 Map mapResults = namedCache.invokeAll(new AlwaysFilter(), new GetWriteQueueSizeProcessor(targetCacheName));
 Map mapResults = namedCache.invokeAll(new AlwaysFilter(), new ClearWriteQueueProcessor(targetCacheName));
 ```
 See [Javadoc](https://simukappu.github.io/Coherence-tools/write-behind-tools/docs/apidocs/index.html) for more details.
 
-## Test
+## Testing
 ### Spring MyBatis CacheStore
 1. Set Database environment.
 
@@ -64,12 +64,12 @@ See [Javadoc](https://simukappu.github.io/Coherence-tools/write-behind-tools/doc
 3. Create table in your Database.  
 Sample SQL script for MySQL and Oracle is provided.  
 For MySQL, 
-    ```
+    ```sh
 $ mysql -u root
 mysql> source spring-mybatis-cachestore/script/create_table_mysql.sql
 ```  
 For Oracle, 
-    ```
+    ```sh
 $ sqlplus scott/tiger@localhost:1521/orcl @spring-mybatis-cachestore/script/create_table_oracle.sql
 ```  
 
@@ -80,7 +80,7 @@ $ sqlplus scott/tiger@localhost:1521/orcl @spring-mybatis-cachestore/script/crea
 ### Write Behind Tools
 Just run [test.tool.coherence.util.writequeue.IntegrationTest.java](https://github.com/simukappu/Coherence-tools/blob/master/write-behind-tools/src/test/java/test/tool/coherence/util/writequeue/IntegrationTest.java).
 
-## API doc
+## API Document
 ### Spring MyBatis CacheStore
 <https://simukappu.github.io/Coherence-tools/spring-mybatis-cachestore/docs/project-reports.html>
 

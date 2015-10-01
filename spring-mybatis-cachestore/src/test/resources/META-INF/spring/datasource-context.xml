@@ -7,14 +7,19 @@
 
 	<bean id="dataSource" destroy-method="close"
 		class="org.apache.commons.dbcp2.BasicDataSource">
+
+		<!-- MySQL / -->
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/test_db" />
 		<property name="username" value="root" />
+
+		<!-- Oracle / -->
 		<!-- property name="driverClassName" value="oracle.jdbc.OracleDriver" / -->
 		<!-- property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" 
 			/ -->
 		<!-- property name="username" value="scott" / -->
 		<!-- property name="password" value="tiger" / -->
+
 		<property name="validationQuery" value="SELECT 1 FROM DUAL" />
 		<property name="initialSize" value="3" />
 		<property name="testOnBorrow" value="true" />
@@ -31,7 +36,11 @@
 
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource" />
-		<!-- property name="databaseProductName" value="MySQL" / -->
-		<property name="databaseProductName" value="Oracle" />
+
+		<!-- MySQL / -->
+		<property name="databaseProductName" value="MySQL" />
+
+		<!-- Oracle / -->
+		<!-- property name="databaseProductName" value="Oracle" / -->
 	</bean>
 </beans>

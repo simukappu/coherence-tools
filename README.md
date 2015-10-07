@@ -5,11 +5,11 @@ Utility tools for Oracle Coherence
 Utility tools for Oracle Coherence includes following components
 
 ### Spring MyBatis CacheStore  
-[spring-mybatis-cachestore](https://github.com/simukappu/coherence-tools/tree/master/spring-mybatis-cachestore "spring-mybatis-cachestore")
+[spring-mybatis-cachestore](https://github.com/simukappu/coherence-tools/tree/master/spring-mybatis-cachestore "spring-mybatis-cachestore")  
 CacheStore implementation integrated with Spring and MyBatis framework
 
 ### Write Behind Tools
-[write-behind-tools](https://github.com/simukappu/coherence-tools/tree/master/write-behind-tools "write-behind-tools")
+[write-behind-tools](https://github.com/simukappu/coherence-tools/tree/master/write-behind-tools "write-behind-tools")  
 Tools for write behind queue, which provides following functions
 * Get current write behind queue size in the cluster
 * Clear retaining data in write behind queue in the cluster

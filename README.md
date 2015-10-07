@@ -34,16 +34,16 @@ $ mvn -Doracle-maven-sync.oracleHome=$ORACLE_HOME -Doracle-maven-sync.testOnly=f
 ## Usage
 ### Spring MyBatis CacheStore
 1. Make datasource configuration in Spring context file.  
-See [src/test/resources/META-INF/spring/datasource-context.xml](https://github.com/simukappu/Coherence-tools/blob/master/spring-mybatis-cachestore/src/test/resources/META-INF/spring/datasource-context.xml).
+See [src/test/resources/META-INF/spring/datasource-context.xml](https://github.com/simukappu/coherence-tools/blob/master/spring-mybatis-cachestore/src/test/resources/META-INF/spring/datasource-context.xml).
 
 2. Make MyBatis SQL mapper configuration in MyBatis mapper xml file.  
-See [src/test/resources/META-INF/mybatis/mapper.xml](https://github.com/simukappu/Coherence-tools/blob/master/spring-mybatis-cachestore/src/test/resources/META-INF/mybatis/mapper.xml).
+See [src/test/resources/META-INF/mybatis/mapper.xml](https://github.com/simukappu/coherence-tools/blob/master/spring-mybatis-cachestore/src/test/resources/META-INF/mybatis/mapper.xml).
 
 3. Make Spring bean configuration of CacheStore in Spring context file.  
-See [src/test/resources/META-INF/spring/cachestore-context.xml](https://github.com/simukappu/Coherence-tools/blob/master/spring-mybatis-cachestore/src/test/resources/META-INF/spring/cachestore-context.xml).
+See [src/test/resources/META-INF/spring/cachestore-context.xml](https://github.com/simukappu/coherence-tools/blob/master/spring-mybatis-cachestore/src/test/resources/META-INF/spring/cachestore-context.xml).
 
 4. Make Coherence cache configration file according to Coherence Spring Integration.  
-See [src/test/resources/spring-cache-config.xml](https://github.com/simukappu/Coherence-tools/blob/master/spring-mybatis-cachestore/src/test/resources/spring-cache-config.xml).  
+See [src/test/resources/spring-cache-config.xml](https://github.com/simukappu/coherence-tools/blob/master/spring-mybatis-cachestore/src/test/resources/spring-cache-config.xml).  
 See also <https://github.com/coherence-community/coherence-spring-integration>.
 
 ### Write Behind Tools
@@ -53,13 +53,13 @@ For example, invoke as follows:
 Map mapResults = namedCache.invokeAll(new AlwaysFilter(), new GetWriteQueueSizeProcessor(targetCacheName));
 Map mapResults = namedCache.invokeAll(new AlwaysFilter(), new ClearWriteQueueProcessor(targetCacheName));
 ```
-See [Javadoc](https://simukappu.github.io/Coherence-tools/write-behind-tools/docs/apidocs/index.html) for more details.
+See [Javadoc](https://simukappu.github.io/coherence-tools/write-behind-tools/docs/apidocs/index.html) for more details.
 
 ## Testing
 ### Spring MyBatis CacheStore
 1. Set Database environment.
 
-2. Edit [src/test/resources/META-INF/spring/datasource-context.xml](https://github.com/simukappu/Coherence-tools/blob/master/spring-mybatis-cachestore/src/test/resources/META-INF/spring/datasource-context.xml) for your environment.
+2. Edit [src/test/resources/META-INF/spring/datasource-context.xml](https://github.com/simukappu/coherence-tools/blob/master/spring-mybatis-cachestore/src/test/resources/META-INF/spring/datasource-context.xml) for your environment.
 
 3. Create table in your Database.  
 Sample SQL script for MySQL and Oracle is provided.  
@@ -75,17 +75,17 @@ $ sqlplus scott/tiger@localhost:1521/orcl @spring-mybatis-cachestore/script/crea
 
 4. Edit pom.xml according to your datasource-context.xml.
 
-5. Run test modules under [test.tool.coherence.cachestore.spring.mybatis](https://github.com/simukappu/Coherence-tools/tree/master/spring-mybatis-cachestore/src/test/java/test/tool/coherence/cachestore/spring/mybatis) package as JUnit module.
+5. Run test modules under [test.tool.coherence.cachestore.spring.mybatis](https://github.com/simukappu/coherence-tools/tree/master/spring-mybatis-cachestore/src/test/java/test/tool/coherence/cachestore/spring/mybatis) package as JUnit module.
 
 ### Write Behind Tools
-Just run [test.tool.coherence.util.writequeue.IntegrationTest.java](https://github.com/simukappu/Coherence-tools/blob/master/write-behind-tools/src/test/java/test/tool/coherence/util/writequeue/IntegrationTest.java).
+Just run [test.tool.coherence.util.writequeue.IntegrationTest.java](https://github.com/simukappu/coherence-tools/blob/master/write-behind-tools/src/test/java/test/tool/coherence/util/writequeue/IntegrationTest.java).
 
 ## API Document
 ### Spring MyBatis CacheStore
-<https://simukappu.github.io/Coherence-tools/spring-mybatis-cachestore/docs/project-reports.html>
+<https://simukappu.github.io/coherence-tools/spring-mybatis-cachestore/docs/project-reports.html>
 
 ### Write Behind Tools
-<https://simukappu.github.io/Coherence-tools/write-behind-tools/docs/project-reports.html>
+<https://simukappu.github.io/coherence-tools/write-behind-tools/docs/project-reports.html>
 
 ## License
-[Apache License](https://github.com/simukappu/Coherence-tools/blob/master/LICENSE)
+[Apache License](https://github.com/simukappu/coherence-tools/blob/master/LICENSE)

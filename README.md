@@ -11,7 +11,8 @@ Go to [spring-mybatis-cachestore](https://github.com/simukappu/coherence-tools/t
 ### Write Behind Tools
 Tools for write behind queue, which provides following functions
 * Get current write behind queue size in the cluster
-* Clear retaining data in write behind queue in the cluster  
+* Clear retaining data in write behind queue in the cluster
+
 Go to [write-behind-tools](https://github.com/simukappu/coherence-tools/tree/master/write-behind-tools "write-behind-tools")
 
 ## Requirement

@@ -12,7 +12,9 @@ NamedCache<Object, Object> namedCache = CacheFactory.getCache("CacheName");
 // Get current write behind queue size in the cluster
 {
 	// Invoke GetWriteQueueSizeProcessor to all local-storage enabled nodes
-	Map<Object, Map.Entry<Integer, Integer>> mapResults = namedCache.invokeAll(new AlwaysFilter(), new GetWriteQueueSizeProcessor(targetCacheName));
+	Map<Object, Map.Entry<Integer, Integer>> mapResults = targetCache
+			.invokeAll(new AlwaysFilter<Object>(),
+					new GetWriteQueueSizeProcessor(targetCacheName));
 	
 	// Sort result map set by keys
 	List<Map.Entry<Integer, Integer>> resultList = new ArrayList<>(
@@ -32,7 +34,7 @@ NamedCache<Object, Object> namedCache = CacheFactory.getCache("CacheName");
 // Clear retaining data in write behind queue in the cluster
 {
 	// Invoke ClearWriteQueueProcessor to all local-storage enabled nodes
-	Map<Object, Map.Entry<Integer, Integer>> Map<Object, Map.Entry<Integer, Integer>> mapResults = targetCache
+	Map<Object, Map.Entry<Integer, Integer>> mapResults = targetCache
 			.invokeAll(new AlwaysFilter<Object>(),
 					new ClearWriteQueueProcessor(targetCacheName));
 	

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <cache-config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://xmlns.oracle.com/coherence/coherence-cache-config"
-	xsi:schemaLocation="http://xmlns.oracle.com/coherence/coherence-cache-config http://xmlns.oracle.com/coherence/coherence-cache-config/1.2/coherence-cache-config.xsd">
+	xsi:schemaLocation="http://xmlns.oracle.com/coherence/coherence-cache-config coherence-cache-config.xsd">
 
 	<defaults>
 		<serializer system-property="tangosol.coherence.serializer" />
@@ -12,6 +12,8 @@
 		<cache-mapping>
 			<cache-name>ThrowExceptionCacheStoreCache</cache-name>
 			<scheme-name>ThrowExceptionCacheStoreCache-service-scheme</scheme-name>
+			<key-type>java.lang.Integer</key-type>
+			<value-type>java.lang.Integer</value-type>
 		</cache-mapping>
 	</caching-scheme-mapping>
 
@@ -26,7 +28,8 @@
 					</internal-cache-scheme>
 					<cachestore-scheme>
 						<class-scheme>
-							<class-name>test.tool.coherence.cachestore.ThrowExceptionCacheStore</class-name>
+							<class-name>test.com.simukappu.coherence.cachestore.ThrowExceptionCacheStore
+							</class-name>
 						</class-scheme>
 					</cachestore-scheme>
 					<write-delay>10s</write-delay>

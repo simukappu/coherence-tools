@@ -1,4 +1,4 @@
-package test.tool.coherence.util.writequeue;
+package test.com.simukappu.coherence.writequeue;
 
 import static org.junit.Assert.*;
 
@@ -8,10 +8,10 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import test.tool.coherence.util.PutTestData;
-import tool.coherence.util.writequeue.ClearWriteQueueProcessor;
-import tool.coherence.util.writequeue.GetWriteQueueSizeProcessor;
+import test.com.simukappu.coherence.writequeue.util.PutTestIntegerEntries;
 
+import com.simukappu.coherence.writequeue.ClearWriteQueueProcessor;
+import com.simukappu.coherence.writequeue.GetWriteQueueSizeProcessor;
 import com.tangosol.net.CacheFactory;
 import com.tangosol.net.NamedCache;
 import com.tangosol.util.filter.AlwaysFilter;
@@ -45,10 +45,12 @@ public class IntegrationTest {
 		int totalQueueSize = 0;
 
 		// Get target named cache
-		NamedCache targetCache = CacheFactory
+		NamedCache<Object, Object> targetCache = CacheFactory
 				.getCache("ThrowExceptionCacheStoreCache");
 
-		// Check if current cache size (number of cached entries) is 0
+		// Truncate cache and check if current cache size (number of cached
+		// entries) is 0
+		targetCache.truncate();
 		cacheSize = targetCache.size();
 		System.out.println("Current cache size: " + cacheSize);
 		assertEquals(0, cacheSize);
@@ -100,20 +102,19 @@ public class IntegrationTest {
 	 * @param targetCache
 	 *            The target named cache
 	 */
-	private int getTotalWriteQueueSize(NamedCache targetCache) {
+	private int getTotalWriteQueueSize(NamedCache<Object, Object> targetCache) {
 		// Invoke GetWriteQueueSizeProcessor to all local-storage enabled nodes
-		@SuppressWarnings("rawtypes")
-		Map mapResults = targetCache.invokeAll(new AlwaysFilter(),
-				new GetWriteQueueSizeProcessor(targetCache.getCacheName()));
+		Map<Object, Map.Entry<Integer, Integer>> mapResults = targetCache
+				.invokeAll(
+						new AlwaysFilter<Object>(),
+						new GetWriteQueueSizeProcessor(targetCache
+								.getCacheName()));
 
 		// Return total write behind queue size from the map results
-		@SuppressWarnings("unchecked")
 		List<Map.Entry<Integer, Integer>> resultList = new ArrayList<Map.Entry<Integer, Integer>>(
 				mapResults.values());
-		int totalQueueSize = 0;
-		for (Map.Entry<Integer, Integer> resultEntry : resultList) {
-			totalQueueSize += resultEntry.getValue();
-		}
+		int totalQueueSize = resultList.stream().mapToInt(Map.Entry::getValue)
+				.sum();
 		return totalQueueSize;
 	}
 
@@ -123,10 +124,10 @@ public class IntegrationTest {
 	 * @param targetCache
 	 *            The target named cache
 	 */
-	private void clearWriteQueue(NamedCache targetCache) {
+	private void clearWriteQueue(NamedCache<Object, Object> targetCache) {
 		// Invoke ClearWriteQueueProcessor to all local-storage enabled nodes
-		targetCache.invokeAll(new AlwaysFilter(), new ClearWriteQueueProcessor(
-				targetCache.getCacheName()));
+		targetCache.invokeAll(new AlwaysFilter<Object>(),
+				new ClearWriteQueueProcessor(targetCache.getCacheName()));
 	}
 
 	/**
@@ -134,10 +135,13 @@ public class IntegrationTest {
 	 * 
 	 * @param targetCache
 	 *            The target named cache
+	 * @param numData
+	 *            Number of test data entries
 	 */
-	private void putWriteBehindTestData(NamedCache targetCache, int numData) {
+	private void putWriteBehindTestData(NamedCache<Object, Object> targetCache,
+			int numData) {
 		// Put test data to the target cache
-		String args[] = { targetCache.getCacheName(), String.valueOf(numData) };
-		PutTestData.main(args);
+		PutTestIntegerEntries.main(new String[] { targetCache.getCacheName(),
+				String.valueOf(numData) });
 	}
 }

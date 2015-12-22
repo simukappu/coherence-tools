@@ -8,8 +8,48 @@ Invoke Write Behind Tools Processor from invokeAll method in NamedCache<Object, 
 For example, invoke as follows:  
 ```java
 NamedCache<Object, Object> namedCache = CacheFactory.getCache("CacheName");
-Map<Object, Map.Entry<Integer, Integer>> mapResults1 = namedCache.invokeAll(new AlwaysFilter(), new GetWriteQueueSizeProcessor(targetCacheName));
-Map<Object, Map.Entry<Integer, Integer>> mapResults2 = namedCache.invokeAll(new AlwaysFilter(), new ClearWriteQueueProcessor(targetCacheName));
+
+// Get current write behind queue size in the cluster
+{
+	// Invoke GetWriteQueueSizeProcessor to all local-storage enabled nodes
+	Map<Object, Map.Entry<Integer, Integer>> mapResults = namedCache.invokeAll(new AlwaysFilter(), new GetWriteQueueSizeProcessor(targetCacheName));
+	
+	// Sort result map set by keys
+	List<Map.Entry<Integer, Integer>> resultList = new ArrayList<>(
+			mapResults.values());
+	resultList.sort((a, b) -> {
+		return a.getKey() - b.getKey();
+	});
+	
+	// Display results
+	System.out.println("Size of write behind queue:");
+	resultList.forEach(resultEntry -> {
+		System.out.println(" " + resultEntry.getValue()
+				+ " entries in Node# " + resultEntry.getKey());
+	});
+}
+
+// Clear retaining data in write behind queue in the cluster
+{
+	// Invoke ClearWriteQueueProcessor to all local-storage enabled nodes
+	Map<Object, Map.Entry<Integer, Integer>> Map<Object, Map.Entry<Integer, Integer>> mapResults = targetCache
+			.invokeAll(new AlwaysFilter<Object>(),
+					new ClearWriteQueueProcessor(targetCacheName));
+	
+	// Sort result map set by keys
+	List<Map.Entry<Integer, Integer>> resultList = new ArrayList<>(
+			mapResults.values());
+	resultList.sort((a, b) -> {
+		return a.getKey() - b.getKey();
+	});
+	
+	// Display results
+	System.out.println("Removed entries from write behind queue:");
+	resultList.forEach(resultEntry -> {
+		System.out.println(" " + resultEntry.getValue()
+				+ " entries from Node# " + resultEntry.getKey());
+	});
+}
 ```
 See [Javadoc](https://simukappu.github.io/coherence-tools/write-behind-tools/docs/apidocs/index.html) for more details.
 

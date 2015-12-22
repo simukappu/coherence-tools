@@ -150,21 +150,12 @@ public class GetWriteQueueSizeProcessor implements
 				.invokeAll(new AlwaysFilter<Object>(),
 						new GetWriteQueueSizeProcessor(targetCacheName));
 
-		// Sort result map set
-		List<Map.Entry<Integer, Integer>> resultList = new ArrayList<Map.Entry<Integer, Integer>>(
+		// Sort result map set by keys
+		List<Map.Entry<Integer, Integer>> resultList = new ArrayList<>(
 				mapResults.values());
 		resultList.sort((a, b) -> {
-			// Comparator method (return -1, 0 or 1)
-			// Compare keys
-				int aKey = a.getKey();
-				int bKey = b.getKey();
-				if (aKey > bKey)
-					return 1;
-				else if (aKey == bKey)
-					return 0;
-				else
-					return -1;
-			});
+			return a.getKey() - b.getKey();
+		});
 
 		// Display results
 		System.out.println("Size of write behind queue:");

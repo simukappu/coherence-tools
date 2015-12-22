@@ -19,9 +19,7 @@ NamedCache<Object, Object> namedCache = CacheFactory.getCache("CacheName");
 	// Sort result map set by keys
 	List<Map.Entry<Integer, Integer>> resultList = new ArrayList<>(
 			mapResults.values());
-	resultList.sort((a, b) -> {
-		return a.getKey() - b.getKey();
-	});
+	resultList.sort((a, b) -> a.getKey() - b.getKey());
 	
 	// Display results
 	System.out.println("Size of write behind queue:");
@@ -41,9 +39,7 @@ NamedCache<Object, Object> namedCache = CacheFactory.getCache("CacheName");
 	// Sort result map set by keys
 	List<Map.Entry<Integer, Integer>> resultList = new ArrayList<>(
 			mapResults.values());
-	resultList.sort((a, b) -> {
-		return a.getKey() - b.getKey();
-	});
+	resultList.sort((a, b) -> a.getKey() - b.getKey());
 	
 	// Display results
 	System.out.println("Removed entries from write behind queue:");

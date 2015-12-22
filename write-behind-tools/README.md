@@ -4,7 +4,7 @@ Tools for write behind queue, which provides following functions
 * Clear retaining data in write behind queue in the cluster
 
 ## Usage
-Invoke Write Behind Tools Processor from invokeAll method in NamedCache<Object, Object>.  
+Invoke Write Behind Tools Processor from invokeAll method in NamedCache\<Object, Object\>.  
 For example, invoke as follows:  
 ```java
 NamedCache<Object, Object> namedCache = CacheFactory.getCache("CacheName");
@@ -53,7 +53,8 @@ See [Javadoc](https://simukappu.github.io/coherence-tools/write-behind-tools/doc
 
 ## Testing
 Just run [test.com.simukappu.coherence.writequeue.IntegrationTest.java](https://github.com/simukappu/coherence-tools/blob/master/write-behind-tools/src/test/java/test/com/simukappu/coherence/writequeue/IntegrationTest.java).  
-You can run this test as stand-alone or multi-processes cluster by running CacheServer before you run this test. You can start CacheServer by running [test.com.simukappu.coherence.writequeue.server.CacheServer](https://github.com/simukappu/coherence-tools/blob/master/write-behind-tools/src/test/java/test/com/simukappu/coherence/writequeue/server/CacheServer.java).
+You can run this test as stand-alone or multi-processes cluster by running CacheServer before you run this test.  
+CacheServer joining this cluster can be started by [test.com.simukappu.coherence.writequeue.server.CacheServer](https://github.com/simukappu/coherence-tools/blob/master/write-behind-tools/src/test/java/test/com/simukappu/coherence/writequeue/server/CacheServer.java).
 
 ## API Document
 <https://simukappu.github.io/coherence-tools/write-behind-tools/docs/project-reports.html>

@@ -1,9 +1,7 @@
-package tool.coherence.util.writequeue;
+package com.simukappu.coherence.writequeue;
 
-import java.util.AbstractMap;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -27,12 +25,14 @@ import com.tangosol.util.filter.AlwaysFilter;
  * should run only one time for each node.<br>
  * <br>
  * For example, invoke as follows:<br>
- * {@code Map mapResults = namedCache.invokeAll(new AlwaysFilter(), new
+ * {@code NamedCache<Object, Object> namedCache = CacheFactory.getCache("CacheName");}
+ * {@code Map<Object, Map.Entry<Integer, Integer>> mapResults = namedCache.invokeAll(new AlwaysFilter<Object>(), new
  * GetWriteQueueSizeProcessor(targetCacheName));}
  * 
  * @author Shota Yamazaki
  */
-public class GetWriteQueueSizeProcessor implements EntryProcessor {
+public class GetWriteQueueSizeProcessor implements
+		EntryProcessor<Object, Object, Map.Entry<Integer, Integer>> {
 
 	/**
 	 * Serial version used in Serializable interface
@@ -62,14 +62,15 @@ public class GetWriteQueueSizeProcessor implements EntryProcessor {
 	 * 
 	 * @param entry
 	 *            One entry in target cache
-	 * @return The size of write behind queue
+	 * @return Entry with Node ID and the size of write behind queue (not cached
+	 *         data)
 	 * @see com.tangosol.util.InvocableMap.EntryProcessor#process(com.tangosol.util.InvocableMap.Entry)
 	 */
 	@Override
-	public Object process(Entry entry) {
+	public Map.Entry<Integer, Integer> process(Entry<Object, Object> entry) {
 
 		// Get ReadWriteBackingMap
-		BinaryEntry binEntry = (BinaryEntry) entry;
+		BinaryEntry<Object, Object> binEntry = (BinaryEntry<Object, Object>) entry;
 		BackingMapContext ctx = binEntry.getContext().getBackingMapContext(
 				this.targetCacheName);
 		// TODO Must be careful to use deprecated method as of Coherence 12.1.3
@@ -82,8 +83,13 @@ public class GetWriteQueueSizeProcessor implements EntryProcessor {
 		// Get the size of write behind queue
 		int queueSize = writeQueue.size();
 
+		// Get running member ID
+		int memberId = binEntry.getContext().getCacheService().getCluster()
+				.getLocalMember().getId();
+
+		// Set member ID and previous size of write behind queue and return it
 		// Return the size of write behind queue
-		return queueSize;
+		return new SimpleEntry<Integer, Integer>(memberId, queueSize);
 	}
 
 	/**
@@ -98,27 +104,18 @@ public class GetWriteQueueSizeProcessor implements EntryProcessor {
 	 *         write behind queue (not cached data)
 	 * @see com.tangosol.util.InvocableMap.EntryProcessor#processAll(java.util.Set)
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public Map processAll(Set setEntries) {
+	public Map<Object, Map.Entry<Integer, Integer>> processAll(
+			Set<? extends Entry<Object, Object>> setEntries) {
 
-		Map mapResults = new ListMap();
-		Iterator iter = (Iterator) setEntries.iterator();
+		Map<Object, Map.Entry<Integer, Integer>> mapResults = new ListMap<Object, Map.Entry<Integer, Integer>>();
 
 		// Get the size of write behind queue unless setEntries has no data
+		Iterator<? extends Entry<Object, Object>> iter = setEntries.iterator();
 		if (iter.hasNext()) {
-			Entry entry = (Entry) iter.next();
 			// Call process method for first entry
-			int queueSize = (Integer) this.process(entry);
-			BinaryEntry binEntry = (BinaryEntry) entry;
-			// Get running member ID
-			int memberId = binEntry.getContext().getCacheService().getCluster()
-					.getLocalMember().getId();
-			// Set member ID and the size of write behind queue in order to
-			// return them
-			mapResults.put(entry.getKey(),
-					new AbstractMap.SimpleEntry<Integer, Integer>(memberId,
-							queueSize));
+			Entry<Object, Object> entry = iter.next();
+			mapResults.put(entry.getKey(), this.process(entry));
 		}
 
 		// Return result map whose value is map with Node ID and the size
@@ -145,40 +142,35 @@ public class GetWriteQueueSizeProcessor implements EntryProcessor {
 			System.exit(1);
 		}
 		String targetCacheName = args[0];
-		NamedCache targetCache = CacheFactory.getCache(targetCacheName);
+		NamedCache<Object, Object> targetCache = CacheFactory
+				.getCache(targetCacheName);
 
 		// Invoke GetWriteQueueSizeProcessor to all local-storage enabled nodes
-		@SuppressWarnings("rawtypes")
-		Map mapResults = targetCache.invokeAll(new AlwaysFilter(),
-				new GetWriteQueueSizeProcessor(targetCacheName));
+		Map<Object, Map.Entry<Integer, Integer>> mapResults = targetCache
+				.invokeAll(new AlwaysFilter<Object>(),
+						new GetWriteQueueSizeProcessor(targetCacheName));
 
 		// Sort result map set
-		@SuppressWarnings("unchecked")
 		List<Map.Entry<Integer, Integer>> resultList = new ArrayList<Map.Entry<Integer, Integer>>(
 				mapResults.values());
-		Collections.sort(resultList,
-				new Comparator<Map.Entry<Integer, Integer>>() {
-					// Comparator method (return -1, 0 or 1)
-					@Override
-					public int compare(Map.Entry<Integer, Integer> a,
-							Map.Entry<Integer, Integer> b) {
-						// Compare keys
-						int aKey = a.getKey();
-						int bKey = b.getKey();
-						if (aKey > bKey)
-							return 1;
-						else if (aKey == bKey)
-							return 0;
-						else
-							return -1;
-					}
-				});
+		resultList.sort((a, b) -> {
+			// Comparator method (return -1, 0 or 1)
+			// Compare keys
+				int aKey = a.getKey();
+				int bKey = b.getKey();
+				if (aKey > bKey)
+					return 1;
+				else if (aKey == bKey)
+					return 0;
+				else
+					return -1;
+			});
 
 		// Display results
 		System.out.println("Size of write behind queue:");
-		for (Map.Entry<Integer, Integer> resultEntry : resultList) {
+		resultList.forEach(resultEntry -> {
 			System.out.println(" " + resultEntry.getValue()
 					+ " entries in Node# " + resultEntry.getKey());
-		}
+		});
 	}
 }

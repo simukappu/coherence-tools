@@ -1,4 +1,4 @@
-package test.tool.coherence.cachestore;
+package test.com.simukappu.coherence.cachestore;
 
 import java.util.Map;
 

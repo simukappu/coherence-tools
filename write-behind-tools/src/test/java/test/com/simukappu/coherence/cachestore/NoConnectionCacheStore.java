@@ -1,8 +1,7 @@
-package test.tool.coherence.cachestore;
+package test.com.simukappu.coherence.cachestore;
 
 import java.util.Collection;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +11,7 @@ import com.tangosol.net.cache.CacheStore;
 /**
  * CacheStore implementation without connection to Database.
  */
-public class NoConnectionCacheStore implements CacheStore {
+public class NoConnectionCacheStore implements CacheStore<Object, Object> {
 
 	/**
 	 * Generated logger from slf4j LoggerFactory
@@ -31,15 +30,15 @@ public class NoConnectionCacheStore implements CacheStore {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public void storeAll(Map oEntry) {
+	public void storeAll(Map<?, ?> oEntry) {
 		LOGGER.info(this.getClass().getName() + "#storeAll is called");
-		for (Object entry : oEntry.entrySet()) {
-			Object oKey = ((Entry) entry).getKey();
-			Object oValue = ((Entry) entry).getValue();
-			LOGGER.info(" key=" + oKey.toString() + ", value="
-					+ oValue.toString());
-		}
+		oEntry.entrySet().forEach(
+				entry -> {
+					Object oKey = entry.getKey();
+					Object oValue = entry.getValue();
+					LOGGER.info(" key=" + oKey.toString() + ", value="
+							+ oValue.toString());
+				});
 	}
 
 	// --- Read ---
@@ -51,12 +50,11 @@ public class NoConnectionCacheStore implements CacheStore {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public Map loadAll(Collection oKeys) {
+	public Map<Object, Object> loadAll(Collection<?> oKeys) {
 		LOGGER.info(this.getClass().getName() + "#loadAll is called");
-		for (Object oKey : oKeys) {
+		oKeys.forEach(oKey -> {
 			LOGGER.info(" key=" + oKey.toString());
-		}
+		});
 		return null;
 	}
 
@@ -68,12 +66,11 @@ public class NoConnectionCacheStore implements CacheStore {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public void eraseAll(Collection oKeys) {
+	public void eraseAll(Collection<?> oKeys) {
 		LOGGER.info(this.getClass().getName() + "#eraseAll is called");
-		for (Object oKey : oKeys) {
+		oKeys.forEach(oKey -> {
 			LOGGER.info(" key=" + oKey.toString());
-		}
+		});
 	}
 
 }

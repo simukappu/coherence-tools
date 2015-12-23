@@ -160,8 +160,8 @@ public class SelectableCacheFactory extends CacheFactory {
 	 * @return Typed {@literal NamedCache<?, ?>}
 	 * @see com.tangosol.net.CacheFactory#getTypedCache(java.lang.String,
 	 *      com.tangosol.net.cache.TypeAssertion)
-	 * @see com.tangosol.net.ConfigurableCacheFactory#ensureTypedCache(java.lang.
-	 *      String, java.lang.ClassLoader, com.tangosol.net.cache.TypeAssertion)
+	 * @see com.tangosol.net.ConfigurableCacheFactory#ensureTypedCache(java.lang.String,
+	 *      java.lang.ClassLoader, com.tangosol.net.cache.TypeAssertion)
 	 */
 	public static <K, V> NamedCache<K, V> getSelectableTypedCache(
 			String clusterName, String sCacheName,

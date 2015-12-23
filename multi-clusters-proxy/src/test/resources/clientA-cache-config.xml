@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<cache-config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.oracle.com/coherence/coherence-cache-config"
+	xsi:schemaLocation="http://xmlns.oracle.com/coherence/coherence-cache-config coherence-cache-config.xsd">
+
+	<defaults>
+		<serializer system-property="tangosol.coherence.serializer" />
+		<socket-provider system-property="tangosol.coherence.socketprovider" />
+	</defaults>
+
+	<caching-scheme-mapping>
+		<cache-mapping>
+			<cache-name>DataCacheInClusterA</cache-name>
+			<scheme-name>ExtendTcpClusterA-service-scheme</scheme-name>
+		</cache-mapping>
+		<cache-mapping>
+			<cache-name>DataCacheInClusterB</cache-name>
+			<scheme-name>ExtendTcpClusterB-service-scheme</scheme-name>
+		</cache-mapping>
+		<cache-mapping>
+			<cache-name>DataCacheInBothCluster</cache-name>
+			<scheme-name>ExtendTcpClusterA-service-scheme</scheme-name>
+		</cache-mapping>
+	</caching-scheme-mapping>
+
+	<caching-schemes>
+		<remote-cache-scheme>
+			<scheme-name>ExtendTcpClusterA-service-scheme</scheme-name>
+			<service-name>ExtendTcpClusterA-service</service-name>
+			<initiator-config>
+				<tcp-initiator>
+					<remote-addresses>
+						<socket-address>
+							<address>127.0.0.1</address>
+							<port>9099</port>
+						</socket-address>
+					</remote-addresses>
+					<!--connect-timeout>10s</connect-timeout-->
+				</tcp-initiator>
+				<outgoing-message-handler>
+					<request-timeout>5s</request-timeout>
+				</outgoing-message-handler>
+			</initiator-config>
+		</remote-cache-scheme>
+		<remote-cache-scheme>
+			<scheme-name>ExtendTcpClusterB-service-scheme</scheme-name>
+			<service-name>ExtendTcpClusterB-service</service-name>
+			<initiator-config>
+				<tcp-initiator>
+					<remote-addresses>
+						<socket-address>
+							<address>127.0.0.1</address>
+							<port>9101</port>
+						</socket-address>
+					</remote-addresses>
+					<!--connect-timeout>10s</connect-timeout-->
+				</tcp-initiator>
+				<outgoing-message-handler>
+					<request-timeout>5s</request-timeout>
+				</outgoing-message-handler>
+			</initiator-config>
+		</remote-cache-scheme>
+	</caching-schemes>
+
+</cache-config>

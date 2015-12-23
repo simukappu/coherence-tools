@@ -4,6 +4,10 @@ Utility tools for Oracle Coherence
 ## Description
 Utility tools for Oracle Coherence includes following components
 
+### Multi Clusters Proxy
+Tools for extend proxy to connect multiple clusters including SelectableCacheFactory to operate multiple named caches in several clusters
+Go to [multi-clusters-proxy](https://github.com/simukappu/coherence-tools/tree/master/multi-clusters-proxy "multi-clusters-proxy")
+
 ### Spring MyBatis CacheStore  
 CacheStore implementation integrated with Spring and MyBatis framework  
 Go to [spring-mybatis-cachestore](https://github.com/simukappu/coherence-tools/tree/master/spring-mybatis-cachestore "spring-mybatis-cachestore")

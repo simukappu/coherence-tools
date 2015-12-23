@@ -137,8 +137,8 @@ public class IntegrationTest {
 	}
 
 	/**
-	 * Integration test method for SelectableCacheFactory#getCache.<by> This
-	 * method tests to get named cache in only one cluster.
+	 * Integration test method for SelectableCacheFactory#getCache.<br>
+	 * This method tests to get named cache in only one cluster.
 	 */
 	@Test
 	public void getCacheTest() {
@@ -166,7 +166,7 @@ public class IntegrationTest {
 	}
 
 	/**
-	 * Integration test method for SelectableCacheFactory#getTypedCache.<by>
+	 * Integration test method for SelectableCacheFactory#getTypedCache.<br>
 	 * This method tests to get typed named cache in only one cluster.
 	 */
 	@Test
@@ -195,7 +195,7 @@ public class IntegrationTest {
 	}
 
 	/**
-	 * Integration test method for SelectableCacheFactory#getCache<by> This
+	 * Integration test method for SelectableCacheFactory#getCache<br> This
 	 * method tests to get named cache in multiple clusters.
 	 */
 	@Test
@@ -224,7 +224,7 @@ public class IntegrationTest {
 	}
 
 	/**
-	 * Integration test method for SelectableCacheFactory#getTypedCache<by> This
+	 * Integration test method for SelectableCacheFactory#getTypedCache<br> This
 	 * method tests to get typed named cache in multiple clusters.
 	 */
 	@Test

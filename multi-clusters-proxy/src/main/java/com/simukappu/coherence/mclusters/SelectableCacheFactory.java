@@ -118,13 +118,14 @@ public class SelectableCacheFactory extends CacheFactory {
 	}
 
 	/**
-	 * Method to get NamedCache<Object, Object> from SelectableCacheFactory
+	 * Method to get {@literal NamedCache<Object, Object>} from
+	 * SelectableCacheFactory
 	 * 
 	 * @param clusterName
 	 *            Cluster name to get cache
 	 * @param sCacheName
 	 *            Cache name to get
-	 * @return NamedCache<Object, Object>
+	 * @return {@literal NamedCache<Object, Object>}
 	 * @see com.tangosol.net.CacheFactory#getCache(com.tangosol.net.CacheFactory)
 	 * @see com.tangosol.net.ConfigurableCacheFactory#ensureCache(com.tangosol.net.ConfigurableCacheFactory)
 	 */
@@ -142,7 +143,8 @@ public class SelectableCacheFactory extends CacheFactory {
 	}
 
 	/**
-	 * Method to get typed NamedCache<?, ?> from SelectableCacheFactory
+	 * Method to get typed {@literal NamedCache<?, ?>} from
+	 * SelectableCacheFactory
 	 * 
 	 * @param clusterName
 	 *            Cluster name to get cache
@@ -150,7 +152,7 @@ public class SelectableCacheFactory extends CacheFactory {
 	 *            Cache name to get
 	 * @param typeAssertion
 	 *            Type assertion with typed named cache
-	 * @return Typed NamedCache<?, ?>
+	 * @return Typed {@literal NamedCache<?, ?>}
 	 * @see com.tangosol.net.CacheFactory#getTypedCache(com.tangosol.net.CacheFactory)
 	 * @see com.tangosol.net.ConfigurableCacheFactory#ensureTypedCache(com.tangosol.net.ConfigurableCacheFactory)
 	 */

@@ -28,8 +28,7 @@
 					</internal-cache-scheme>
 					<cachestore-scheme>
 						<class-scheme>
-							<class-name>test.com.simukappu.coherence.cachestore.ThrowExceptionCacheStore
-							</class-name>
+							<class-name>test.com.simukappu.coherence.cachestore.ThrowExceptionCacheStore</class-name>
 						</class-scheme>
 					</cachestore-scheme>
 					<write-delay>10s</write-delay>

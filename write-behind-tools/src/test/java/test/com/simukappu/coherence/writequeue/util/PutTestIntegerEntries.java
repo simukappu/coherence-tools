@@ -32,6 +32,8 @@ public class PutTestIntegerEntries {
 		}
 
 		// Put test data
+		System.setProperty("tangosol.coherence.distributed.localstorage",
+				"false");
 		putTestIntegerEntries(targetCacheName, numData);
 	}
 

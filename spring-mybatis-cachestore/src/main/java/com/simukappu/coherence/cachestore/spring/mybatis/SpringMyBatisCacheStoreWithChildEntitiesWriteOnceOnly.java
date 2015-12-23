@@ -1,4 +1,4 @@
-package tool.coherence.cachestore.spring.mybatis;
+package com.simukappu.coherence.cachestore.spring.mybatis;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -21,20 +21,22 @@ public class SpringMyBatisCacheStoreWithChildEntitiesWriteOnceOnly extends
 		return null;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	protected void write(Object oKey, Object oValue) {
 		sqlSession.insert(insertSql, oValue);
 		List<Object> oChildren = null;
 		try {
-			oChildren = (List<Object>) childenGetter.invoke(oValue);
+			@SuppressWarnings("unchecked")
+			List<Object> injectedChildren = (List<Object>) childenGetter
+					.invoke(oValue);
+			oChildren = injectedChildren;
 		} catch (IllegalAccessException | IllegalArgumentException
 				| InvocationTargetException e) {
 			e.printStackTrace();
 		}
-		for (Object oChild : oChildren) {
+		oChildren.forEach(oChild -> {
 			sqlSession.insert(insertChildSql, oChild);
-		}
+		});
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package test.tool.coherence.entity;
+package test.com.simukappu.coherence.entity;
 
 import java.io.Serializable;
 

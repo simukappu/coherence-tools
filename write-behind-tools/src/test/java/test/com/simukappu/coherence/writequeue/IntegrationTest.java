@@ -141,7 +141,7 @@ public class IntegrationTest {
 	private void putWriteBehindTestData(NamedCache<Object, Object> targetCache,
 			int numData) {
 		// Put test data to the target cache
-		PutTestIntegerEntries.main(new String[] { targetCache.getCacheName(),
-				String.valueOf(numData) });
+		PutTestIntegerEntries.putTestIntegerEntries(targetCache.getCacheName(),
+				numData);
 	}
 }

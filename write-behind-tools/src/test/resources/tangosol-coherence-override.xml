@@ -12,8 +12,8 @@
 			<address system-property="tangosol.coherence.localhost">127.0.0.1</address>
 		</unicast-listener>
 		<multicast-listener>
-			<address system-property="tangosol.coherence.clusteraddress">224.12.1.3</address>
-			<port system-property="tangosol.coherence.clusterport">12130</port>
+			<address system-property="tangosol.coherence.clusteraddress">239.192.0.0</address>
+			<port system-property="tangosol.coherence.clusterport">7574</port>
 			<time-to-live system-property="tangosol.coherence.ttl">0</time-to-live>
 			<join-timeout-milliseconds>1000</join-timeout-milliseconds>
 		</multicast-listener>

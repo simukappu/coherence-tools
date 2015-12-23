@@ -1,4 +1,4 @@
-package tool.coherence.cachestore.spring.mybatis;
+package com.simukappu.coherence.cachestore.spring.mybatis;
 
 /**
  * CacheStore implementation class integrated with Spring and MyBatis framework.<br>

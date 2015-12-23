@@ -1,8 +1,7 @@
-package tool.coherence.cachestore.spring;
+package com.simukappu.coherence.cachestore.spring;
 
 import java.util.Collection;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +16,7 @@ import com.tangosol.net.cache.AbstractCacheStore;
  * @author Shota Yamazaki
  */
 public abstract class AbstractSpringTransactionalCacheStore extends
-		AbstractCacheStore {
+		AbstractCacheStore<Object, Object> {
 
 	public AbstractSpringTransactionalCacheStore() {
 		super();
@@ -79,14 +78,12 @@ public abstract class AbstractSpringTransactionalCacheStore extends
 	 */
 	@Override
 	@Transactional
-	public void storeAll(@SuppressWarnings("rawtypes") Map mapEntries) {
-		for (Object oEntry : mapEntries.entrySet()) {
-			@SuppressWarnings("rawtypes")
-			Entry entry = (Entry) oEntry;
+	public void storeAll(Map<? extends Object, ? extends Object> mapEntries) {
+		mapEntries.entrySet().forEach(entry -> {
 			Object oKey = entry.getKey();
 			Object oValue = entry.getValue();
 			write(oKey, oValue);
-		}
+		});
 	}
 
 	/**
@@ -111,9 +108,9 @@ public abstract class AbstractSpringTransactionalCacheStore extends
 	 */
 	@Override
 	@Transactional
-	public void eraseAll(@SuppressWarnings("rawtypes") Collection colKeys) {
-		for (Object oKey : colKeys) {
+	public void eraseAll(Collection<? extends Object> colKeys) {
+		colKeys.forEach(oKey -> {
 			delete(oKey);
-		}
+		});
 	}
 }

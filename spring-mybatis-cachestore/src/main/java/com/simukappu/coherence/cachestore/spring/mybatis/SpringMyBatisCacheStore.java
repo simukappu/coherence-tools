@@ -1,8 +1,8 @@
-package tool.coherence.cachestore.spring.mybatis;
+package com.simukappu.coherence.cachestore.spring.mybatis;
 
 import org.apache.ibatis.session.SqlSession;
 
-import tool.coherence.cachestore.spring.AbstractSpringTransactionalCacheStore;
+import com.simukappu.coherence.cachestore.spring.AbstractSpringTransactionalCacheStore;
 
 /**
  * CacheStore implementation class integrated with Spring and MyBatis framework.<br>

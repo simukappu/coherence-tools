@@ -1,4 +1,4 @@
-package test.tool.coherence.cachestore.spring.mybatis;
+package test.com.simukappu.coherence.cachestore.spring.mybatis;
 
 import static org.junit.Assert.*;
 
@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,37 +17,29 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 
-import test.tool.coherence.entity.TestChildEntity;
-import test.tool.coherence.entity.TestParentEntity;
+import test.com.simukappu.coherence.entity.TestChildEntity;
+import test.com.simukappu.coherence.entity.TestParentEntity;
 
 import com.tangosol.net.CacheFactory;
 import com.tangosol.net.NamedCache;
+import com.tangosol.net.cache.TypeAssertion;
 
 /**
- * Integration test class for SpringMyBatisCacheStoreWithChildEntities.
+ * Integration test class for SpringMyBatisCacheStore.
  * 
  * @author Shota Yamazaki
  */
-public class IntegrationTestSpringMyBatisCacheStoreWithChildEntities {
+public class IntegrationTestSpringMyBatisCacheStore {
 
 	Connection conn = null;
-	NamedCache targetWriteThroughCache = null;
-	NamedCache targetWriteBehindCache = null;
+	NamedCache<Integer, TestParentEntity> targetWriteThroughCache = null;
+	NamedCache<Integer, TestParentEntity> targetWriteBehindCache = null;
 
 	@SuppressWarnings("serial")
 	private static final Map<Integer, TestParentEntity> PARENT_ENTITIES_MAP = new HashMap<Integer, TestParentEntity>() {
 		{
-			put(0,
-					new TestParentEntity(30, "Dell Curry", 50, Arrays.asList(
-							new TestChildEntity(30, "Stephen Curry", 27),
-							new TestChildEntity(30, "Seth Curry", 24),
-							new TestChildEntity(30, "Sydel Curry", 20))));
-			put(1,
-					new TestParentEntity(43, "Mychal Thompson", 60, Arrays
-							.asList(new TestChildEntity(43, "Mychel Thompson",
-									27), new TestChildEntity(43,
-									"Klay Thompson", 25), new TestChildEntity(
-									43, "Trayce Thompson", 24))));
+			put(0, new TestParentEntity(30, "Stephen Curry", 27));
+			put(1, new TestParentEntity(11, "Klay Thompson", 25));
 		}
 	};
 
@@ -62,10 +53,12 @@ public class IntegrationTestSpringMyBatisCacheStoreWithChildEntities {
 		conn = DataSourceUtils.getConnection(jdbcTemplate.getDataSource());
 
 		// Get named cache
-		targetWriteThroughCache = CacheFactory
-				.getCache("SpringMyBatisCacheStoreWithChildEntitiesCache");
-		targetWriteBehindCache = CacheFactory
-				.getCache("SpringMyBatisCacheStoreWithChildEntitiesWriteBehindCache");
+		targetWriteThroughCache = CacheFactory.getTypedCache(
+				"SpringMyBatisCacheStoreCache",
+				TypeAssertion.withTypes(Integer.class, TestParentEntity.class));
+		targetWriteBehindCache = CacheFactory.getTypedCache(
+				"SpringMyBatisCacheStoreWriteBehindCache",
+				TypeAssertion.withTypes(Integer.class, TestParentEntity.class));
 	}
 
 	@After
@@ -79,7 +72,7 @@ public class IntegrationTestSpringMyBatisCacheStoreWithChildEntities {
 	}
 
 	/**
-	 * Integration test method for SpringMyBatisCacheStoreWithChildEntities.<br>
+	 * Integration test method for SpringMyBatisCacheStore.<br>
 	 * This method tests loading data from database to cache.<br>
 	 * 
 	 * You can run this test as stand-alone or multi-processes cluster by
@@ -115,7 +108,7 @@ public class IntegrationTestSpringMyBatisCacheStoreWithChildEntities {
 	}
 
 	/**
-	 * Integration test method for SpringMyBatisCacheStoreWithChildEntities.<br>
+	 * Integration test method for SpringMyBatisCacheStore.<br>
 	 * This method tests inserting data from write through cache.<br>
 	 * 
 	 * You can run this test as stand-alone or multi-processes cluster by
@@ -141,7 +134,7 @@ public class IntegrationTestSpringMyBatisCacheStoreWithChildEntities {
 	}
 
 	/**
-	 * Integration test method for SpringMyBatisCacheStoreWithChildEntities.<br>
+	 * Integration test method for SpringMyBatisCacheStore.<br>
 	 * This method tests updating data from write through cache.<br>
 	 * 
 	 * You can run this test as stand-alone or multi-processes cluster by
@@ -174,7 +167,7 @@ public class IntegrationTestSpringMyBatisCacheStoreWithChildEntities {
 	}
 
 	/**
-	 * Integration test method for SpringMyBatisCacheStoreWithChildEntities.<br>
+	 * Integration test method for SpringMyBatisCacheStore.<br>
 	 * This method tests deleting data from database through cache.<br>
 	 * 
 	 * You can run this test as stand-alone or multi-processes cluster by
@@ -216,7 +209,7 @@ public class IntegrationTestSpringMyBatisCacheStoreWithChildEntities {
 	}
 
 	/**
-	 * Integration test method for SpringMyBatisCacheStoreWithChildEntities.<br>
+	 * Integration test method for SpringMyBatisCacheStore.<br>
 	 * This method tests inserting data from write behind cache.<br>
 	 * 
 	 * You can run this test as stand-alone or multi-processes cluster by
@@ -264,7 +257,7 @@ public class IntegrationTestSpringMyBatisCacheStoreWithChildEntities {
 	}
 
 	/**
-	 * Integration test method for SpringMyBatisCacheStoreWithChildEntities.<br>
+	 * Integration test method for SpringMyBatisCacheStore.<br>
 	 * This method tests inserting data from write behind cache with updating
 	 * data in write behind queue.<br>
 	 * 
@@ -316,7 +309,7 @@ public class IntegrationTestSpringMyBatisCacheStoreWithChildEntities {
 	}
 
 	/**
-	 * Integration test method for SpringMyBatisCacheStoreWithChildEntities.<br>
+	 * Integration test method for SpringMyBatisCacheStore.<br>
 	 * This method tests inserting data from write behind cache with exception
 	 * in transaction.<br>
 	 * 
@@ -395,8 +388,8 @@ public class IntegrationTestSpringMyBatisCacheStoreWithChildEntities {
 		stmt.executeUpdate("DELETE FROM PARENTS");
 		stmt.close();
 
-		targetWriteThroughCache.clear();
-		targetWriteBehindCache.clear();
+		targetWriteThroughCache.truncate();
+		targetWriteBehindCache.truncate();
 	}
 
 	private TestParentEntity selectParentEntity(int id) throws SQLException {

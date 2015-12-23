@@ -126,8 +126,9 @@ public class SelectableCacheFactory extends CacheFactory {
 	 * @param sCacheName
 	 *            Cache name to get
 	 * @return {@literal NamedCache<Object, Object>}
-	 * @see com.tangosol.net.CacheFactory#getCache(com.tangosol.net.CacheFactory)
-	 * @see com.tangosol.net.ConfigurableCacheFactory#ensureCache(com.tangosol.net.ConfigurableCacheFactory)
+	 * @see com.tangosol.net.CacheFactory#getCache(java.lang.String)
+	 * @see com.tangosol.net.ConfigurableCacheFactory#ensureCache(java.lang.String,
+	 *      java.lang.ClassLoader)
 	 */
 	public static NamedCache<Object, Object> getSelectableCache(
 			String clusterName, String sCacheName) {
@@ -146,6 +147,10 @@ public class SelectableCacheFactory extends CacheFactory {
 	 * Method to get typed {@literal NamedCache<?, ?>} from
 	 * SelectableCacheFactory
 	 * 
+	 * @param <K>
+	 *            Key object type of NamedCache
+	 * @param <V>
+	 *            Value object type of NamedCache
 	 * @param clusterName
 	 *            Cluster name to get cache
 	 * @param sCacheName
@@ -153,12 +158,14 @@ public class SelectableCacheFactory extends CacheFactory {
 	 * @param typeAssertion
 	 *            Type assertion with typed named cache
 	 * @return Typed {@literal NamedCache<?, ?>}
-	 * @see com.tangosol.net.CacheFactory#getTypedCache(com.tangosol.net.CacheFactory)
-	 * @see com.tangosol.net.ConfigurableCacheFactory#ensureTypedCache(com.tangosol.net.ConfigurableCacheFactory)
+	 * @see com.tangosol.net.CacheFactory#getTypedCache(java.lang.String,
+	 *      com.tangosol.net.cache.TypeAssertion)
+	 * @see com.tangosol.net.ConfigurableCacheFactory#ensureTypedCache(java.lang.
+	 *      String, java.lang.ClassLoader, com.tangosol.net.cache.TypeAssertion)
 	 */
-	public static <T> NamedCache<T, T> getSelectableTypedCache(
+	public static <K, V> NamedCache<K, V> getSelectableTypedCache(
 			String clusterName, String sCacheName,
-			TypeAssertion<T, T> typeAssertion) {
+			TypeAssertion<K, V> typeAssertion) {
 		ConfigurableCacheFactory factory = cacheFactoryMap.get(clusterName);
 		if (factory == null) {
 			return null;
@@ -179,8 +186,8 @@ public class SelectableCacheFactory extends CacheFactory {
 	 * @param sServiceName
 	 *            Service name to get
 	 * @return com.tangosol.net.Service
-	 * @see com.tangosol.net.CacheFactory#getService(com.tangosol.net.CacheFactory)
-	 * @see com.tangosol.net.ConfigurableCacheFactory#ensureService(com.tangosol.net.ConfigurableCacheFactory)
+	 * @see com.tangosol.net.CacheFactory#getService(java.lang.String)
+	 * @see com.tangosol.net.ConfigurableCacheFactory#ensureService(java.lang.String)
 	 */
 	public static Service getSelectableService(String clusterName,
 			String sServiceName) {
@@ -199,8 +206,8 @@ public class SelectableCacheFactory extends CacheFactory {
 	 *            Cluster name to destroy cache
 	 * @param cache
 	 *            Named cache to destroy
-	 * @see com.tangosol.net.CacheFactory#destroyCache(com.tangosol.net.CacheFactory)
-	 * @see com.tangosol.net.ConfigurableCacheFactory#destroyCache(com.tangosol.net.ConfigurableCacheFactory)
+	 * @see com.tangosol.net.CacheFactory#destroyCache(com.tangosol.net.NamedCache)
+	 * @see com.tangosol.net.ConfigurableCacheFactory#destroyCache(com.tangosol.net.NamedCache)
 	 */
 	public static void destroySelectableCache(String clusterName,
 			NamedCache<?, ?> cache) {
@@ -219,8 +226,8 @@ public class SelectableCacheFactory extends CacheFactory {
 	 *            Cluster name to release cache
 	 * @param cache
 	 *            Named cache to release
-	 * @see com.tangosol.net.CacheFactory#releaseCache(com.tangosol.net.CacheFactory)
-	 * @see com.tangosol.net.ConfigurableCacheFactory#releaseCache(com.tangosol.net.ConfigurableCacheFactory)
+	 * @see com.tangosol.net.CacheFactory#releaseCache(com.tangosol.net.NamedCache)
+	 * @see com.tangosol.net.ConfigurableCacheFactory#releaseCache(com.tangosol.net.NamedCache)
 	 */
 	public static void releaseSelectableCache(String clusterName,
 			NamedCache<?, ?> cache) {

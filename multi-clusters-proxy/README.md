@@ -3,7 +3,7 @@ Tools for extend proxy to connect multiple clusters, which provides following co
 * SelectableCacheFactory: Selectable cache factory class to operate multiple named caches in several clusters
 
 ## Usage
-SelectableCacheFactory needs configure with cache configuration files and class loaders for each extend proxy configuration to connect clusters.  
+SelectableCacheFactory needs to be configured with cache configuration files and class loaders for each extend proxy configuration to connect clusters.  
 After a few configurations, SelectableCacheFactory can be used like com.tangosol.net.CacheFactory.  
 For example, use as follows:  
 ```java

@@ -17,7 +17,7 @@
 		<mybatis.version>3.1.1</mybatis.version>
 		<mybatis.spring.version>1.1.1</mybatis.spring.version>
 		<dbcp2.version>2.1</dbcp2.version>
-		<junit.version>4.11</junit.version>
+		<junit.version>4.12</junit.version>
 
 		<mysql.connector.version>5.1.35</mysql.connector.version>
 		<ojdbc.version>12.1.0.1</ojdbc.version>

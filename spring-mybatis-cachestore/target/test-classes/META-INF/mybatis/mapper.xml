@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test.com.simukappu.coherence.cachestore.spring.mybatis.mapper">
+
+	<resultMap id="parentEntity" type="test.com.simukappu.coherence.entity.TestParentEntity"
+		autoMapping="true">
+		<id property="id" column="ID" />
+		<result property="name" column="NAME" />
+		<result property="age" column="AGE" />
+	</resultMap>
+
+	<resultMap id="childEntity" type="test.com.simukappu.coherence.entity.TestChildEntity"
+		autoMapping="true">
+		<id property="parentId" column="PARENT_ID" />
+		<result property="name" column="NAME" />
+		<result property="age" column="AGE" />
+	</resultMap>
+
+	<select id="selectParentEntity" resultMap="parentEntity">
+		SELECT * FROM PARENTS
+		WHERE ID = #{id}
+	</select>
+
+	<insert id="insertParentEntity">
+		INSERT INTO PARENTS (ID, NAME, AGE)
+		VALUES (#{id}, #{name}, #{age, jdbcType=INTEGER})
+	</insert>
+
+	<update id="updateParentEntity">
+		UPDATE PARENTS
+		SET
+		ID = #{id},
+		NAME = #{name},
+		AGE = #{age, jdbcType=INTEGER}
+	</update>
+
+	<delete id="deleteParentEntity">
+		DELETE FROM PARENTS
+		WHERE ID = #{id}
+	</delete>
+
+	<select id="selectOneChildEntity" resultMap="childEntity">
+		SELECT * FROM CHILDREN
+		WHERE PARENT_ID = #{id} AND NAME = #{name}
+	</select>
+
+	<select id="selectChildEntities" resultMap="childEntity">
+		SELECT * FROM CHILDREN
+		WHERE PARENT_ID = #{id}
+	</select>
+
+	<insert id="insertChildEntity">
+		INSERT INTO CHILDREN (PARENT_ID, NAME, AGE)
+		VALUES (#{parentId}, #{name}, #{age, jdbcType=INTEGER})
+	</insert>
+
+	<update id="updateChildEntity">
+		UPDATE CHILDREN
+		SET
+		PARENT_ID = #{parentId},
+		NAME = #{name},
+		AGE = #{age, jdbcType=INTEGER}
+	</update>
+
+	<delete id="deleteChildEntities">
+		DELETE FROM CHILDREN
+		WHERE PARENT_ID = #{id}
+	</delete>
+
+</mapper>

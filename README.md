@@ -21,11 +21,11 @@ Go to [multi-clusters-proxy](https://github.com/simukappu/coherence-tools/tree/m
 
 ## Requirement
 Installing Oracle Coherence (Oracle Coherence license is needed)
-<http://www.oracle.com/technetwork/jp/middleware/coherence/overview/index.html>
+<http://www.oracle.com/technetwork/middleware/coherence/overview/index.html>
 
 ### For development environment
 1. Download Coherence Stand-Alone Install from here
-<http://www.oracle.com/technetwork/jp/middleware/coherence/downloads/index.html>
+<http://www.oracle.com/technetwork/middleware/coherence/downloads/index.html>
 
 2. Run installer as following command
     ```sh

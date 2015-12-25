@@ -9,7 +9,11 @@ public class CallGetWriteQueueSizeProcessor {
 
 	/**
 	 * Test main method to call
-	 * com.simukappu.coherence.writequeue.GetWriteQueueSizeProcessor.main.
+	 * {@link com.simukappu.coherence.writequeue.GetWriteQueueSizeProcessor#main(String[])}
+	 * .
+	 * 
+	 * @param args
+	 *            No use
 	 */
 	public static void main(String[] args) {
 		GetWriteQueueSizeProcessor

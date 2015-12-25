@@ -8,8 +8,12 @@ import com.tangosol.net.DefaultCacheServer;
 public class CacheServer {
 
 	/**
-	 * Test main method to call com.tangosol.net.DefaultCacheServer.main in
-	 * Coherence.
+	 * Test main method to call
+	 * {@link com.tangosol.net.DefaultCacheServer#main(String[])} in Coherence.
+	 * 
+	 * @param args
+	 *            Passed to
+	 *            {@link com.tangosol.net.DefaultCacheServer#main(String[])}
 	 */
 	public static void main(String[] args) {
 		System.setProperty("tangosol.coherence.distributed.localstorage",

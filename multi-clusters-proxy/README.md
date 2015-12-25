@@ -7,7 +7,7 @@ SelectableCacheFactory needs to be configured with cache configuration files and
 After a few configurations, SelectableCacheFactory can be used like com.tangosol.net.CacheFactory.  
 For example, use as follows:  
 ```java
-final String CACHE_IN_BOTH_CLUSTERS = "DataCacheInBothCluster";
+final String CACHE_IN_BOTH_CLUSTERS = "DataCacheInBothClusters";
 
 // Configure SelectableCacheFactory
 String clusterNameA = SelectableCacheFactory.addCacheFactory(
@@ -18,16 +18,16 @@ String clusterNameB = SelectableCacheFactory.addCacheFactory(
 		CACHE_IN_BOTH_CLUSTERS);
 
 // Get caches from each clusters
-NamedCache<String, String> cacheBothClusterInClusterA = SelectableCacheFactory
+NamedCache<String, String> multiCacheInClusterA = SelectableCacheFactory
 		.getSelectableTypedCache(clusterNameA, CACHE_IN_BOTH_CLUSTERS,
 				TypeAssertion.withTypes(String.class, String.class));
-NamedCache<String, String> cacheBothClusterInClusterB = SelectableCacheFactory
+NamedCache<String, String> multiCacheInClusterB = SelectableCacheFactory
 		.getSelectableTypedCache(clusterNameB, CACHE_IN_BOTH_CLUSTERS,
 				TypeAssertion.withTypes(String.class, String.class));
 
 // Use as normal NamedCache
-cacheBothClusterInClusterA.put("ClusterName", "For cluster A");
-cacheBothClusterInClusterB.put("ClusterName", "For cluster B");
+multiCacheInClusterA.put("ClusterName", "ForClusterA");
+multiCacheInClusterB.put("ClusterName", "ForClusterB");
 ```
 See [Javadoc](https://simukappu.github.io/coherence-tools/multi-clusters-proxy/docs/apidocs/index.html) for more details.
 

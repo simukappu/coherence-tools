@@ -14,7 +14,7 @@
 			<scheme-name>DataCacheInClusterA-service-scheme</scheme-name>
 		</cache-mapping>
 		<cache-mapping>
-			<cache-name>DataCacheInBothCluster</cache-name>
+			<cache-name>DataCacheInBothClusters</cache-name>
 			<scheme-name>DataCacheInClusterA-service-scheme</scheme-name>
 		</cache-mapping>
 	</caching-scheme-mapping>

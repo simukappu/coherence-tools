@@ -16,7 +16,7 @@ Tools for write behind queue, which provides following functions
 Go to [write-behind-tools](https://github.com/simukappu/coherence-tools/tree/master/write-behind-tools "write-behind-tools")
 
 ### Multi Clusters Proxy
-Tools for extend proxy to connect multiple clusters including SelectableCacheFactory to operate multiple named caches in several clusters
+Tools for extend proxy to connect multiple clusters including SelectableCacheFactory to operate multiple named caches in several clusters  
 Go to [multi-clusters-proxy](https://github.com/simukappu/coherence-tools/tree/master/multi-clusters-proxy "multi-clusters-proxy")
 
 ## Requirement

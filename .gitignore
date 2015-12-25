@@ -1,10 +1,26 @@
-# Exceppt Javadoc
-README.md
-LISENSE
-site/*
-pring-mybatis-cachestore/*
-!pring-mybatis-cachestore/docs
-write-behind-tools/*
-!write-behind-tools/docs
-multi-clusters-proxy/*
-!multi-clusters-proxy/docs
+*.class
+bin
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# Eclipse
+.project
+.classpath
+.settings
+
+# OS
+.DS_Store
+
+# Maven
+target
+
+# Javadoc
+docs

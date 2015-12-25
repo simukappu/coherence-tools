@@ -8,8 +8,13 @@ import com.tangosol.net.DefaultCacheServer;
 public class ProxyServerInClusterB {
 
 	/**
-	 * Test main method to call com.tangosol.net.DefaultCacheServer.main in
-	 * Coherence.
+	 * Test main method to call
+	 * {@link com.tangosol.net.DefaultCacheServer#main(String[])} in Coherence
+	 * joining to cluster A as extend proxy server.
+	 * 
+	 * @param args
+	 *            Passed to
+	 *            {@link com.tangosol.net.DefaultCacheServer#main(String[])}
 	 */
 	public static void main(String[] args) {
 		System.setProperty("tangosol.coherence.override",

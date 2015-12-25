@@ -9,7 +9,11 @@ public class CallClearWriteQueueProcessor {
 
 	/**
 	 * Test main method to call
-	 * com.simukappu.coherence.writequeue.ClearWriteQueueProcessor.main.
+	 * {@link com.simukappu.coherence.writequeue.ClearWriteQueueProcessor#main(String[])}
+	 * .
+	 * 
+	 * @param args
+	 *            No use
 	 */
 	public static void main(String[] args) {
 		ClearWriteQueueProcessor

@@ -40,6 +40,25 @@
 			<plugin>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
 				<version>${maven-project-info-reports-plugin.version}</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>cim</report>
+							<!--report>dependencies</report -->
+							<report>dependency-convergence</report>
+							<report>dependency-management</report>
+							<report>index</report>
+							<report>issue-tracking</report>
+							<report>license</report>
+							<report>mailing-list</report>
+							<report>plugin-management</report>
+							<report>project-team</report>
+							<report>plugins</report>
+							<report>scm</report>
+							<report>summary</report>
+						</reports>
+					</reportSet>
+				</reportSets>
 			</plugin>
 		</plugins>
 	</reporting>

@@ -50,7 +50,7 @@ public class IntegrationTest {
 	/**
 	 * Cache name in both Clusters A and B
 	 */
-	public static final String CACHE_IN_BOTH_CLUSTERS = "DataCacheInBothCluster";
+	public static final String CACHE_IN_BOTH_CLUSTERS = "DataCacheInBothClusters";
 
 	/**
 	 * Initialization method.<br>
@@ -69,10 +69,10 @@ public class IntegrationTest {
 				"false");
 
 		// Check if proxy servers are running
-		NamedCache<String, String> cacheClusterA = null;
-		NamedCache<String, String> cacheClusterB = null;
+		NamedCache<String, String> cacheInClusterA = null;
+		NamedCache<String, String> cacheInClusterB = null;
 		try {
-			cacheClusterA = CacheFactory.getTypedCache(CACHE_IN_CLUSTER_A,
+			cacheInClusterA = CacheFactory.getTypedCache(CACHE_IN_CLUSTER_A,
 					TypeAssertion.withTypes(String.class, String.class));
 		} catch (Exception e) {
 			if (e.getMessage()
@@ -82,7 +82,7 @@ public class IntegrationTest {
 			}
 		}
 		try {
-			cacheClusterB = CacheFactory.getTypedCache(CACHE_IN_CLUSTER_B,
+			cacheInClusterB = CacheFactory.getTypedCache(CACHE_IN_CLUSTER_B,
 					TypeAssertion.withTypes(String.class, String.class));
 		} catch (Exception e) {
 			if (e.getMessage()
@@ -103,35 +103,35 @@ public class IntegrationTest {
 		assertEquals(CLUSTER_NAME_B, clusterNameB);
 
 		// Get caches from each clusters
-		NamedCache<String, String> cacheBothClusterInClusterA = SelectableCacheFactory
+		NamedCache<String, String> multiCacheInClusterA = SelectableCacheFactory
 				.getSelectableTypedCache(clusterNameA, CACHE_IN_BOTH_CLUSTERS,
 						TypeAssertion.withTypes(String.class, String.class));
-		NamedCache<String, String> cacheBothClusterInClusterB = SelectableCacheFactory
+		NamedCache<String, String> multiCacheInClusterB = SelectableCacheFactory
 				.getSelectableTypedCache(clusterNameB, CACHE_IN_BOTH_CLUSTERS,
 						TypeAssertion.withTypes(String.class, String.class));
 
 		// Put test data entries to each clusters
 		String value;
 		System.out.println("Put entries");
-		value = cacheClusterA.invoke(CLUSTER_NAME_KEY,
+		value = cacheInClusterA.invoke(CLUSTER_NAME_KEY,
 				new SetClusterNameProcessor());
 		System.out.println(" ClusterName=" + CLUSTER_NAME_A + ", CacheName="
-				+ cacheClusterA.getCacheName() + ", key=" + CLUSTER_NAME_KEY
+				+ cacheInClusterA.getCacheName() + ", key=" + CLUSTER_NAME_KEY
 				+ ", value=" + value);
-		value = cacheClusterB.invoke(CLUSTER_NAME_KEY,
+		value = cacheInClusterB.invoke(CLUSTER_NAME_KEY,
 				new SetClusterNameProcessor());
 		System.out.println(" ClusterName=" + CLUSTER_NAME_B + ", CacheName="
-				+ cacheClusterB.getCacheName() + ", key=" + CLUSTER_NAME_KEY
+				+ cacheInClusterB.getCacheName() + ", key=" + CLUSTER_NAME_KEY
 				+ ", value=" + value);
-		value = cacheBothClusterInClusterA.invoke(CLUSTER_NAME_KEY,
+		value = multiCacheInClusterA.invoke(CLUSTER_NAME_KEY,
 				new SetClusterNameProcessor());
 		System.out.println(" ClusterName=" + CLUSTER_NAME_A + ", CacheName="
-				+ cacheBothClusterInClusterA.getCacheName() + ", key="
+				+ multiCacheInClusterA.getCacheName() + ", key="
 				+ CLUSTER_NAME_KEY + ", value=" + value);
-		value = cacheBothClusterInClusterB.invoke(CLUSTER_NAME_KEY,
+		value = multiCacheInClusterB.invoke(CLUSTER_NAME_KEY,
 				new SetClusterNameProcessor());
 		System.out.println(" ClusterName=" + CLUSTER_NAME_B + ", CacheName="
-				+ cacheBothClusterInClusterB.getCacheName() + ", key="
+				+ multiCacheInClusterB.getCacheName() + ", key="
 				+ CLUSTER_NAME_KEY + ", value=" + value);
 		System.out.println("Done\n");
 	}
@@ -195,8 +195,8 @@ public class IntegrationTest {
 	}
 
 	/**
-	 * Integration test method for SelectableCacheFactory#getCache<br> This
-	 * method tests to get named cache in multiple clusters.
+	 * Integration test method for SelectableCacheFactory#getCache<br>
+	 * This method tests to get named cache in multiple clusters.
 	 */
 	@Test
 	public void getSelectableCacheTest() {
@@ -224,8 +224,8 @@ public class IntegrationTest {
 	}
 
 	/**
-	 * Integration test method for SelectableCacheFactory#getTypedCache<br> This
-	 * method tests to get typed named cache in multiple clusters.
+	 * Integration test method for SelectableCacheFactory#getTypedCache<br>
+	 * This method tests to get typed named cache in multiple clusters.
 	 */
 	@Test
 	public void getSelectableTypedCacheTest() {

@@ -52,7 +52,7 @@ NamedCache<Object, Object> namedCache = CacheFactory.getCache("CacheName");
 See [Javadoc](https://simukappu.github.io/coherence-tools/write-behind-tools/docs/apidocs/index.html) for more details.
 
 ## Testing
-Just run [test.com.simukappu.coherence.writequeue.IntegrationTest.java](https://github.com/simukappu/coherence-tools/blob/master/write-behind-tools/src/test/java/test/com/simukappu/coherence/writequeue/IntegrationTest.java) as JUnit Test.  
+Just run [test.com.simukappu.coherence.writequeue.IntegrationTest](https://github.com/simukappu/coherence-tools/blob/master/write-behind-tools/src/test/java/test/com/simukappu/coherence/writequeue/IntegrationTest.java) as JUnit Test.  
 You can run this test as stand-alone or multi-processes cluster by running CacheServer before the test.  
 CacheServer joining this cluster can be started by [test.com.simukappu.coherence.writequeue.server.CacheServer](https://github.com/simukappu/coherence-tools/blob/master/write-behind-tools/src/test/java/test/com/simukappu/coherence/writequeue/server/CacheServer.java).
 

@@ -7,7 +7,7 @@ git checkout -b gh-pages
 git rm -r --cached .
 
 >.gitignore
-echo "# Exceppt Javadoc" >>.gitignore
+echo "# Except Javadoc" >>.gitignore
 echo "site/*" >>.gitignore
 
 cat site/projects.txt | while read project

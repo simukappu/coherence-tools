@@ -12,13 +12,15 @@ List<Integer> testDataList = IntStream.rangeClosed(1, 10).boxed().collect(Collec
 
 // Distributed processing by FifoDistributedConsumer
 {
-	testDataList.parallelStream().forEach(new FifoDistributedConsumer<Integer>("DistributedProcessingCache") {
-		@Override
-		public void process(Integer i) {
-			// write a processing
-			System.out.println(i);
-		}
-	});
+	testDataList
+		.parallelStream()
+		.forEach(new FifoDistributedConsumer<Integer>("DistributedProcessingCache") {
+			@Override
+			public void process(Integer i) {
+				// write a processing
+				System.out.println(i);
+			}
+		});
 }
 
 // Distributed processing by FifoDistributedBiConsumer
@@ -28,22 +30,23 @@ List<Integer> testDataList = IntStream.rangeClosed(1, 10).boxed().collect(Collec
 		System.out.println(i);
 	};
 	testDataList
-			.stream()
-			.collect(Collectors.toMap(Function.identity(), i -> "DistributedProcessingCache"))
-			.forEach(fifoDistributedBiConsumer);
+		.stream()
+		.collect(Collectors.toMap(Function.identity(), i -> "DistributedProcessingCache"))
+		.forEach(fifoDistributedBiConsumer);
 }
 
 // Distributed processing by FifoDistributedFunction
 {
 	List<Integer> resultDataList = testDataList
-			.parallelStream()
-			.map(new FifoDistributedFunction<Integer, Integer>("DistributedProcessingCache") {
-				@Override
-				public Integer process(Integer i) {
-					// write a processing
-					return i + 10;
-				}
-			}).collect(Collectors.toList());
+		.parallelStream()
+		.map(new FifoDistributedFunction<Integer, Integer>("DistributedProcessingCache") {
+			@Override
+			public Integer process(Integer i) {
+				// write a processing
+				return i + 10;
+			}
+		})
+		.collect(Collectors.toList());
 }
 ```
 ### HashModFilter

@@ -12,7 +12,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -53,8 +55,18 @@ public class IntegrationTestSpringMyBatisCacheStoreWithChildEntities {
 		}
 	};
 
+	@BeforeClass
+	public static void initializeTests() {
+		CacheFactory.ensureCluster();
+	}
+
+	@AfterClass
+	public static void destroyTests() {
+		CacheFactory.shutdown();
+	}
+
 	@Before
-	public void initializeTests() {
+	public void initializeTest() {
 		// Get database connection
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
 				"META-INF/spring/datasource-context.xml");
@@ -72,7 +84,7 @@ public class IntegrationTestSpringMyBatisCacheStoreWithChildEntities {
 	}
 
 	@After
-	public void destroyTests() throws SQLException {
+	public void destroyTest() throws SQLException {
 		// Close connection
 		if (conn != null) {
 			conn.close();

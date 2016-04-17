@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import test.com.simukappu.coherence.writequeue.util.PutTestIntegerEntries;
@@ -22,6 +24,16 @@ import com.tangosol.util.filter.AlwaysFilter;
  * @author Shota Yamazaki
  */
 public class IntegrationTest {
+
+	@BeforeClass
+	public static void initializeTests() {
+		CacheFactory.ensureCluster();
+	}
+
+	@AfterClass
+	public static void destroyTests() {
+		CacheFactory.shutdown();
+	}
 
 	/**
 	 * Integration test method for write behind tools.<br>

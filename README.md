@@ -4,9 +4,12 @@ Utility tools for Oracle Coherence
 ## Description
 Utility tools for Oracle Coherence includes following components
 
-### Spring MyBatis CacheStore  
-CacheStore implementation integrated with Spring and MyBatis framework  
-Go to [spring-mybatis-cachestore](https://github.com/simukappu/coherence-tools/tree/master/spring-mybatis-cachestore "spring-mybatis-cachestore")
+### Distributed Processing Tools  
+Tools for distributed processing, which provides following functions
+* FifoDistributedProcessor: Consumer/Function implementation for distributed processing as First in, first out
+* HashModFilter(Coming soon): Filter to get target entries by id field hash in key class for each processes
+
+Go to [distributed-processing-tools](https://github.com/simukappu/coherence-tools/tree/master/distributed-processing-tools "distributed-processing-tools")
 
 ### Write Behind Tools
 Tools for write behind queue, which provides following functions
@@ -14,6 +17,10 @@ Tools for write behind queue, which provides following functions
 * Clear retaining data in write behind queue in the cluster
 
 Go to [write-behind-tools](https://github.com/simukappu/coherence-tools/tree/master/write-behind-tools "write-behind-tools")
+
+### Spring MyBatis CacheStore  
+CacheStore implementation integrated with Spring and MyBatis framework  
+Go to [spring-mybatis-cachestore](https://github.com/simukappu/coherence-tools/tree/master/spring-mybatis-cachestore "spring-mybatis-cachestore")
 
 ### Multi Clusters Proxy
 Tools for extend proxy to connect multiple clusters including SelectableCacheFactory to operate multiple named caches in several clusters  

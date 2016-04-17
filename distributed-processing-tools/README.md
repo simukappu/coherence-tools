@@ -1,7 +1,7 @@
 # Distributed Processing Tools
 Tools for distributed processing, which provides following functions
 * FifoDistributedProcessor: Consumer/Function implementation for distributed processing as First in, first out
-* HashModFilter(Coming soon): Filter to get target entries by id field hash in key class for each processes
+* HashModFilter(Coming soon): Filter to get target entries by hashCode modulo of a field in key class
 
 ## Usage
 ### FifoDistributedProcessor
@@ -48,6 +48,7 @@ List<Integer> testDataList = IntStream.rangeClosed(1, 10).boxed().collect(Collec
 ```
 ### HashModFilter
 Coming soon  
+
 See [Javadoc](https://simukappu.github.io/coherence-tools/distributed-processing-tools/docs/apidocs/index.html) for more details.
 
 ## Testing

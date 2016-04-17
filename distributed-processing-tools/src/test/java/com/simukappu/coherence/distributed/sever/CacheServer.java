@@ -1,4 +1,4 @@
-package com.simukappu.coherence.distributed.server;
+package com.simukappu.coherence.distributed.sever;
 
 import com.tangosol.net.DefaultCacheServer;
 

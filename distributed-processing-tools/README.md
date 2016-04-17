@@ -5,9 +5,10 @@ Tools for distributed processing, which provides following functions
 
 ## Usage
 ### FifoDistributedProcessor
-Call as Consumer/Function interface for extended interfaces or implemented abstract classes.  
-For example, invoke as follows:  
+Call as Consumer/Function interface with extended interfaces or implemented abstract classes.  
+For example, process as follows:  
 ```java
+
 List<Integer> testDataList = IntStream.rangeClosed(1, 10).boxed().collect(Collectors.toList());
 
 // Distributed processing by FifoDistributedConsumer

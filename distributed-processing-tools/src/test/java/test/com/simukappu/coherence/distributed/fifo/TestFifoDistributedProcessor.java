@@ -1,4 +1,4 @@
-package com.simukappu.coherence.distributed.fifo;
+package test.com.simukappu.coherence.distributed.fifo;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;

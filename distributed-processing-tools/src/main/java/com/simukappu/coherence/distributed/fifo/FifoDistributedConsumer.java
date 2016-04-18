@@ -10,11 +10,11 @@ import java.util.function.Consumer;
  * 
  * @author Shota Yamazaki
  */
-public abstract class FifoDistributedConsumer<T> implements
-		FifoDistributedProcessor<T>, Consumer<T> {
+public abstract class FifoDistributedConsumer<T> implements FifoDistributedProcessor<T>, Consumer<T> {
 
 	/**
-	 * Target cache name to call entry processor for FIFO distribution
+	 * Target coherence cache name to use as the key set for FIFO distributed
+	 * processing
 	 */
 	String targetCacheName = null;
 
@@ -22,8 +22,8 @@ public abstract class FifoDistributedConsumer<T> implements
 	 * Constructor with the target cache name
 	 * 
 	 * @param targetCacheName
-	 *            Target cache name to call entry processor for FIFO
-	 *            distribution
+	 *            Target coherence cache name to use as the key set for FIFO
+	 *            distributed processing
 	 */
 	public FifoDistributedConsumer(String targetCacheName) {
 		this.targetCacheName = targetCacheName;

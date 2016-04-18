@@ -10,11 +10,11 @@ import java.util.function.Function;
  * 
  * @author Shota Yamazaki
  */
-public abstract class FifoDistributedFunction<T, R> implements
-		FifoDistributedProcessor<T>, Function<T, R> {
+public abstract class FifoDistributedFunction<T, R> implements FifoDistributedProcessor<T>, Function<T, R> {
 
 	/**
-	 * Target cache name to use as the key set for distributed processing
+	 * Target coherence cache name to use as the key set for FIFO distributed
+	 * processing
 	 */
 	String targetCacheName = null;
 
@@ -22,8 +22,8 @@ public abstract class FifoDistributedFunction<T, R> implements
 	 * Constructor with the target cache name
 	 * 
 	 * @param targetCacheName
-	 *            Target cache name to use as the key set for distributed
-	 *            processing
+	 *            Target coherence cache name to use as the key set for FIFO
+	 *            distributed processing
 	 */
 	public FifoDistributedFunction(String targetCacheName) {
 		this.targetCacheName = targetCacheName;

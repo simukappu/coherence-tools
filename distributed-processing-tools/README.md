@@ -8,10 +8,51 @@ Tools for distributed processing, which provides following functions
 Call as Consumer/Function interface with extended interfaces or implemented abstract classes.  
 For example, process as follows:  
 ```java
+// Single processing with FifoDistributedConsumer
+{
+	FifoDistributedConsumer<Integer> fifoDistributedConsumer = new FifoDistributedConsumer<Integer>("DistributedProcessingCache") {
+		@Override
+		public void process(Integer i) {
+			// write a processing
+			System.out.println(i);
+		}
+	};
+	fifoDistributedConsumer.accept(1);
+}
+
+// Single processing with FifoDistributedBiConsumer
+{
+	FifoDistributedBiConsumer<Integer> fifoDistributedConsumer = i -> {
+		// write a processing
+		System.out.println(i);
+	};
+	fifoDistributedConsumer.accept(1, "DistributedProcessingCache");
+}
+
+// Single processing with FifoDistributedFunction
+{
+	FifoDistributedFunction<Integer, Integer> fifoDistributedFunction = new FifoDistributedFunction<Integer, Integer>("DistributedProcessingCache") {
+		@Override
+		public Integer process(Integer i) {
+			// write a processing
+			return i + 10;
+		}
+	};
+	Integer resultData = fifoDistributedFunction.apply(1);
+}
+
+// Single processing with FifoDistributedBiFunction
+{
+	FifoDistributedBiFunction<Integer, Integer> fifoDistributedBiFunction = i -> {
+		// write a processing
+		return i + 10;
+	};
+	Integer resultData = fifoDistributedBiFunction.apply(1, "DistributedProcessingCache");
+}
 
 List<Integer> testDataList = IntStream.rangeClosed(1, 10).boxed().collect(Collectors.toList());
 
-// Distributed processing by FifoDistributedConsumer
+// Distributed processing with FifoDistributedConsumer from parallel stream processing
 {
 	testDataList
 		.parallelStream()
@@ -24,7 +65,7 @@ List<Integer> testDataList = IntStream.rangeClosed(1, 10).boxed().collect(Collec
 		});
 }
 
-// Distributed processing by FifoDistributedBiConsumer
+// Distributed processing with FifoDistributedBiConsumer from stream processing
 {
 	FifoDistributedBiConsumer<Integer> fifoDistributedBiConsumer = i -> {
 		// write a processing
@@ -36,7 +77,7 @@ List<Integer> testDataList = IntStream.rangeClosed(1, 10).boxed().collect(Collec
 		.forEach(fifoDistributedBiConsumer);
 }
 
-// Distributed processing by FifoDistributedFunction
+// Distributed processing with FifoDistributedFunction from parallel stream processing
 {
 	List<Integer> resultDataList = testDataList
 		.parallelStream()

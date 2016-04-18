@@ -59,7 +59,7 @@ public class TestFifoDistributedProcessor {
 	int processingCountUp = 20;
 	int numThread = 10;
 
-	int expectedResultData = initTestData + processingCountUp;
+	Integer expectedResultData = initTestData + processingCountUp;
 	List<Integer> testDataList = IntStream.range(initTestData, initTestData + numTestData).boxed()
 			.collect(Collectors.toList());
 	List<Integer> expectedResultDataList = IntStream
@@ -187,7 +187,7 @@ public class TestFifoDistributedProcessor {
 				return i + processingCountUp;
 			}
 		};
-		int resultData = fifoDistributedFunction.apply(initTestData);
+		Integer resultData = fifoDistributedFunction.apply(initTestData);
 
 		System.out.println("  processed result data: " + resultData);
 		assertEquals(expectedResultData, resultData);
@@ -211,12 +211,12 @@ public class TestFifoDistributedProcessor {
 		System.out.println("  test data: " + initTestData);
 
 		System.out.println(" processing...");
-		FifoDistributedBiFunction<Integer, Integer> fifoDistributedFunction = i -> {
+		FifoDistributedBiFunction<Integer, Integer> fifoDistributedBiFunction = i -> {
 			processingCountCache.invoke(i, countProcessor);
 			processingThreadCache.put(i, Thread.currentThread().getName());
 			return i + processingCountUp;
 		};
-		int resultData = fifoDistributedFunction.apply(1, "DistributedProcessingCache");
+		Integer resultData = fifoDistributedBiFunction.apply(initTestData, "DistributedProcessingCache");
 
 		System.out.println("  processed result data: " + resultData);
 		assertEquals(expectedResultData, resultData);

@@ -8,7 +8,7 @@
 			<cluster-name system-property="tangosol.coherence.cluster">SPRING_CACHESTORE_CLUSTER</cluster-name>
 		</member-identity>
 		<unicast-listener>
-			<address system-property="tangosol.coherence.localhost">127.0.0.1</address>
+			<address system-property="tangosol.coherence.localhost">localhost</address>
 		</unicast-listener>
 		<multicast-listener>
 			<address system-property="tangosol.coherence.clusteraddress">239.192.0.0</address>

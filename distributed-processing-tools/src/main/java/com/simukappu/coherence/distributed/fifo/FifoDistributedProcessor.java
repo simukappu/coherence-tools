@@ -28,8 +28,7 @@ public interface FifoDistributedProcessor<T> {
 		// Return if the key entry exists in a target cache
 		@SuppressWarnings("unchecked")
 		NamedCache<T, Integer> tagetCache = (NamedCache<T, Integer>) CacheFactory
-				.getTypedCache(this.getTargetCacheName(),
-						TypeAssertion.withTypes(t.getClass(), Integer.class));
+				.getTypedCache(this.getTargetCacheName(), TypeAssertion.withTypes(t.getClass(), Integer.class));
 		return (tagetCache.get(t) != null);
 	}
 
@@ -47,16 +46,15 @@ public interface FifoDistributedProcessor<T> {
 		// When the key exists, return false
 		@SuppressWarnings("unchecked")
 		NamedCache<T, Integer> tagetCache = (NamedCache<T, Integer>) CacheFactory
-				.getTypedCache(this.getTargetCacheName(),
-						TypeAssertion.withTypes(t.getClass(), Integer.class));
-		return (tagetCache.invoke(t, new ConditionalPut<T, Integer>(
-				new NotFilter<Object>(PresentFilter.INSTANCE()), 1, true)) == null);
+				.getTypedCache(this.getTargetCacheName(), TypeAssertion.withTypes(t.getClass(), Integer.class));
+		return (tagetCache.invoke(t,
+				new ConditionalPut<T, Integer>(new NotFilter<Object>(PresentFilter.INSTANCE()), 1, true)) == null);
 	}
 
 	/**
-	 * Get coherence cache name to use as the key set for distributed processing
+	 * Get coherence cache name to use as the key set for FIFO distributed processing
 	 * 
-	 * @return Target cache name to use as the key set for distributed processing
+	 * @return Target cache name
 	 */
 	abstract public String getTargetCacheName();
 

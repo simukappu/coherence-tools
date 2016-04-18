@@ -10,13 +10,14 @@ For example, process as follows:
 ```java
 // Single processing with FifoDistributedConsumer
 {
-	FifoDistributedConsumer<Integer> fifoDistributedConsumer = new FifoDistributedConsumer<Integer>("DistributedProcessingCache") {
-		@Override
-		public void process(Integer i) {
-			// write a processing
-			System.out.println(i);
-		}
-	};
+	FifoDistributedConsumer<Integer> fifoDistributedConsumer = 
+		new FifoDistributedConsumer<Integer>("DistributedProcessingCache") {
+			@Override
+			public void process(Integer i) {
+				// write a processing
+				System.out.println(i);
+			}
+		};
 	fifoDistributedConsumer.accept(1);
 }
 
@@ -31,13 +32,14 @@ For example, process as follows:
 
 // Single processing with FifoDistributedFunction
 {
-	FifoDistributedFunction<Integer, Integer> fifoDistributedFunction = new FifoDistributedFunction<Integer, Integer>("DistributedProcessingCache") {
-		@Override
-		public Integer process(Integer i) {
-			// write a processing
-			return i + 10;
-		}
-	};
+	FifoDistributedFunction<Integer, Integer> fifoDistributedFunction = 
+		new FifoDistributedFunction<Integer, Integer>("DistributedProcessingCache") {
+			@Override
+			public Integer process(Integer i) {
+				// write a processing
+				return i + 10;
+			}
+		};
 	Integer resultData = fifoDistributedFunction.apply(1);
 }
 

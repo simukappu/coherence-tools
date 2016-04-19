@@ -31,7 +31,7 @@ public abstract class AbstractSpringTransactionalCacheStore extends
 	 * @param oValue
 	 *            Entry value to write
 	 */
-	abstract protected void write(Object oKey, Object oValue);
+	protected abstract void write(Object oKey, Object oValue);
 
 	/**
 	 * Abstract method deleting data from database.<br>
@@ -40,7 +40,7 @@ public abstract class AbstractSpringTransactionalCacheStore extends
 	 * @param oKey
 	 *            Entry key to delete
 	 */
-	abstract protected void delete(Object oKey);
+	protected abstract void delete(Object oKey);
 
 	/**
 	 * Abstract overridden load method in AbstractCacheStore.<br>
@@ -51,7 +51,7 @@ public abstract class AbstractSpringTransactionalCacheStore extends
 	 * @see com.tangosol.net.cache.CacheLoader#load(java.lang.Object)
 	 */
 	@Override
-	abstract public Object load(Object oKey);
+	public abstract Object load(Object oKey);
 
 	/**
 	 * Abstract overridden store method in AbstractCacheStore.<br>

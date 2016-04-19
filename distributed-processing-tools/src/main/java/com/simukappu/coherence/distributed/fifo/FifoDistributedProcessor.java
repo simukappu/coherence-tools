@@ -13,6 +13,10 @@ import com.tangosol.util.processor.ConditionalPut;
  * like Consumer or Function.<br>
  * 
  * @author Shota Yamazaki
+ *
+ * @param <T>
+ *            The function argument class and the key class of coherence cache
+ *            for FIFO distributed processing
  */
 public interface FifoDistributedProcessor<T> {
 
@@ -53,9 +57,10 @@ public interface FifoDistributedProcessor<T> {
 
 	/**
 	 * Get coherence cache name to use as the key set for FIFO distributed processing
+	 * processing
 	 * 
 	 * @return Target cache name
 	 */
-	abstract public String getTargetCacheName();
+	public abstract String getTargetCacheName();
 
 }

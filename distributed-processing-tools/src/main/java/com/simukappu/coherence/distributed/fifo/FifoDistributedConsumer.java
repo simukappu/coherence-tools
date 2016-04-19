@@ -9,6 +9,10 @@ import java.util.function.Consumer;
  * then call process method only when the entry is first in.<br>
  * 
  * @author Shota Yamazaki
+ *
+ * @param <T>
+ *            The function argument class and the key class of coherence cache
+ *            for FIFO distributed processing
  */
 public abstract class FifoDistributedConsumer<T> implements FifoDistributedProcessor<T>, Consumer<T> {
 
@@ -58,6 +62,6 @@ public abstract class FifoDistributedConsumer<T> implements FifoDistributedProce
 	 * @param t
 	 *            The function argument
 	 */
-	abstract public void process(T t);
+	public abstract void process(T t);
 
 }

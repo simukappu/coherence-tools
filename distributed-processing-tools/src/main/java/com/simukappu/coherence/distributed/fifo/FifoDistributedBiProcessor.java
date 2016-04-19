@@ -13,6 +13,10 @@ import com.tangosol.util.processor.ConditionalPut;
  * like BiConsumer or BiFunction.<br>
  * 
  * @author Shota Yamazaki
+ *
+ * @param <T>
+ *            The function argument class and the key class of coherence cache
+ *            for FIFO distributed processing
  */
 public interface FifoDistributedBiProcessor<T> {
 
@@ -30,9 +34,8 @@ public interface FifoDistributedBiProcessor<T> {
 	public default boolean check(T t, String targetCacheName) {
 		// Return if the key entry exists in a target cache
 		@SuppressWarnings("unchecked")
-		NamedCache<T, Integer> tagetCache = (NamedCache<T, Integer>) CacheFactory
-				.getTypedCache(targetCacheName,
-						TypeAssertion.withTypes(t.getClass(), Integer.class));
+		NamedCache<T, Integer> tagetCache = (NamedCache<T, Integer>) CacheFactory.getTypedCache(targetCacheName,
+				TypeAssertion.withTypes(t.getClass(), Integer.class));
 		return (tagetCache.get(t) != null);
 	}
 
@@ -52,11 +55,10 @@ public interface FifoDistributedBiProcessor<T> {
 		// return true.
 		// When the key exists, return false
 		@SuppressWarnings("unchecked")
-		NamedCache<T, Integer> tagetCache = (NamedCache<T, Integer>) CacheFactory
-				.getTypedCache(targetCacheName,
-						TypeAssertion.withTypes(t.getClass(), Integer.class));
-		return (tagetCache.invoke(t, new ConditionalPut<T, Integer>(
-				new NotFilter<Object>(PresentFilter.INSTANCE()), 1, true)) == null);
+		NamedCache<T, Integer> tagetCache = (NamedCache<T, Integer>) CacheFactory.getTypedCache(targetCacheName,
+				TypeAssertion.withTypes(t.getClass(), Integer.class));
+		return (tagetCache.invoke(t,
+				new ConditionalPut<T, Integer>(new NotFilter<Object>(PresentFilter.INSTANCE()), 1, true)) == null);
 	}
 
 }

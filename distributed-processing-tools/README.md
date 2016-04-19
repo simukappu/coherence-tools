@@ -14,7 +14,7 @@ For example, process as follows:
 		new FifoDistributedConsumer<Integer>("DistributedProcessingCache") {
 			@Override
 			public void process(Integer i) {
-				// write a processing
+				// write a processing here
 				System.out.println(i);
 			}
 		};
@@ -24,7 +24,7 @@ For example, process as follows:
 // Single processing with FifoDistributedBiConsumer
 {
 	FifoDistributedBiConsumer<Integer> fifoDistributedConsumer = i -> {
-		// write a processing
+		// write a processing here
 		System.out.println(i);
 	};
 	fifoDistributedConsumer.accept(1, "DistributedProcessingCache");
@@ -36,7 +36,7 @@ For example, process as follows:
 		new FifoDistributedFunction<Integer, Integer>("DistributedProcessingCache") {
 			@Override
 			public Integer process(Integer i) {
-				// write a processing
+				// write a processing here
 				return i + 10;
 			}
 		};
@@ -46,7 +46,7 @@ For example, process as follows:
 // Single processing with FifoDistributedBiFunction
 {
 	FifoDistributedBiFunction<Integer, Integer> fifoDistributedBiFunction = i -> {
-		// write a processing
+		// write a processing here
 		return i + 10;
 	};
 	Integer resultData = fifoDistributedBiFunction.apply(1, "DistributedProcessingCache");
@@ -61,7 +61,7 @@ List<Integer> testDataList = IntStream.rangeClosed(1, 10).boxed().collect(Collec
 		.forEach(new FifoDistributedConsumer<Integer>("DistributedProcessingCache") {
 			@Override
 			public void process(Integer i) {
-				// write a processing
+				// write a processing here
 				System.out.println(i);
 			}
 		});
@@ -70,7 +70,7 @@ List<Integer> testDataList = IntStream.rangeClosed(1, 10).boxed().collect(Collec
 // Distributed processing with FifoDistributedBiConsumer from stream processing
 {
 	FifoDistributedBiConsumer<Integer> fifoDistributedBiConsumer = i -> {
-		// write a processing
+		// write a processing here
 		System.out.println(i);
 	};
 	testDataList
@@ -86,7 +86,7 @@ List<Integer> testDataList = IntStream.rangeClosed(1, 10).boxed().collect(Collec
 		.map(new FifoDistributedFunction<Integer, Integer>("DistributedProcessingCache") {
 			@Override
 			public Integer process(Integer i) {
-				// write a processing
+				// write a processing here
 				return i + 10;
 			}
 		})

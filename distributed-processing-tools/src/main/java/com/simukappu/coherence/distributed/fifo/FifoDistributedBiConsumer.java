@@ -11,10 +11,13 @@ import java.util.function.BiConsumer;
  * to use as the key set for distributed processing<br>
  * 
  * @author Shota Yamazaki
+ *
+ * @param <T>
+ *            The function argument class and the key class of coherence cache
+ *            for FIFO distributed processing
  */
 @FunctionalInterface
-public interface FifoDistributedBiConsumer<T> extends
-		FifoDistributedBiProcessor<T>, BiConsumer<T, String> {
+public interface FifoDistributedBiConsumer<T> extends FifoDistributedBiProcessor<T>, BiConsumer<T, String> {
 
 	/*
 	 * (non-Javadoc)
@@ -35,6 +38,6 @@ public interface FifoDistributedBiConsumer<T> extends
 	 * @param t
 	 *            the function argument
 	 */
-	abstract public void process(T t);
+	public abstract void process(T t);
 
 }

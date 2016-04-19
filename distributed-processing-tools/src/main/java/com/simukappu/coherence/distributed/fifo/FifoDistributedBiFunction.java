@@ -11,6 +11,12 @@ import java.util.function.BiFunction;
  * to use as the key set for distributed processing<br>
  * 
  * @author Shota Yamazaki
+ *
+ * @param <T>
+ *            The function argument class and the key class of coherence cache
+ *            for FIFO distributed processing
+ * @param <R>
+ *            The function return class
  */
 @FunctionalInterface
 public interface FifoDistributedBiFunction<T, R> extends FifoDistributedBiProcessor<T>, BiFunction<T, String, R> {
@@ -36,6 +42,6 @@ public interface FifoDistributedBiFunction<T, R> extends FifoDistributedBiProces
 	 * @param t
 	 *            the function argument
 	 */
-	abstract public R process(T t);
+	public abstract R process(T t);
 
 }

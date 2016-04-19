@@ -393,10 +393,11 @@ public class TestFifoDistributedProcessor {
 			processingCountCache.invoke(i, countProcessor);
 			processingThreadCache.put(i, Thread.currentThread().getName());
 		};
-		// TODO make multi thread processing
 		testDataList.stream()
-				.collect(Collectors.toConcurrentMap(Function.identity(), i -> "DistributedProcessingCache"))
-				.forEach(fifoDistributedBiConsumer);
+				.collect(Collectors.toConcurrentMap(Function.identity(), i -> "DistributedProcessingCache")).entrySet()
+				.parallelStream().forEach(e -> {
+					fifoDistributedBiConsumer.accept(e.getKey(), e.getValue());
+				});
 
 		System.out.println("  size of " + DISTRIBUTED_PROCESSING_CACHE_NAME + ": " + distributedProcessingCache.size());
 		assertEquals(testDataList.size(), distributedProcessingCache.size());
@@ -406,10 +407,7 @@ public class TestFifoDistributedProcessor {
 		processingCountCache.values().forEach(i -> assertEquals(new Integer(1), i));
 		System.out.println("  processing thread names in " + PROCESSING_THREAD_CACHE_NAME + ": "
 				+ new HashMap<>(processingThreadCache));
-		// TODO make multi thread processing
-		// assertThat(new
-		// HashSet<String>(processingThreadCache.values()).size(),
-		// greaterThan(1));
+		assertThat(new HashSet<String>(processingThreadCache.values()).size(), greaterThan(1));
 
 		System.out.println("end of the test");
 		System.out.println();

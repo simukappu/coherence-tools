@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -91,11 +92,7 @@ public class TestFifoDistributedProcessor {
 
 	@Test
 	public void testCountProcessor() {
-		System.out.println("testCountProcessor");
-		System.out.println("  test data list: " + testDataList);
-		System.out.println(" before test");
-		System.out.println("  size of " + PROCESSING_COUNT_CACHE_NAME + ": " + processingCountCache.size());
-		assertEquals(0, processingCountCache.size());
+		startTest("testCountProcessor", testDataList);
 
 		System.out.println(" first processing...");
 		testDataList.forEach(i -> processingCountCache.invoke(i, countProcessor));
@@ -107,10 +104,7 @@ public class TestFifoDistributedProcessor {
 		System.out.println(" second processing...");
 		testDataList.forEach(i -> processingCountCache.invoke(i, countProcessor));
 
-		System.out.println("  size of " + PROCESSING_COUNT_CACHE_NAME + ": " + processingCountCache.size());
-		assertEquals(testDataList.size(), processingCountCache.size());
-		System.out.println("  result in " + PROCESSING_COUNT_CACHE_NAME + ": " + new HashMap<>(processingCountCache));
-		processingCountCache.values().forEach(i -> assertEquals(new Integer(2), i));
+		checkProcessingCount(testDataList.size(), 2);
 
 		System.out.println("end of the test");
 		System.out.println();
@@ -118,8 +112,7 @@ public class TestFifoDistributedProcessor {
 
 	@Test
 	public void testFifoDistributedConsumer() {
-		System.out.println("testFifoDistributedConsumer");
-		System.out.println("  test data: " + initTestData);
+		startTest("testFifoDistributedConsumer", initTestData);
 
 		System.out.println(" processing...");
 		FifoDistributedConsumer<Integer> fifoDistributedConsumer = new FifoDistributedConsumer<Integer>(
@@ -132,24 +125,13 @@ public class TestFifoDistributedProcessor {
 		};
 		fifoDistributedConsumer.accept(initTestData);
 
-		System.out.println("  size of " + DISTRIBUTED_PROCESSING_CACHE_NAME + ": " + distributedProcessingCache.size());
-		assertEquals(1, distributedProcessingCache.size());
-		System.out.println("  size of " + PROCESSING_COUNT_CACHE_NAME + ": " + processingCountCache.size());
-		assertEquals(1, processingCountCache.size());
-		System.out.println("  result in " + PROCESSING_COUNT_CACHE_NAME + ": " + new HashMap<>(processingCountCache));
-		processingCountCache.values().forEach(i -> assertEquals(new Integer(1), i));
-		System.out.println("  processing thread names in " + PROCESSING_THREAD_CACHE_NAME + ": "
-				+ new HashMap<>(processingThreadCache));
-		assertThat(new HashSet<String>(processingThreadCache.values()), hasSize(1));
-
-		System.out.println("end of the test");
-		System.out.println();
+		checkProcessingCount(1, 1);
+		finishTest(1, false);
 	}
 
 	@Test
 	public void testFifoDistributedBiConsumer() {
-		System.out.println("testFifoDistributedBiConsumer");
-		System.out.println("  test data: " + initTestData);
+		startTest("testFifoDistributedBiConsumer", initTestData);
 
 		System.out.println(" processing...");
 		FifoDistributedBiConsumer<Integer> fifoDistributedConsumer = i -> {
@@ -158,24 +140,13 @@ public class TestFifoDistributedProcessor {
 		};
 		fifoDistributedConsumer.accept(initTestData, "DistributedProcessingCache");
 
-		System.out.println("  size of " + DISTRIBUTED_PROCESSING_CACHE_NAME + ": " + distributedProcessingCache.size());
-		assertEquals(1, distributedProcessingCache.size());
-		System.out.println("  size of " + PROCESSING_COUNT_CACHE_NAME + ": " + processingCountCache.size());
-		assertEquals(1, processingCountCache.size());
-		System.out.println("  result in " + PROCESSING_COUNT_CACHE_NAME + ": " + new HashMap<>(processingCountCache));
-		processingCountCache.values().forEach(i -> assertEquals(new Integer(1), i));
-		System.out.println("  processing thread names in " + PROCESSING_THREAD_CACHE_NAME + ": "
-				+ new HashMap<>(processingThreadCache));
-		assertThat(new HashSet<String>(processingThreadCache.values()), hasSize(1));
-
-		System.out.println("end of the test");
-		System.out.println();
+		checkProcessingCount(1, 1);
+		finishTest(1, false);
 	}
 
 	@Test
 	public void testFifoDistributedFunction() {
-		System.out.println("testFifoDistributedFunction");
-		System.out.println("  test data: " + initTestData);
+		startTest("testFifoDistributedFunction", initTestData);
 
 		System.out.println(" processing...");
 		FifoDistributedFunction<Integer, Integer> fifoDistributedFunction = new FifoDistributedFunction<Integer, Integer>(
@@ -188,27 +159,16 @@ public class TestFifoDistributedProcessor {
 			}
 		};
 		Integer resultData = fifoDistributedFunction.apply(initTestData);
-
 		System.out.println("  processed result data: " + resultData);
 		assertEquals(expectedResultData, resultData);
-		System.out.println("  size of " + DISTRIBUTED_PROCESSING_CACHE_NAME + ": " + distributedProcessingCache.size());
-		assertEquals(1, distributedProcessingCache.size());
-		System.out.println("  size of " + PROCESSING_COUNT_CACHE_NAME + ": " + processingCountCache.size());
-		assertEquals(1, processingCountCache.size());
-		System.out.println("  result in " + PROCESSING_COUNT_CACHE_NAME + ": " + new HashMap<>(processingCountCache));
-		processingCountCache.values().forEach(i -> assertEquals(new Integer(1), i));
-		System.out.println("  processing thread names in " + PROCESSING_THREAD_CACHE_NAME + ": "
-				+ new HashMap<>(processingThreadCache));
-		assertThat(new HashSet<String>(processingThreadCache.values()), hasSize(1));
 
-		System.out.println("end of the test");
-		System.out.println();
+		checkProcessingCount(1, 1);
+		finishTest(1, false);
 	}
 
 	@Test
 	public void testFifoDistributedBiFunction() {
-		System.out.println("testFifoDistributedBiFunction");
-		System.out.println("  test data: " + initTestData);
+		startTest("testFifoDistributedBiFunction", initTestData);
 
 		System.out.println(" processing...");
 		FifoDistributedBiFunction<Integer, Integer> fifoDistributedBiFunction = i -> {
@@ -217,32 +177,17 @@ public class TestFifoDistributedProcessor {
 			return i + processingCountUp;
 		};
 		Integer resultData = fifoDistributedBiFunction.apply(initTestData, "DistributedProcessingCache");
-
 		System.out.println("  processed result data: " + resultData);
 		assertEquals(expectedResultData, resultData);
-		System.out.println("  size of " + DISTRIBUTED_PROCESSING_CACHE_NAME + ": " + distributedProcessingCache.size());
-		assertEquals(1, distributedProcessingCache.size());
-		System.out.println("  size of " + PROCESSING_COUNT_CACHE_NAME + ": " + processingCountCache.size());
-		assertEquals(1, processingCountCache.size());
-		System.out.println("  result in " + PROCESSING_COUNT_CACHE_NAME + ": " + new HashMap<>(processingCountCache));
-		processingCountCache.values().forEach(i -> assertEquals(new Integer(1), i));
-		System.out.println("  processing thread names in " + PROCESSING_THREAD_CACHE_NAME + ": "
-				+ new HashMap<>(processingThreadCache));
-		assertThat(new HashSet<String>(processingThreadCache.values()), hasSize(1));
 
-		System.out.println("end of the test");
-		System.out.println();
+		checkProcessingCount(1, 1);
+		finishTest(1, false);
 	}
 
 	@Test
 	public void singleThreadTestFifoDistributedConsumer() {
-		System.out.println("singleThreadTestFifoDistributedConsumer");
-		System.out.println("  test data list: " + testDataList);
-		System.out.println(" before test");
-		System.out.println("  size of " + DISTRIBUTED_PROCESSING_CACHE_NAME + ": " + distributedProcessingCache.size());
-		assertEquals(0, distributedProcessingCache.size());
-		System.out.println("  size of " + PROCESSING_COUNT_CACHE_NAME + ": " + processingCountCache.size());
-		assertEquals(0, processingCountCache.size());
+		startTest("singleThreadTestFifoDistributedConsumer", testDataList);
+		checkProcessingCountCacheSize(0);
 
 		System.out.println(" processing...");
 		testDataList.forEach(new FifoDistributedConsumer<Integer>("DistributedProcessingCache") {
@@ -253,29 +198,14 @@ public class TestFifoDistributedProcessor {
 			}
 		});
 
-		System.out.println("  size of " + DISTRIBUTED_PROCESSING_CACHE_NAME + ": " + distributedProcessingCache.size());
-		assertEquals(testDataList.size(), distributedProcessingCache.size());
-		System.out.println("  size of " + PROCESSING_COUNT_CACHE_NAME + ": " + processingCountCache.size());
-		assertEquals(testDataList.size(), processingCountCache.size());
-		System.out.println("  result in " + PROCESSING_COUNT_CACHE_NAME + ": " + new HashMap<>(processingCountCache));
-		processingCountCache.values().forEach(i -> assertEquals(new Integer(1), i));
-		System.out.println("  processing thread names in " + PROCESSING_THREAD_CACHE_NAME + ": "
-				+ new HashMap<>(processingThreadCache));
-		assertThat(new HashSet<String>(processingThreadCache.values()), hasSize(1));
-
-		System.out.println("end of the test");
-		System.out.println();
+		checkProcessingCount(testDataList.size(), 1);
+		finishTest(testDataList.size(), false);
 	}
 
 	@Test
 	public void parallelTestFifoDistributedConsumer() {
-		System.out.println("parallelTestFifoDistributedConsumer");
-		System.out.println("  test data list: " + testDataList);
-		System.out.println(" before test");
-		System.out.println("  size of " + DISTRIBUTED_PROCESSING_CACHE_NAME + ": " + distributedProcessingCache.size());
-		assertEquals(0, distributedProcessingCache.size());
-		System.out.println("  size of " + PROCESSING_COUNT_CACHE_NAME + ": " + processingCountCache.size());
-		assertEquals(0, processingCountCache.size());
+		startTest("parallelTestFifoDistributedConsumer", testDataList);
+		checkProcessingCountCacheSize(0);
 
 		System.out.println(" processing...");
 		testDataList.parallelStream().forEach(new FifoDistributedConsumer<Integer>("DistributedProcessingCache") {
@@ -286,29 +216,14 @@ public class TestFifoDistributedProcessor {
 			}
 		});
 
-		System.out.println("  size of " + DISTRIBUTED_PROCESSING_CACHE_NAME + ": " + distributedProcessingCache.size());
-		assertEquals(testDataList.size(), distributedProcessingCache.size());
-		System.out.println("  size of " + PROCESSING_COUNT_CACHE_NAME + ": " + processingCountCache.size());
-		assertEquals(testDataList.size(), processingCountCache.size());
-		System.out.println("  result in " + PROCESSING_COUNT_CACHE_NAME + ": " + new HashMap<>(processingCountCache));
-		processingCountCache.values().forEach(i -> assertEquals(new Integer(1), i));
-		System.out.println("  processing thread names in " + PROCESSING_THREAD_CACHE_NAME + ": "
-				+ new HashMap<>(processingThreadCache));
-		assertThat(new HashSet<String>(processingThreadCache.values()).size(), greaterThan(1));
-
-		System.out.println("end of the test");
-		System.out.println();
+		checkProcessingCount(testDataList.size(), 1);
+		finishTest(testDataList.size(), true);
 	}
 
 	@Test
 	public void multiThreadTestFifoDistributedConsumer() {
-		System.out.println("multiThreadTestFifoDistributedConsumer");
-		System.out.println("  test data list: " + testDataList);
-		System.out.println(" before test");
-		System.out.println("  size of " + DISTRIBUTED_PROCESSING_CACHE_NAME + ": " + distributedProcessingCache.size());
-		assertEquals(0, distributedProcessingCache.size());
-		System.out.println("  size of " + PROCESSING_COUNT_CACHE_NAME + ": " + processingCountCache.size());
-		assertEquals(0, processingCountCache.size());
+		startTest("multiThreadTestFifoDistributedConsumer", testDataList);
+		checkProcessingCountCacheSize(0);
 
 		System.out.println(" processing...");
 		ExecutorService exec = Executors.newFixedThreadPool(numThread);
@@ -332,29 +247,14 @@ public class TestFifoDistributedProcessor {
 			}
 		});
 
-		System.out.println("  size of " + DISTRIBUTED_PROCESSING_CACHE_NAME + ": " + distributedProcessingCache.size());
-		assertEquals(testDataList.size(), distributedProcessingCache.size());
-		System.out.println("  size of " + PROCESSING_COUNT_CACHE_NAME + ": " + processingCountCache.size());
-		assertEquals(testDataList.size(), processingCountCache.size());
-		System.out.println("  result in " + PROCESSING_COUNT_CACHE_NAME + ": " + new HashMap<>(processingCountCache));
-		processingCountCache.values().forEach(i -> assertEquals(new Integer(1), i));
-		System.out.println("  processing thread names in " + PROCESSING_THREAD_CACHE_NAME + ": "
-				+ new HashMap<>(processingThreadCache));
-		assertThat(new HashSet<String>(processingThreadCache.values()).size(), greaterThan(1));
-
-		System.out.println("end of the test");
-		System.out.println();
+		checkProcessingCount(testDataList.size(), 1);
+		finishTest(testDataList.size(), true);
 	}
 
 	@Test
 	public void singleThreadTestFifoDistributedBiConsumer() {
-		System.out.println("singleThreadTestFifoDistributedBiConsumer");
-		System.out.println("  test data list: " + testDataList);
-		System.out.println(" before test");
-		System.out.println("  size of " + DISTRIBUTED_PROCESSING_CACHE_NAME + ": " + distributedProcessingCache.size());
-		assertEquals(0, distributedProcessingCache.size());
-		System.out.println("  size of " + PROCESSING_COUNT_CACHE_NAME + ": " + processingCountCache.size());
-		assertEquals(0, processingCountCache.size());
+		startTest("singleThreadTestFifoDistributedBiConsumer", testDataList);
+		checkProcessingCountCacheSize(0);
 
 		System.out.println(" processing...");
 		FifoDistributedBiConsumer<Integer> fifoDistributedBiConsumer = i -> {
@@ -364,29 +264,14 @@ public class TestFifoDistributedProcessor {
 		testDataList.stream().collect(Collectors.toMap(Function.identity(), i -> "DistributedProcessingCache"))
 				.forEach(fifoDistributedBiConsumer);
 
-		System.out.println("  size of " + DISTRIBUTED_PROCESSING_CACHE_NAME + ": " + distributedProcessingCache.size());
-		assertEquals(testDataList.size(), distributedProcessingCache.size());
-		System.out.println("  size of " + PROCESSING_COUNT_CACHE_NAME + ": " + processingCountCache.size());
-		assertEquals(testDataList.size(), processingCountCache.size());
-		System.out.println("  result in " + PROCESSING_COUNT_CACHE_NAME + ": " + new HashMap<>(processingCountCache));
-		processingCountCache.values().forEach(i -> assertEquals(new Integer(1), i));
-		System.out.println("  processing thread names in " + PROCESSING_THREAD_CACHE_NAME + ": "
-				+ new HashMap<>(processingThreadCache));
-		assertThat(new HashSet<String>(processingThreadCache.values()), hasSize(1));
-
-		System.out.println("end of the test");
-		System.out.println();
+		checkProcessingCount(testDataList.size(), 1);
+		finishTest(testDataList.size(), false);
 	}
 
 	@Test
 	public void parallelTestFifoDistributedBiConsumer() {
-		System.out.println("parallelTestFifoDistributedBiConsumer");
-		System.out.println("  test data list: " + testDataList);
-		System.out.println(" before test");
-		System.out.println("  size of " + DISTRIBUTED_PROCESSING_CACHE_NAME + ": " + distributedProcessingCache.size());
-		assertEquals(0, distributedProcessingCache.size());
-		System.out.println("  size of " + PROCESSING_COUNT_CACHE_NAME + ": " + processingCountCache.size());
-		assertEquals(0, processingCountCache.size());
+		startTest("parallelTestFifoDistributedBiConsumer", testDataList);
+		checkProcessingCountCacheSize(0);
 
 		System.out.println(" processing...");
 		FifoDistributedBiConsumer<Integer> fifoDistributedBiConsumer = i -> {
@@ -399,29 +284,14 @@ public class TestFifoDistributedProcessor {
 					fifoDistributedBiConsumer.accept(e.getKey(), e.getValue());
 				});
 
-		System.out.println("  size of " + DISTRIBUTED_PROCESSING_CACHE_NAME + ": " + distributedProcessingCache.size());
-		assertEquals(testDataList.size(), distributedProcessingCache.size());
-		System.out.println("  size of " + PROCESSING_COUNT_CACHE_NAME + ": " + processingCountCache.size());
-		assertEquals(testDataList.size(), processingCountCache.size());
-		System.out.println("  result in " + PROCESSING_COUNT_CACHE_NAME + ": " + new HashMap<>(processingCountCache));
-		processingCountCache.values().forEach(i -> assertEquals(new Integer(1), i));
-		System.out.println("  processing thread names in " + PROCESSING_THREAD_CACHE_NAME + ": "
-				+ new HashMap<>(processingThreadCache));
-		assertThat(new HashSet<String>(processingThreadCache.values()).size(), greaterThan(1));
-
-		System.out.println("end of the test");
-		System.out.println();
+		checkProcessingCount(testDataList.size(), 1);
+		finishTest(testDataList.size(), true);
 	}
 
 	@Test
 	public void multiThreadTestFifoDistributedBiConsumer() {
-		System.out.println("multiThreadTestFifoDistributedBiConsumer");
-		System.out.println("  test data list: " + testDataList);
-		System.out.println(" before test");
-		System.out.println("  size of " + DISTRIBUTED_PROCESSING_CACHE_NAME + ": " + distributedProcessingCache.size());
-		assertEquals(0, distributedProcessingCache.size());
-		System.out.println("  size of " + PROCESSING_COUNT_CACHE_NAME + ": " + processingCountCache.size());
-		assertEquals(0, processingCountCache.size());
+		startTest("multiThreadTestFifoDistributedBiConsumer", testDataList);
+		checkProcessingCountCacheSize(0);
 
 		System.out.println(" processing...");
 		ExecutorService exec = Executors.newFixedThreadPool(numThread);
@@ -445,29 +315,14 @@ public class TestFifoDistributedProcessor {
 			}
 		});
 
-		System.out.println("  size of " + DISTRIBUTED_PROCESSING_CACHE_NAME + ": " + distributedProcessingCache.size());
-		assertEquals(testDataList.size(), distributedProcessingCache.size());
-		System.out.println("  size of " + PROCESSING_COUNT_CACHE_NAME + ": " + processingCountCache.size());
-		assertEquals(testDataList.size(), processingCountCache.size());
-		System.out.println("  result in " + PROCESSING_COUNT_CACHE_NAME + ": " + new HashMap<>(processingCountCache));
-		processingCountCache.values().forEach(i -> assertEquals(new Integer(1), i));
-		System.out.println("  processing thread names in " + PROCESSING_THREAD_CACHE_NAME + ": "
-				+ new HashMap<>(processingThreadCache));
-		assertThat(new HashSet<String>(processingThreadCache.values()).size(), greaterThan(1));
-
-		System.out.println("end of the test");
-		System.out.println();
+		checkProcessingCount(testDataList.size(), 1);
+		finishTest(testDataList.size(), true);
 	}
 
 	@Test
 	public void singleThreadTestFifoDistributedFunction() {
-		System.out.println("singleThreadTestFifoDistributedFunction");
-		System.out.println("  test data list: " + testDataList);
-		System.out.println(" before test");
-		System.out.println("  size of " + DISTRIBUTED_PROCESSING_CACHE_NAME + ": " + distributedProcessingCache.size());
-		assertEquals(0, distributedProcessingCache.size());
-		System.out.println("  size of " + PROCESSING_COUNT_CACHE_NAME + ": " + processingCountCache.size());
-		assertEquals(0, processingCountCache.size());
+		startTest("singleThreadTestFifoDistributedFunction", testDataList);
+		checkProcessingCountCacheSize(0);
 
 		System.out.println(" processing...");
 		List<Integer> resultDataList = testDataList.stream()
@@ -479,32 +334,17 @@ public class TestFifoDistributedProcessor {
 						return i + processingCountUp;
 					}
 				}).collect(Collectors.toList());
-
-		System.out.println("  processed result data list: " + resultDataList);
+		System.out.println("  processed result data: " + resultDataList);
 		assertEquals(expectedResultDataList, resultDataList);
-		System.out.println("  size of " + DISTRIBUTED_PROCESSING_CACHE_NAME + ": " + distributedProcessingCache.size());
-		assertEquals(testDataList.size(), distributedProcessingCache.size());
-		System.out.println("  size of " + PROCESSING_COUNT_CACHE_NAME + ": " + processingCountCache.size());
-		assertEquals(testDataList.size(), processingCountCache.size());
-		System.out.println("  result in " + PROCESSING_COUNT_CACHE_NAME + ": " + new HashMap<>(processingCountCache));
-		processingCountCache.values().forEach(i -> assertEquals(new Integer(1), i));
-		System.out.println("  processing thread names in " + PROCESSING_THREAD_CACHE_NAME + ": "
-				+ new HashMap<>(processingThreadCache));
-		assertThat(new HashSet<String>(processingThreadCache.values()), hasSize(1));
 
-		System.out.println("end of the test");
-		System.out.println();
+		checkProcessingCount(testDataList.size(), 1);
+		finishTest(testDataList.size(), false);
 	}
 
 	@Test
 	public void parallelTestFifoDistributedFunction() {
-		System.out.println("parallelTestFifoDistributedFunction");
-		System.out.println("  test data list: " + testDataList);
-		System.out.println(" before test");
-		System.out.println("  size of " + DISTRIBUTED_PROCESSING_CACHE_NAME + ": " + distributedProcessingCache.size());
-		assertEquals(0, distributedProcessingCache.size());
-		System.out.println("  size of " + PROCESSING_COUNT_CACHE_NAME + ": " + processingCountCache.size());
-		assertEquals(0, processingCountCache.size());
+		startTest("parallelTestFifoDistributedFunction", testDataList);
+		checkProcessingCountCacheSize(0);
 
 		System.out.println(" processing...");
 		List<Integer> resultDataList = testDataList.parallelStream()
@@ -516,32 +356,17 @@ public class TestFifoDistributedProcessor {
 						return i + processingCountUp;
 					}
 				}).collect(Collectors.toList());
-
-		System.out.println("  processed result data list: " + resultDataList);
+		System.out.println("  processed result data: " + resultDataList);
 		assertEquals(expectedResultDataList, resultDataList);
-		System.out.println("  size of " + DISTRIBUTED_PROCESSING_CACHE_NAME + ": " + distributedProcessingCache.size());
-		assertEquals(testDataList.size(), distributedProcessingCache.size());
-		System.out.println("  size of " + PROCESSING_COUNT_CACHE_NAME + ": " + processingCountCache.size());
-		assertEquals(testDataList.size(), processingCountCache.size());
-		System.out.println("  result in " + PROCESSING_COUNT_CACHE_NAME + ": " + new HashMap<>(processingCountCache));
-		processingCountCache.values().forEach(i -> assertEquals(new Integer(1), i));
-		System.out.println("  processing thread names in " + PROCESSING_THREAD_CACHE_NAME + ": "
-				+ new HashMap<>(processingThreadCache));
-		assertThat(new HashSet<String>(processingThreadCache.values()).size(), greaterThan(1));
 
-		System.out.println("end of the test");
-		System.out.println();
+		checkProcessingCount(testDataList.size(), 1);
+		finishTest(testDataList.size(), true);
 	}
 
 	@Test
 	public void multiThreadTestFifoDistributedFunction() {
-		System.out.println("multiThreadTestFifoDistributedFunction");
-		System.out.println("  test data list: " + testDataList);
-		System.out.println(" before test");
-		System.out.println("  size of " + DISTRIBUTED_PROCESSING_CACHE_NAME + ": " + distributedProcessingCache.size());
-		assertEquals(0, distributedProcessingCache.size());
-		System.out.println("  size of " + PROCESSING_COUNT_CACHE_NAME + ": " + processingCountCache.size());
-		assertEquals(0, processingCountCache.size());
+		startTest("multiThreadTestFifoDistributedFunction", testDataList);
+		checkProcessingCountCacheSize(0);
 
 		System.out.println(" processing...");
 		ExecutorService exec = Executors.newFixedThreadPool(numThread);
@@ -584,21 +409,147 @@ public class TestFifoDistributedProcessor {
 				}
 			});
 		});
-
 		System.out.println("  processed result data list (all): " + resultDataList);
 		assertEquals(expectedResultDataList, resultDataList);
+
+		checkProcessingCount(testDataList.size(), 1);
+		finishTest(testDataList.size(), true);
+	}
+
+	@Test
+	public void singleThreadTestFifoDistributedBiFunction() {
+		startTest("singleThreadTestFifoDistributedBiFunction", testDataList);
+		checkProcessingCountCacheSize(0);
+
+		System.out.println(" processing...");
+		FifoDistributedBiFunction<Integer, Integer> fifoDistributedBiFunction = i -> {
+			processingCountCache.invoke(i, countProcessor);
+			processingThreadCache.put(i, Thread.currentThread().getName());
+			return i + processingCountUp;
+		};
+		List<Integer> resultDataList = testDataList.stream()
+				.collect(Collectors.toConcurrentMap(Function.identity(), i -> "DistributedProcessingCache")).entrySet()
+				.stream().map(e -> {
+					return fifoDistributedBiFunction.apply(e.getKey(), e.getValue());
+				}).collect(Collectors.toList());
+		System.out.println("  processed result data: " + resultDataList);
+		assertEquals(expectedResultDataList, resultDataList);
+
+		checkProcessingCount(testDataList.size(), 1);
+		finishTest(testDataList.size(), false);
+	}
+
+	@Test
+	public void parallelTestFifoDistributedBiFunction() {
+		startTest("parallelTestFifoDistributedBiFunction", testDataList);
+		checkProcessingCountCacheSize(0);
+
+		System.out.println(" processing...");
+		FifoDistributedBiFunction<Integer, Integer> fifoDistributedBiFunction = i -> {
+			processingCountCache.invoke(i, countProcessor);
+			processingThreadCache.put(i, Thread.currentThread().getName());
+			return i + processingCountUp;
+		};
+		List<Integer> resultDataList = testDataList.stream()
+				.collect(Collectors.toConcurrentMap(Function.identity(), i -> "DistributedProcessingCache")).entrySet()
+				.parallelStream().map(e -> {
+					return fifoDistributedBiFunction.apply(e.getKey(), e.getValue());
+				}).collect(Collectors.toList());
+		// Sort result list since it was called to converted entry set
+		Collections.sort(resultDataList);
+		System.out.println("  processed result data: " + resultDataList);
+		assertEquals(expectedResultDataList, resultDataList);
+
+		checkProcessingCount(testDataList.size(), 1);
+		finishTest(testDataList.size(), true);
+	}
+
+	@Test
+	public void multiThreadTestFifoDistributedBiFunction() {
+		startTest("multiThreadTestFifoDistributedBiFunction", testDataList);
+		checkProcessingCountCacheSize(0);
+
+		System.out.println(" processing...");
+		ExecutorService exec = Executors.newFixedThreadPool(numThread);
+		Map<Integer, String> execThreadNameMap = new ConcurrentHashMap<>();
+		FifoDistributedBiFunction<Integer, Integer> fifoDistributedBiFunction = i -> {
+			processingCountCache.invoke(i, countProcessor);
+			processingThreadCache.put(i, Thread.currentThread().getName());
+			return i + processingCountUp;
+		};
+		List<Future<List<Integer>>> futureList = IntStream.range(0, numThread).mapToObj(n -> {
+			return exec.submit(() -> {
+				execThreadNameMap.put(n, Thread.currentThread().getName());
+				return testDataList.stream()
+						.collect(Collectors.toConcurrentMap(Function.identity(), i -> "DistributedProcessingCache"))
+						.entrySet().stream().map(e -> {
+							return fifoDistributedBiFunction.apply(e.getKey(), e.getValue());
+						}).collect(Collectors.toList());
+			});
+		}).collect(Collectors.toList());
+		IntStream.range(0, numThread).forEach(i -> {
+			try {
+				List<Integer> execResultDataList = futureList.get(i).get();
+				System.out.println(
+						"  processed result data list (" + execThreadNameMap.get(i) + "): " + execResultDataList);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+
+		// Combine results
+		List<Integer> resultDataList = new ArrayList<>();
+		IntStream.range(0, numTestData).forEach(i -> {
+			futureList.forEach(f -> {
+				try {
+					Integer result = f.get().get(i);
+					if (result != null) {
+						resultDataList.add(result);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			});
+		});
+		System.out.println("  processed result data list (all): " + resultDataList);
+		assertEquals(expectedResultDataList, resultDataList);
+
+		checkProcessingCount(testDataList.size(), 1);
+		finishTest(testDataList.size(), true);
+	}
+
+	private void startTest(String testName, Object testData) {
+		System.out.println(testName);
+		System.out.println("  test data: " + testData);
+		System.out.println(" before test");
 		System.out.println("  size of " + DISTRIBUTED_PROCESSING_CACHE_NAME + ": " + distributedProcessingCache.size());
-		assertEquals(testDataList.size(), distributedProcessingCache.size());
+		assertEquals(0, distributedProcessingCache.size());
+	}
+
+	private void checkProcessingCountCacheSize(int expectedProcessingCountCacheSize) {
 		System.out.println("  size of " + PROCESSING_COUNT_CACHE_NAME + ": " + processingCountCache.size());
-		assertEquals(testDataList.size(), processingCountCache.size());
+		assertEquals(expectedProcessingCountCacheSize, processingCountCache.size());
+	}
+
+	private void checkProcessingCount(int expectedProcessingCountCacheSize, int expectedProcessingCount) {
+		checkProcessingCountCacheSize(expectedProcessingCountCacheSize);
 		System.out.println("  result in " + PROCESSING_COUNT_CACHE_NAME + ": " + new HashMap<>(processingCountCache));
-		processingCountCache.values().forEach(i -> assertEquals(new Integer(1), i));
+		processingCountCache.values().forEach(i -> assertEquals(new Integer(expectedProcessingCount), i));
+	}
+
+	private void finishTest(int expectedDistributedProcessingCacheSize, boolean multiTreading) {
+		System.out.println("  size of " + DISTRIBUTED_PROCESSING_CACHE_NAME + ": " + distributedProcessingCache.size());
+		assertEquals(expectedDistributedProcessingCacheSize, distributedProcessingCache.size());
 		System.out.println("  processing thread names in " + PROCESSING_THREAD_CACHE_NAME + ": "
 				+ new HashMap<>(processingThreadCache));
-		assertThat(new HashSet<String>(processingThreadCache.values()).size(), greaterThan(1));
-
+		if (multiTreading) {
+			assertThat(new HashSet<String>(processingThreadCache.values()).size(), greaterThan(1));
+			System.out.println("   processed by multi thread");
+		} else {
+			assertThat(new HashSet<String>(processingThreadCache.values()), hasSize(1));
+			System.out.println("  -> processed by single thread");
+		}
 		System.out.println("end of the test");
 		System.out.println();
 	}
-
 }

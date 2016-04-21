@@ -1,12 +1,15 @@
 package com.simukappu.coherence.writequeue;
 
-import java.util.AbstractMap.SimpleEntry;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.tangosol.io.pof.PofReader;
+import com.tangosol.io.pof.PofWriter;
+import com.tangosol.io.pof.PortableObject;
 import com.tangosol.net.BackingMapContext;
 import com.tangosol.net.CacheFactory;
 import com.tangosol.net.NamedCache;
@@ -26,13 +29,14 @@ import com.tangosol.util.filter.AlwaysFilter;
  * <br>
  * For example, invoke as follows:<br>
  * {@code NamedCache<Object, Object> namedCache = CacheFactory.getCache("CacheName");}
- * {@code Map<Object, Map.Entry<Integer, Integer>> mapResults = namedCache.invokeAll(new AlwaysFilter<Object>(), new
+ * {@code Map<Object, Map.Entry<Integer, Integer>> mapResults = namedCache.invokeAll(new AlwaysFilter
+ * <Object>(), new
  * GetWriteQueueSizeProcessor(targetCacheName));}
  * 
  * @author Shota Yamazaki
  */
-public class GetWriteQueueSizeProcessor implements
-		EntryProcessor<Object, Object, Map.Entry<Integer, Integer>> {
+public class GetWriteQueueSizeProcessor
+		implements EntryProcessor<Object, Object, Map.Entry<Integer, Integer>>, PortableObject {
 
 	/**
 	 * Serial version used in Serializable interface
@@ -43,6 +47,14 @@ public class GetWriteQueueSizeProcessor implements
 	 * Target cache name to get the size of write behind queue
 	 */
 	private String targetCacheName = null;
+
+	/**
+	 * Default constructor
+	 * 
+	 */
+	public GetWriteQueueSizeProcessor() {
+		super();
+	}
 
 	/**
 	 * Constructor with the target cache name
@@ -71,12 +83,10 @@ public class GetWriteQueueSizeProcessor implements
 
 		// Get ReadWriteBackingMap
 		BinaryEntry<Object, Object> binEntry = (BinaryEntry<Object, Object>) entry;
-		BackingMapContext ctx = binEntry.getContext().getBackingMapContext(
-				this.targetCacheName);
+		BackingMapContext ctx = binEntry.getContext().getBackingMapContext(this.targetCacheName);
 		// TODO Must be careful to use deprecated method as of Coherence 12.1.3
 		@SuppressWarnings("deprecation")
-		ReadWriteBackingMap rwBackingMap = (ReadWriteBackingMap) ctx
-				.getBackingMap();
+		ReadWriteBackingMap rwBackingMap = (ReadWriteBackingMap) ctx.getBackingMap();
 		// Get WriteQueue
 		WriteQueue writeQueue = rwBackingMap.getWriteQueue();
 
@@ -84,12 +94,11 @@ public class GetWriteQueueSizeProcessor implements
 		int queueSize = writeQueue.size();
 
 		// Get running member ID
-		int memberId = binEntry.getContext().getCacheService().getCluster()
-				.getLocalMember().getId();
+		int memberId = binEntry.getContext().getCacheService().getCluster().getLocalMember().getId();
 
 		// Set member ID and previous size of write behind queue and return it
 		// Return the size of write behind queue
-		return new SimpleEntry<Integer, Integer>(memberId, queueSize);
+		return new PortableEntry<Integer, Integer>(memberId, queueSize);
 	}
 
 	/**
@@ -105,8 +114,7 @@ public class GetWriteQueueSizeProcessor implements
 	 * @see com.tangosol.util.InvocableMap.EntryProcessor#processAll(java.util.Set)
 	 */
 	@Override
-	public Map<Object, Map.Entry<Integer, Integer>> processAll(
-			Set<? extends Entry<Object, Object>> setEntries) {
+	public Map<Object, Map.Entry<Integer, Integer>> processAll(Set<? extends Entry<Object, Object>> setEntries) {
 
 		Map<Object, Map.Entry<Integer, Integer>> mapResults = new ListMap<Object, Map.Entry<Integer, Integer>>();
 
@@ -142,24 +150,43 @@ public class GetWriteQueueSizeProcessor implements
 			System.exit(1);
 		}
 		String targetCacheName = args[0];
-		NamedCache<Object, Object> targetCache = CacheFactory
-				.getCache(targetCacheName);
+		NamedCache<Object, Object> targetCache = CacheFactory.getCache(targetCacheName);
 
 		// Invoke GetWriteQueueSizeProcessor to all local-storage enabled nodes
-		Map<Object, Map.Entry<Integer, Integer>> mapResults = targetCache
-				.invokeAll(new AlwaysFilter<Object>(),
-						new GetWriteQueueSizeProcessor(targetCacheName));
+		Map<Object, Map.Entry<Integer, Integer>> mapResults = targetCache.invokeAll(new AlwaysFilter<Object>(),
+				new GetWriteQueueSizeProcessor(targetCacheName));
 
 		// Sort result map set by keys
-		List<Map.Entry<Integer, Integer>> resultList = new ArrayList<>(
-				mapResults.values());
+		List<Map.Entry<Integer, Integer>> resultList = new ArrayList<>(mapResults.values());
 		resultList.sort((a, b) -> a.getKey() - b.getKey());
 
 		// Display results
 		System.out.println("Size of write behind queue:");
 		resultList.forEach(resultEntry -> {
-			System.out.println(" " + resultEntry.getValue()
-					+ " entries in Node# " + resultEntry.getKey());
+			System.out.println(" " + resultEntry.getValue() + " entries in Node# " + resultEntry.getKey());
 		});
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.tangosol.io.pof.PortableObject#readExternal(com.tangosol.io.pof.
+	 * PofReader)
+	 */
+	@Override
+	public void readExternal(PofReader reader) throws IOException {
+		targetCacheName = reader.readString(0);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.tangosol.io.pof.PortableObject#writeExternal(com.tangosol.io.pof.
+	 * PofWriter)
+	 */
+	@Override
+	public void writeExternal(PofWriter writer) throws IOException {
+		writer.writeString(0, targetCacheName);
 	}
 }

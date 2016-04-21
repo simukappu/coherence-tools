@@ -1,5 +1,10 @@
 package com.simukappu.coherence.mclusters.processor;
 
+import java.io.IOException;
+
+import com.tangosol.io.pof.PofReader;
+import com.tangosol.io.pof.PofWriter;
+import com.tangosol.io.pof.PortableObject;
 import com.tangosol.net.CacheFactory;
 import com.tangosol.util.InvocableMap.Entry;
 import com.tangosol.util.processor.AbstractProcessor;
@@ -9,8 +14,7 @@ import com.tangosol.util.processor.AbstractProcessor;
  * 
  * @author Shota Yamazaki
  */
-public class GetClusterNameProcessor extends
-		AbstractProcessor<Object, Object, String> {
+public class GetClusterNameProcessor extends AbstractProcessor<Object, Object, String> implements PortableObject {
 
 	/**
 	 * Serial version used in Serializable interface
@@ -28,6 +32,14 @@ public class GetClusterNameProcessor extends
 	@Override
 	public String process(Entry<Object, Object> entry) {
 		return CacheFactory.getCluster().getClusterName();
+	}
+
+	@Override
+	public void readExternal(PofReader reader) throws IOException {
+	}
+
+	@Override
+	public void writeExternal(PofWriter writer) throws IOException {
 	}
 
 }

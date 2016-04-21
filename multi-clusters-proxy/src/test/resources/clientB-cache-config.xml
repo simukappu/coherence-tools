@@ -35,11 +35,23 @@
 							<port>9099</port>
 						</socket-address>
 					</remote-addresses>
-					<!--connect-timeout>10s</connect-timeout-->
+					<!--connect-timeout>10s</connect-timeout -->
 				</tcp-initiator>
 				<outgoing-message-handler>
 					<request-timeout>5s</request-timeout>
 				</outgoing-message-handler>
+				<serializer>
+					<instance>
+						<class-name>com.tangosol.io.pof.ConfigurablePofContext
+						</class-name>
+						<init-params>
+							<init-param>
+								<param-type>String</param-type>
+								<param-value>clusterA-pof-config.xml</param-value>
+							</init-param>
+						</init-params>
+					</instance>
+				</serializer>
 			</initiator-config>
 		</remote-cache-scheme>
 		<remote-cache-scheme>
@@ -53,7 +65,7 @@
 							<port>9101</port>
 						</socket-address>
 					</remote-addresses>
-					<!--connect-timeout>10s</connect-timeout-->
+					<!--connect-timeout>10s</connect-timeout -->
 				</tcp-initiator>
 				<outgoing-message-handler>
 					<request-timeout>5s</request-timeout>

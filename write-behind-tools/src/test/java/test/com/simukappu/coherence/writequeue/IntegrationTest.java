@@ -1,22 +1,21 @@
 package test.com.simukappu.coherence.writequeue;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import test.com.simukappu.coherence.writequeue.util.PutTestIntegerEntries;
 
 import com.simukappu.coherence.writequeue.ClearWriteQueueProcessor;
 import com.simukappu.coherence.writequeue.GetWriteQueueSizeProcessor;
 import com.tangosol.net.CacheFactory;
 import com.tangosol.net.NamedCache;
 import com.tangosol.util.filter.AlwaysFilter;
+
+import test.com.simukappu.coherence.writequeue.util.PutTestIntegerEntries;
 
 /**
  * Integration test class for write behind tools.
@@ -25,14 +24,12 @@ import com.tangosol.util.filter.AlwaysFilter;
  */
 public class IntegrationTest {
 
+	/**
+	 * Ensure cluster to initialize tests
+	 */
 	@BeforeClass
-	public static void initializeTests() {
+	public static void ensureCluster() {
 		CacheFactory.ensureCluster();
-	}
-
-	@AfterClass
-	public static void destroyTests() {
-		CacheFactory.shutdown();
 	}
 
 	/**
@@ -57,8 +54,7 @@ public class IntegrationTest {
 		int totalQueueSize = 0;
 
 		// Get target named cache
-		NamedCache<Object, Object> targetCache = CacheFactory
-				.getCache("ThrowExceptionCacheStoreCache");
+		NamedCache<Object, Object> targetCache = CacheFactory.getCache("ThrowExceptionCacheStoreCache");
 
 		// Truncate cache and check if current cache size (number of cached
 		// entries) is 0
@@ -69,8 +65,7 @@ public class IntegrationTest {
 
 		// Check if current total write behind queue size is 0
 		totalQueueSize = getTotalWriteQueueSize(targetCache);
-		System.out.println("Current total write behind queue size: "
-				+ totalQueueSize + "\n");
+		System.out.println("Current total write behind queue size: " + totalQueueSize + "\n");
 		assertEquals(0, totalQueueSize);
 
 		// Put test data
@@ -86,8 +81,7 @@ public class IntegrationTest {
 		// Check if current total write behind queue size is total number of
 		// test data entries
 		totalQueueSize = getTotalWriteQueueSize(targetCache);
-		System.out.println("Current total write behind queue size: "
-				+ totalQueueSize + "\n");
+		System.out.println("Current total write behind queue size: " + totalQueueSize + "\n");
 		assertEquals(numTotalData, totalQueueSize);
 
 		// Clear write behind queue
@@ -102,8 +96,7 @@ public class IntegrationTest {
 
 		// Check if current total write behind queue size is 0
 		totalQueueSize = getTotalWriteQueueSize(targetCache);
-		System.out.println("Current total write behind queue size: "
-				+ totalQueueSize);
+		System.out.println("Current total write behind queue size: " + totalQueueSize);
 		assertEquals(0, totalQueueSize);
 	}
 
@@ -116,17 +109,12 @@ public class IntegrationTest {
 	 */
 	private int getTotalWriteQueueSize(NamedCache<Object, Object> targetCache) {
 		// Invoke GetWriteQueueSizeProcessor to all local-storage enabled nodes
-		Map<Object, Map.Entry<Integer, Integer>> mapResults = targetCache
-				.invokeAll(
-						new AlwaysFilter<Object>(),
-						new GetWriteQueueSizeProcessor(targetCache
-								.getCacheName()));
+		Map<Object, Map.Entry<Integer, Integer>> mapResults = targetCache.invokeAll(new AlwaysFilter<Object>(),
+				new GetWriteQueueSizeProcessor(targetCache.getCacheName()));
 
 		// Return total write behind queue size from the map results
-		List<Map.Entry<Integer, Integer>> resultList = new ArrayList<Map.Entry<Integer, Integer>>(
-				mapResults.values());
-		int totalQueueSize = resultList.stream().mapToInt(Map.Entry::getValue)
-				.sum();
+		List<Map.Entry<Integer, Integer>> resultList = new ArrayList<Map.Entry<Integer, Integer>>(mapResults.values());
+		int totalQueueSize = resultList.stream().mapToInt(Map.Entry::getValue).sum();
 		return totalQueueSize;
 	}
 
@@ -138,8 +126,7 @@ public class IntegrationTest {
 	 */
 	private void clearWriteQueue(NamedCache<Object, Object> targetCache) {
 		// Invoke ClearWriteQueueProcessor to all local-storage enabled nodes
-		targetCache.invokeAll(new AlwaysFilter<Object>(),
-				new ClearWriteQueueProcessor(targetCache.getCacheName()));
+		targetCache.invokeAll(new AlwaysFilter<Object>(), new ClearWriteQueueProcessor(targetCache.getCacheName()));
 	}
 
 	/**
@@ -150,10 +137,8 @@ public class IntegrationTest {
 	 * @param numData
 	 *            Number of test data entries
 	 */
-	private void putWriteBehindTestData(NamedCache<Object, Object> targetCache,
-			int numData) {
+	private void putWriteBehindTestData(NamedCache<Object, Object> targetCache, int numData) {
 		// Put test data to the target cache
-		PutTestIntegerEntries.putTestIntegerEntries(targetCache.getCacheName(),
-				numData);
+		PutTestIntegerEntries.putTestIntegerEntries(targetCache.getCacheName(), numData);
 	}
 }

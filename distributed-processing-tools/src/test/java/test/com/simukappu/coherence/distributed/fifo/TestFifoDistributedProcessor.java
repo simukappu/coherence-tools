@@ -19,7 +19,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -40,14 +39,38 @@ import com.tangosol.util.InvocableMap.EntryProcessor;
  */
 public class TestFifoDistributedProcessor {
 
+	/*
+	 * Test data parameters
+	 */
+	private int initTestData = 1;
+	private int numTestData = 20;
+	private int processingCountUp = 20;
+	private int numThread = 10;
+
+	/*
+	 * Test data
+	 */
+	private Integer expectedResultData = initTestData + processingCountUp;
+	private List<Integer> testDataList = IntStream.range(initTestData, initTestData + numTestData).boxed()
+			.collect(Collectors.toList());
+	private List<Integer> expectedResultDataList = IntStream
+			.range(initTestData + processingCountUp, initTestData + numTestData + processingCountUp).boxed()
+			.collect(Collectors.toList());
+
+	/*
+	 * Cache names used in tests
+	 */
 	private static final String DISTRIBUTED_PROCESSING_CACHE_NAME = "DistributedProcessingCache";
 	private static final String PROCESSING_COUNT_CACHE_NAME = "ProcessingCountCache";
 	private static final String PROCESSING_THREAD_CACHE_NAME = "ProcessingThreadCache";
 
-	NamedCache<Integer, Integer> distributedProcessingCache = null;
-	NamedCache<Integer, Integer> processingCountCache = null;
-	NamedCache<Integer, String> processingThreadCache = null;
-	EntryProcessor<Integer, Integer, Integer> countProcessor = e -> {
+	/*
+	 * NamedCache and EntryProcessor for processing count used in tests
+	 */
+	private NamedCache<Integer, Integer> distributedProcessingCache = null;
+	private NamedCache<Integer, Integer> processingCountCache = null;
+	private NamedCache<Integer, String> processingThreadCache = null;
+	private EntryProcessor<Integer, Integer, Integer> countProcessor = e -> {
 		if (e.getValue() == null) {
 			e.setValue(1);
 		} else {
@@ -55,28 +78,19 @@ public class TestFifoDistributedProcessor {
 		}
 		return e.getValue();
 	};
-	int initTestData = 1;
-	int numTestData = 20;
-	int processingCountUp = 20;
-	int numThread = 10;
 
-	Integer expectedResultData = initTestData + processingCountUp;
-	List<Integer> testDataList = IntStream.range(initTestData, initTestData + numTestData).boxed()
-			.collect(Collectors.toList());
-	List<Integer> expectedResultDataList = IntStream
-			.range(initTestData + processingCountUp, initTestData + numTestData + processingCountUp).boxed()
-			.collect(Collectors.toList());
-
+	/**
+	 * Ensure cluster to initialize tests
+	 */
 	@BeforeClass
-	public static void initializeTests() {
+	public static void ensureCluster() {
 		CacheFactory.ensureCluster();
 	}
 
-	@AfterClass
-	public static void destroyTests() {
-		CacheFactory.shutdown();
-	}
-
+	/**
+	 * Initialize test environment<br>
+	 * Get named caches used in tests
+	 */
 	@Before
 	public void initializeTest() {
 		distributedProcessingCache = CacheFactory.getTypedCache(DISTRIBUTED_PROCESSING_CACHE_NAME,
@@ -90,6 +104,10 @@ public class TestFifoDistributedProcessor {
 		processingThreadCache.truncate();
 	}
 
+	/**
+	 * Test method for EntryProcessor to count called processing which is used
+	 * in tests.
+	 */
 	@Test
 	public void testCountProcessor() {
 		startTest("testCountProcessor", testDataList);
@@ -110,6 +128,10 @@ public class TestFifoDistributedProcessor {
 		System.out.println();
 	}
 
+	/**
+	 * Test method for FifoDistributedConsumer.<br>
+	 * This method calls accept method only one time.
+	 */
 	@Test
 	public void testFifoDistributedConsumer() {
 		startTest("testFifoDistributedConsumer", initTestData);
@@ -129,6 +151,10 @@ public class TestFifoDistributedProcessor {
 		finishTest(1, false);
 	}
 
+	/**
+	 * Test method for FifoDistributedBiConsumer.<br>
+	 * This method calls accept method only one time.
+	 */
 	@Test
 	public void testFifoDistributedBiConsumer() {
 		startTest("testFifoDistributedBiConsumer", initTestData);
@@ -144,6 +170,10 @@ public class TestFifoDistributedProcessor {
 		finishTest(1, false);
 	}
 
+	/**
+	 * Test method for FifoDistributedFunction.<br>
+	 * This method calls apply method only one time.
+	 */
 	@Test
 	public void testFifoDistributedFunction() {
 		startTest("testFifoDistributedFunction", initTestData);
@@ -166,6 +196,10 @@ public class TestFifoDistributedProcessor {
 		finishTest(1, false);
 	}
 
+	/**
+	 * Test method for FifoDistributedBiFunction.<br>
+	 * This method calls apply method only one time.
+	 */
 	@Test
 	public void testFifoDistributedBiFunction() {
 		startTest("testFifoDistributedBiFunction", initTestData);
@@ -184,6 +218,11 @@ public class TestFifoDistributedProcessor {
 		finishTest(1, false);
 	}
 
+	/**
+	 * Test method for FifoDistributedConsumer in single processing.<br>
+	 * This method calls FifoDistributedConsumer from stream API and processes
+	 * them in single thread.
+	 */
 	@Test
 	public void singleThreadTestFifoDistributedConsumer() {
 		startTest("singleThreadTestFifoDistributedConsumer", testDataList);
@@ -202,6 +241,11 @@ public class TestFifoDistributedProcessor {
 		finishTest(testDataList.size(), false);
 	}
 
+	/**
+	 * Test method for FifoDistributedConsumer in parallel processing.<br>
+	 * This method calls FifoDistributedConsumer from parallel stream API and
+	 * processes them in multi thread.
+	 */
 	@Test
 	public void parallelTestFifoDistributedConsumer() {
 		startTest("parallelTestFifoDistributedConsumer", testDataList);
@@ -220,6 +264,12 @@ public class TestFifoDistributedProcessor {
 		finishTest(testDataList.size(), true);
 	}
 
+	/**
+	 * Test method for FifoDistributedConsumer as distributed processing in
+	 * multi processes.<br>
+	 * This method calls FifoDistributedConsumer for all test data set from
+	 * several threads and processes them independently.
+	 */
 	@Test
 	public void multiThreadTestFifoDistributedConsumer() {
 		startTest("multiThreadTestFifoDistributedConsumer", testDataList);
@@ -251,6 +301,11 @@ public class TestFifoDistributedProcessor {
 		finishTest(testDataList.size(), true);
 	}
 
+	/**
+	 * Test method for FifoDistributedBiConsumer in single processing.<br>
+	 * This method calls FifoDistributedBiConsumer from stream API and processes
+	 * them in single thread.
+	 */
 	@Test
 	public void singleThreadTestFifoDistributedBiConsumer() {
 		startTest("singleThreadTestFifoDistributedBiConsumer", testDataList);
@@ -268,6 +323,11 @@ public class TestFifoDistributedProcessor {
 		finishTest(testDataList.size(), false);
 	}
 
+	/**
+	 * Test method for FifoDistributedBiConsumer in parallel processing.<br>
+	 * This method calls FifoDistributedBiConsumer from parallel stream API and
+	 * processes them in multi thread.
+	 */
 	@Test
 	public void parallelTestFifoDistributedBiConsumer() {
 		startTest("parallelTestFifoDistributedBiConsumer", testDataList);
@@ -288,6 +348,12 @@ public class TestFifoDistributedProcessor {
 		finishTest(testDataList.size(), true);
 	}
 
+	/**
+	 * Test method for FifoDistributedBiConsumer as distributed processing in
+	 * multi processes.<br>
+	 * This method calls FifoDistributedBiConsumer for all test data set from
+	 * several threads and processes them independently.
+	 */
 	@Test
 	public void multiThreadTestFifoDistributedBiConsumer() {
 		startTest("multiThreadTestFifoDistributedBiConsumer", testDataList);
@@ -319,6 +385,11 @@ public class TestFifoDistributedProcessor {
 		finishTest(testDataList.size(), true);
 	}
 
+	/**
+	 * Test method for FifoDistributedFunction in single processing.<br>
+	 * This method calls FifoDistributedFunction from stream API and processes
+	 * them in single thread.
+	 */
 	@Test
 	public void singleThreadTestFifoDistributedFunction() {
 		startTest("singleThreadTestFifoDistributedFunction", testDataList);
@@ -341,6 +412,11 @@ public class TestFifoDistributedProcessor {
 		finishTest(testDataList.size(), false);
 	}
 
+	/**
+	 * Test method for FifoDistributedFunction in parallel processing.<br>
+	 * This method calls FifoDistributedFunction from parallel stream API and
+	 * processes them in multi thread.
+	 */
 	@Test
 	public void parallelTestFifoDistributedFunction() {
 		startTest("parallelTestFifoDistributedFunction", testDataList);
@@ -363,6 +439,12 @@ public class TestFifoDistributedProcessor {
 		finishTest(testDataList.size(), true);
 	}
 
+	/**
+	 * Test method for FifoDistributedFunction as distributed processing in
+	 * multi processes.<br>
+	 * This method calls FifoDistributedFunction for all test data set from
+	 * several threads and processes them independently.
+	 */
 	@Test
 	public void multiThreadTestFifoDistributedFunction() {
 		startTest("multiThreadTestFifoDistributedFunction", testDataList);
@@ -416,6 +498,11 @@ public class TestFifoDistributedProcessor {
 		finishTest(testDataList.size(), true);
 	}
 
+	/**
+	 * Test method for FifoDistributedBiFunction in single processing.<br>
+	 * This method calls FifoDistributedBiFunction from stream API and processes
+	 * them in single thread.
+	 */
 	@Test
 	public void singleThreadTestFifoDistributedBiFunction() {
 		startTest("singleThreadTestFifoDistributedBiFunction", testDataList);
@@ -439,6 +526,11 @@ public class TestFifoDistributedProcessor {
 		finishTest(testDataList.size(), false);
 	}
 
+	/**
+	 * Test method for FifoDistributedBiFunction in parallel processing.<br>
+	 * This method calls FifoDistributedBiFunction from parallel stream API and
+	 * processes them in multi thread.
+	 */
 	@Test
 	public void parallelTestFifoDistributedBiFunction() {
 		startTest("parallelTestFifoDistributedBiFunction", testDataList);
@@ -464,6 +556,12 @@ public class TestFifoDistributedProcessor {
 		finishTest(testDataList.size(), true);
 	}
 
+	/**
+	 * Test method for FifoDistributedBiFunction as distributed processing in
+	 * multi processes.<br>
+	 * This method calls FifoDistributedBiFunction for all test data set from
+	 * several threads and processes them independently.
+	 */
 	@Test
 	public void multiThreadTestFifoDistributedBiFunction() {
 		startTest("multiThreadTestFifoDistributedBiFunction", testDataList);
@@ -518,6 +616,12 @@ public class TestFifoDistributedProcessor {
 		finishTest(testDataList.size(), true);
 	}
 
+	/**
+	 * Initial check for all tests
+	 * 
+	 * @param testName
+	 * @param testData
+	 */
 	private void startTest(String testName, Object testData) {
 		System.out.println(testName);
 		System.out.println("  test data: " + testData);
@@ -526,17 +630,34 @@ public class TestFifoDistributedProcessor {
 		assertEquals(0, distributedProcessingCache.size());
 	}
 
+	/**
+	 * Check size of processing count count
+	 * 
+	 * @param expectedProcessingCountCacheSize
+	 */
 	private void checkProcessingCountCacheSize(int expectedProcessingCountCacheSize) {
 		System.out.println("  size of " + PROCESSING_COUNT_CACHE_NAME + ": " + processingCountCache.size());
 		assertEquals(expectedProcessingCountCacheSize, processingCountCache.size());
 	}
 
+	/**
+	 * Check processing count
+	 * 
+	 * @param expectedProcessingCountCacheSize
+	 * @param expectedProcessingCount
+	 */
 	private void checkProcessingCount(int expectedProcessingCountCacheSize, int expectedProcessingCount) {
 		checkProcessingCountCacheSize(expectedProcessingCountCacheSize);
 		System.out.println("  result in " + PROCESSING_COUNT_CACHE_NAME + ": " + new HashMap<>(processingCountCache));
 		processingCountCache.values().forEach(i -> assertEquals(new Integer(expectedProcessingCount), i));
 	}
 
+	/**
+	 * Final check for all tests
+	 * 
+	 * @param expectedDistributedProcessingCacheSize
+	 * @param multiTreading
+	 */
 	private void finishTest(int expectedDistributedProcessingCacheSize, boolean multiTreading) {
 		System.out.println("  size of " + DISTRIBUTED_PROCESSING_CACHE_NAME + ": " + distributedProcessingCache.size());
 		assertEquals(expectedDistributedProcessingCacheSize, distributedProcessingCache.size());

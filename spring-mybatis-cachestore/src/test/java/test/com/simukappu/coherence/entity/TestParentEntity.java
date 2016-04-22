@@ -1,14 +1,19 @@
 package test.com.simukappu.coherence.entity;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import com.tangosol.io.pof.PofReader;
+import com.tangosol.io.pof.PofWriter;
+import com.tangosol.io.pof.PortableObject;
+
 /**
  * Father class as test entity class which has many child class.
  */
-public class TestParentEntity implements Serializable, Cloneable {
+public class TestParentEntity implements Serializable, Cloneable, PortableObject {
 
 	private static final long serialVersionUID = 1L;
 
@@ -53,8 +58,7 @@ public class TestParentEntity implements Serializable, Cloneable {
 	 * @param childlen
 	 *            The list of children
 	 */
-	public TestParentEntity(int id, String name, int age,
-			List<TestChildEntity> childlen) {
+	public TestParentEntity(int id, String name, int age, List<TestChildEntity> childlen) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -143,8 +147,7 @@ public class TestParentEntity implements Serializable, Cloneable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + age;
-		result = prime * result
-				+ ((children == null) ? 0 : children.hashCode());
+		result = prime * result + ((children == null) ? 0 : children.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
@@ -189,6 +192,35 @@ public class TestParentEntity implements Serializable, Cloneable {
 		builder.append(new HashSet<TestChildEntity>(children));
 		builder.append("]");
 		return builder.toString();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.tangosol.io.pof.PortableObject#readExternal(com.tangosol.io.pof.
+	 * PofReader)
+	 */
+	@Override
+	public void readExternal(PofReader reader) throws IOException {
+		id = reader.readInt(0);
+		name = reader.readString(1);
+		age = reader.readInt(2);
+		children = reader.readCollection(3, new ArrayList<TestChildEntity>());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.tangosol.io.pof.PortableObject#writeExternal(com.tangosol.io.pof.
+	 * PofWriter)
+	 */
+	@Override
+	public void writeExternal(PofWriter writer) throws IOException {
+		writer.writeInt(0, id);
+		writer.writeString(1, name);
+		writer.writeInt(2, age);
+		writer.writeCollection(3, children);
 	}
 
 }

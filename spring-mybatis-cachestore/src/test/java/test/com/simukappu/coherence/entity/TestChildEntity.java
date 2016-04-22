@@ -1,11 +1,16 @@
 package test.com.simukappu.coherence.entity;
 
+import java.io.IOException;
 import java.io.Serializable;
+
+import com.tangosol.io.pof.PofReader;
+import com.tangosol.io.pof.PofWriter;
+import com.tangosol.io.pof.PortableObject;
 
 /**
  * Child class as test entity class which belongs to father class.
  */
-public class TestChildEntity implements Serializable, Cloneable {
+public class TestChildEntity implements Serializable, Cloneable, PortableObject {
 
 	private static final long serialVersionUID = 1L;
 
@@ -73,6 +78,11 @@ public class TestChildEntity implements Serializable, Cloneable {
 		this.age = age;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -83,6 +93,11 @@ public class TestChildEntity implements Serializable, Cloneable {
 		return result;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -104,6 +119,11 @@ public class TestChildEntity implements Serializable, Cloneable {
 		return true;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -115,6 +135,33 @@ public class TestChildEntity implements Serializable, Cloneable {
 		builder.append(age);
 		builder.append("]");
 		return builder.toString();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.tangosol.io.pof.PortableObject#readExternal(com.tangosol.io.pof.
+	 * PofReader)
+	 */
+	@Override
+	public void readExternal(PofReader reader) throws IOException {
+		parentId = reader.readInt(0);
+		name = reader.readString(1);
+		age = reader.readInt(2);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.tangosol.io.pof.PortableObject#writeExternal(com.tangosol.io.pof.
+	 * PofWriter)
+	 */
+	@Override
+	public void writeExternal(PofWriter writer) throws IOException {
+		writer.writeInt(0, parentId);
+		writer.writeString(1, name);
+		writer.writeInt(2, age);
 	}
 
 }

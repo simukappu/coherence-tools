@@ -10,7 +10,17 @@
 	</spring:bean-factory>
 
 	<defaults>
-		<serializer system-property="tangosol.coherence.serializer" />
+		<serializer>
+			<instance>
+				<class-name>com.tangosol.io.pof.ConfigurablePofContext</class-name>
+				<init-params>
+					<init-param>
+						<param-type>String</param-type>
+						<param-value>spring-cachestore-pof-config.xml</param-value>
+					</init-param>
+				</init-params>
+			</instance>
+		</serializer>
 		<socket-provider system-property="tangosol.coherence.socketprovider" />
 	</defaults>
 

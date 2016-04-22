@@ -16,10 +16,11 @@ import com.tangosol.util.processor.AbstractProcessor;
  */
 public class GetClusterNameProcessor extends AbstractProcessor<Object, Object, String> implements PortableObject {
 
+
 	/**
 	 * Serial version used in Serializable interface
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -2305224177615714426L;
 
 	/**
 	 * Overridden process method to get cluster name.

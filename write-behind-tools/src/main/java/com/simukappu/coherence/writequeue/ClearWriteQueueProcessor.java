@@ -41,7 +41,7 @@ public class ClearWriteQueueProcessor
 	/**
 	 * Serial version used in Serializable interface
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 6279242053498148185L;
 
 	/**
 	 * Interval to call remove requests to write behind queue

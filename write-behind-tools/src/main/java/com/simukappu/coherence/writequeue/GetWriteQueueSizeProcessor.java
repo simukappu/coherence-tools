@@ -41,7 +41,7 @@ public class GetWriteQueueSizeProcessor
 	/**
 	 * Serial version used in Serializable interface
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -5064142897216530271L;
 
 	/**
 	 * Target cache name to get the size of write behind queue

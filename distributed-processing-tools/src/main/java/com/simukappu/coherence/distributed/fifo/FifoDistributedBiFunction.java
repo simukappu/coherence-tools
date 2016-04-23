@@ -19,7 +19,8 @@ import java.util.function.BiFunction;
  *            The function return class
  */
 @FunctionalInterface
-public interface FifoDistributedBiFunction<T, R> extends FifoDistributedBiProcessor<T>, BiFunction<T, String, R> {
+public interface FifoDistributedBiFunction<T, R> extends
+		FifoDistributedBiProcessor<T>, BiFunction<T, String, R> {
 
 	/*
 	 * (non-Javadoc)
@@ -41,6 +42,7 @@ public interface FifoDistributedBiFunction<T, R> extends FifoDistributedBiProces
 	 * 
 	 * @param t
 	 *            the function argument
+	 * @return Return value of the function
 	 */
 	public abstract R process(T t);
 

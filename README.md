@@ -5,9 +5,9 @@ Utility tools for Oracle Coherence
 Utility tools for Oracle Coherence includes following components
 
 ### Distributed Processing Tools  
-Tools for distributed processing, which provides following functions
-* FifoDistributedProcessor: Consumer/Function implementation for distributed processing as First in, first out
-* HashModFilter(Coming soon): Filter to get target entries by hashCode modulo of a field in key class
+Tools to run distributed processing task in multi Coherence member processes exclusively. This component can handle dynamic changes in number of processing members. That provides following functions
+* FIFO distributed processor: Consumer/Function implementation for distributed processing as First in, first out
+* Hash modulo filter: Filter to get target entries by hashCode modulo of a key/value object or a field of them
 
 Go to [distributed-processing-tools](https://github.com/simukappu/coherence-tools/tree/master/distributed-processing-tools "distributed-processing-tools")
 

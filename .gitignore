@@ -1,26 +1,14 @@
-*.class
-bin
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-# Package Files #
-*.jar
-*.war
-*.ear
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-
-# Eclipse
-.project
-.classpath
-.settings
-
-# OS
-.DS_Store
-
-# Maven
-target
-
-# Javadoc
-docs
+# Except Javadoc
+site/*
+distributed-processing-tools/*
+!distributed-processing-tools/docs
+!distributed-processing-tools/README.md
+write-behind-tools/*
+!write-behind-tools/docs
+!write-behind-tools/README.md
+spring-mybatis-cachestore/*
+!spring-mybatis-cachestore/docs
+!spring-mybatis-cachestore/README.md
+multi-clusters-proxy/*
+!multi-clusters-proxy/docs
+!multi-clusters-proxy/README.md

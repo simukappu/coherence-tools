@@ -1,0 +1,4 @@
+test.com.simukappu.coherence.distributed.fifo
+test.com.simukappu.coherence.distributed.hash
+test.com.simukappu.coherence.distributed.server
+test.com.simukappu.coherence.entity

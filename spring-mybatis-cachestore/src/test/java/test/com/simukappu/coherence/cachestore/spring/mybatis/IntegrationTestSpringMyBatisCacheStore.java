@@ -37,8 +37,11 @@ public class IntegrationTestSpringMyBatisCacheStore {
 	NamedCache<Integer, TestParentEntity> targetWriteThroughCache = null;
 	NamedCache<Integer, TestParentEntity> targetWriteBehindCache = null;
 
-	@SuppressWarnings("serial")
+	/**
+	 * Static map of test data
+	 */
 	private static final Map<Integer, TestParentEntity> PARENT_ENTITIES_MAP = new HashMap<Integer, TestParentEntity>() {
+		private static final long serialVersionUID = 1L;
 		{
 			put(0, new TestParentEntity(30, "Stephen Curry", 27));
 			put(1, new TestParentEntity(11, "Klay Thompson", 25));

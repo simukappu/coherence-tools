@@ -65,8 +65,8 @@ public abstract class BaseHashDistributedProcessingTest {
 	/**
 	 * Initial check for all tests
 	 * 
-	 * @param testName
-	 * @param testData
+	 * @param testName Name of the test
+	 * @param testData Test data
 	 */
 	protected void startTest(String testName) {
 		System.out.println(testName);
@@ -80,8 +80,8 @@ public abstract class BaseHashDistributedProcessingTest {
 	/**
 	 * Check filtered results
 	 * 
-	 * @param targetKeys
-	 * @param filteredDataMap
+	 * @param targetKeys Filtered key set
+	 * @param filteredDataMap Filtered map data
 	 */
 	protected void checkFilteredResults(Set<TestEntity> targetKeys, Map<TestEntity, TestEntity> filteredDataMap) {
 		System.out.println("  filtered keys: " + new HashSet<>(targetKeys));
@@ -93,8 +93,8 @@ public abstract class BaseHashDistributedProcessingTest {
 	/**
 	 * Final check for all tests
 	 * 
-	 * @param expectedDistributedProcessingCacheSize
-	 * @param multiTreading
+	 * @param expectedDistributedProcessingCacheSize Expected size of DistributedProcessingCache
+	 * @param multiTreading Whether the test is running on multi processes
 	 */
 	protected void finishTest(Map<TestEntity, TestEntity> resultDataMap, boolean multiProcesses) {
 		System.out.println(" combined result data map: " + resultDataMap);

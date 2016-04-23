@@ -72,8 +72,6 @@ public abstract class BaseHashDistributedProcessingTest {
 	 * 
 	 * @param testName
 	 *            Name of the test
-	 * @param testData
-	 *            Test data
 	 */
 	protected void startTest(String testName) {
 		System.out.println(testName);
@@ -110,7 +108,7 @@ public abstract class BaseHashDistributedProcessingTest {
 	 * 
 	 * @param resultDataMap
 	 *            Result data map
-	 * @param multiTreading
+	 * @param multiProcesses
 	 *            Whether the test is running on multi processes
 	 */
 	protected void finishTest(Map<TestEntity, TestEntity> resultDataMap,

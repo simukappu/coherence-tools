@@ -42,10 +42,10 @@ public class TestChildEntity implements Serializable, Cloneable, PortableObject 
 		this.age = age;
 	}
 
-	@Override
 	/**
 	 * Overridden public clone method
 	 */
+	@Override
 	public TestChildEntity clone() {
 		try {
 			return (TestChildEntity) super.clone();

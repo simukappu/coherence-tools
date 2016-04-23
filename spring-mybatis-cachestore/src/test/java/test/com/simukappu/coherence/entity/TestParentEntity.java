@@ -86,10 +86,10 @@ public class TestParentEntity implements Serializable, Cloneable, PortableObject
 		children = new ArrayList<>();
 	}
 
-	@Override
 	/**
 	 * Overridden public clone method
 	 */
+	@Override
 	public TestParentEntity clone() {
 		try {
 			TestParentEntity cloneParent = (TestParentEntity) super.clone();

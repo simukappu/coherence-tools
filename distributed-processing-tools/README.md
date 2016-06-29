@@ -1,6 +1,6 @@
 # Distributed Processing Tools
 Tools to run distributed processing task in multi Coherence member processes exclusively. This component can handle dynamic changes in number of processing members. Which provides following functions
-* FIFO distributed processor: Consumer/Function implementation for distributed processing as First in, first out
+* FIFO distributed processor: Consumer/Function implementation for distributed processing as first in, first out
 * Hash modulo filter: Filter to get target entries by hashCode modulo of a key/value object or a field of them
 
 ## Usage

@@ -32,13 +32,13 @@ multiCacheInClusterB.put("ClusterName", "ForClusterB");
 See [Javadoc](https://simukappu.github.io/coherence-tools/multi-clusters-proxy/docs/apidocs/index.html) for more details.
 
 ## Testing
-First, run extend proxy servers by [test.com.simukappu.coherence.mclusters.proxy.ProxyServerInClusterA](https://github.com/simukappu/coherence-tools/blob/master/multi-clusters-proxy/src/test/java/test/com/simukappu/coherence/mclusters/proxy/ProxyServerInClusterA.java) and [test.com.simukappu.coherence.mclusters.proxy.ProxyServerInClusterB](https://github.com/simukappu/coherence-tools/blob/master/multi-clusters-proxy/src/test/java/test/com/simukappu/coherence/mclusters/proxy/ProxyServerInClusterB.java).  
-Then, run [test.com.simukappu.coherence.mclusters.IntegrationTest](https://github.com/simukappu/coherence-tools/blob/master/multi-clusters-proxy/src/test/java/test/com/simukappu/coherence/mclusters/IntegrationTest.java) as JUnit Test.  
+First, run extend proxy servers by [test.com.simukappu.coherence.mclusters.proxy.ProxyServerInClusterA](multi-clusters-proxy/src/test/java/test/com/simukappu/coherence/mclusters/proxy/ProxyServerInClusterA.java) and [test.com.simukappu.coherence.mclusters.proxy.ProxyServerInClusterB](multi-clusters-proxy/src/test/java/test/com/simukappu/coherence/mclusters/proxy/ProxyServerInClusterB.java).  
+Then, run [test.com.simukappu.coherence.mclusters.IntegrationTest](multi-clusters-proxy/src/test/java/test/com/simukappu/coherence/mclusters/IntegrationTest.java) as JUnit Test.  
 You can run this test as stand-alone or multi-processes cluster by running CacheServer before the test.  
-CacheServer joining one of these clusters can be started by [test.com.simukappu.coherence.mclusters.server.CacheServerInClusterA](https://github.com/simukappu/coherence-tools/blob/master/multi-clusters-proxy/src/test/java/test/com/simukappu/coherence/mclusters/server/CacheServerInClusterA.java) and [test.com.simukappu.coherence.mclusters.server.CacheServerInClusterB](https://github.com/simukappu/coherence-tools/blob/master/multi-clusters-proxy/src/test/java/test/com/simukappu/coherence/mclusters/server/CacheServerInClusterB.java).
+CacheServer joining one of these clusters can be started by [test.com.simukappu.coherence.mclusters.server.CacheServerInClusterA](multi-clusters-proxy/src/test/java/test/com/simukappu/coherence/mclusters/server/CacheServerInClusterA.java) and [test.com.simukappu.coherence.mclusters.server.CacheServerInClusterB](multi-clusters-proxy/src/test/java/test/com/simukappu/coherence/mclusters/server/CacheServerInClusterB.java).
 
 ## API Document
 <https://simukappu.github.io/coherence-tools/multi-clusters-proxy/docs/project-reports.html>
 
 ## License
-[Apache License](https://github.com/simukappu/coherence-tools/blob/master/LICENSE)
+[Apache License](LICENSE)

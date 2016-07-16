@@ -9,22 +9,22 @@ Tools to run distributed processing task in multi Coherence member processes exc
 * FIFO distributed processor: Consumer/Function implementation for distributed processing as First in, first out
 * Hash modulo filter: Filter to get target entries by hashCode modulo of a key/value object or a field of them
 
-Go to [distributed-processing-tools](https://github.com/simukappu/coherence-tools/tree/master/distributed-processing-tools "distributed-processing-tools")
+Go to [distributed-processing-tools](distributed-processing-tools)
 
 ### Write Behind Tools
 Tools for write behind queue, which provides following functions
 * Get current write behind queue size in the cluster
 * Clear retaining data in write behind queue in the cluster
 
-Go to [write-behind-tools](https://github.com/simukappu/coherence-tools/tree/master/write-behind-tools "write-behind-tools")
+Go to [write-behind-tools](write-behind-tools)
 
 ### Spring MyBatis CacheStore  
 CacheStore implementation integrated with Spring and MyBatis framework  
-Go to [spring-mybatis-cachestore](https://github.com/simukappu/coherence-tools/tree/master/spring-mybatis-cachestore "spring-mybatis-cachestore")
+Go to [spring-mybatis-cachestore](pring-mybatis-cachestore)
 
 ### Multi Clusters Proxy
 Tools for extend proxy to connect multiple clusters including SelectableCacheFactory to operate multiple named caches in several clusters  
-Go to [multi-clusters-proxy](https://github.com/simukappu/coherence-tools/tree/master/multi-clusters-proxy "multi-clusters-proxy")
+Go to [multi-clusters-proxy](multi-clusters-proxy)
 
 ## Requirement
 Installing Oracle Coherence (Oracle Coherence license is needed)
@@ -46,4 +46,4 @@ $ mvn -Doracle-maven-sync.oracleHome=$ORACLE_HOME -Doracle-maven-sync.testOnly=f
 ```
 
 ## License
-[Apache License](https://github.com/simukappu/coherence-tools/blob/master/LICENSE)
+[Apache License](LICENSE)

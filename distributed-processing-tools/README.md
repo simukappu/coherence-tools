@@ -144,16 +144,16 @@ See [Javadoc](https://simukappu.github.io/coherence-tools/distributed-processing
 
 ## Testing
 ### FIFO distributed processor
-Just run [test.com.simukappu.coherence.distributed.fifo.TestFifoDistributedProcessor](https://github.com/simukappu/coherence-tools/blob/master/distributed-processing-tools/src/test/java/test/com/simukappu/coherence/distributed/fifo/TestFifoDistributedProcessor.java) as JUnit Test.  
+Just run [test.com.simukappu.coherence.distributed.fifo.TestFifoDistributedProcessor](distributed-processing-tools/src/test/java/test/com/simukappu/coherence/distributed/fifo/TestFifoDistributedProcessor.java) as JUnit Test.  
 You can run this test as stand-alone or multi-processes cluster by running CacheServer before the test.  
-CacheServer joining this cluster can be started by [test.com.simukappu.coherence.distributed.server.CacheServer](https://github.com/simukappu/coherence-tools/blob/master/distributed-processing-tools/src/test/java/test/com/simukappu/coherence/distributed/server/CacheServer.java).
+CacheServer joining this cluster can be started by [test.com.simukappu.coherence.distributed.server.CacheServer](distributed-processing-tools/src/test/java/test/com/simukappu/coherence/distributed/server/CacheServer.java).
 
 ### Hash modulo filter
-Run [test.com.simukappu.coherence.distributed.hash.SingleProcessTestHashDistributedProcessing](https://github.com/simukappu/coherence-tools/blob/master/distributed-processing-tools/src/test/java/test/com/simukappu/coherence/distributed/hash/SingleProcessTestHashDistributedProcessing.java) as JUnit Test.  
-For the testing on multi processes, Run [test.com.simukappu.coherence.distributed.hash.MultiProcessTestHashModExtractor](https://github.com/simukappu/coherence-tools/blob/master/distributed-processing-tools/src/test/java/test/com/simukappu/coherence/distributed/hash/MultiProcessTestHashModExtractor.java) and/or [test.com.simukappu.coherence.distributed.hash.MultiProcessTestReflectionHashModExtractor](https://github.com/simukappu/coherence-tools/blob/master/distributed-processing-tools/src/test/java/test/com/simukappu/coherence/distributed/hash/MultiProcessTestReflectionHashModExtractor.java) as JUnit Test. You have to run several number of these test processes depending on BaseHashDistributedProcessingTest.NUM_PROCESSES (default is 3) in the same time.  
+Run [test.com.simukappu.coherence.distributed.hash.SingleProcessTestHashDistributedProcessing](distributed-processing-tools/src/test/java/test/com/simukappu/coherence/distributed/hash/SingleProcessTestHashDistributedProcessing.java) as JUnit Test.  
+For the testing on multi processes, Run [test.com.simukappu.coherence.distributed.hash.MultiProcessTestHashModExtractor](distributed-processing-tools/src/test/java/test/com/simukappu/coherence/distributed/hash/MultiProcessTestHashModExtractor.java) and/or [test.com.simukappu.coherence.distributed.hash.MultiProcessTestReflectionHashModExtractor](distributed-processing-tools/src/test/java/test/com/simukappu/coherence/distributed/hash/MultiProcessTestReflectionHashModExtractor.java) as JUnit Test. You have to run several number of these test processes depending on BaseHashDistributedProcessingTest.NUM_PROCESSES (default is 3) in the same time.  
 
 ## API Document
 <https://simukappu.github.io/coherence-tools/distributed-processing-tools/docs/project-reports.html>
 
 ## License
-[Apache License](https://github.com/simukappu/coherence-tools/blob/master/LICENSE)
+[Apache License](LICENSE)

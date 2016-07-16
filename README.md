@@ -6,7 +6,7 @@ Utility tools for Oracle Coherence includes following components
 
 ### Distributed Processing Tools  
 Tools to run distributed processing task in multi Coherence member processes exclusively. This component can handle dynamic changes in number of processing members, which provides following functions
-* FIFO distributed processor: Consumer/Function implementation for distributed processing as First in, first out
+* FIFO distributed processor: Consumer/Function implementation for distributed processing as first in, first out
 * Hash modulo filter: Filter to get target entries by hashCode modulo of a key/value object or a field of them
 
 Go to [distributed-processing-tools](distributed-processing-tools)
@@ -26,7 +26,7 @@ Go to [spring-mybatis-cachestore](pring-mybatis-cachestore)
 Tools for extend proxy to connect multiple clusters including SelectableCacheFactory to operate multiple named caches in several clusters  
 Go to [multi-clusters-proxy](multi-clusters-proxy)
 
-## Requirement
+## Requirements
 Installing Oracle Coherence (Oracle Coherence license is needed)
 <http://www.oracle.com/technetwork/middleware/coherence/overview/index.html>
 

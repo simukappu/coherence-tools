@@ -20,7 +20,7 @@ Go to [write-behind-tools](write-behind-tools)
 
 ### Spring MyBatis CacheStore  
 CacheStore implementation integrated with Spring and MyBatis framework  
-Go to [spring-mybatis-cachestore](pring-mybatis-cachestore)
+Go to [spring-mybatis-cachestore](spring-mybatis-cachestore)
 
 ### Multi Clusters Proxy
 Tools for extend proxy to connect multiple clusters including SelectableCacheFactory to operate multiple named caches in several clusters  

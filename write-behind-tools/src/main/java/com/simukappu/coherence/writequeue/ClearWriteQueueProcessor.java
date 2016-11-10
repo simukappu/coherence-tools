@@ -46,7 +46,7 @@ public class ClearWriteQueueProcessor
 	/**
 	 * Interval to call remove requests to write behind queue
 	 */
-	private static long REMOVE_WRITE_QUEUE_REQUEST_INTERVAL = 100;
+	private static long REMOVE_WRITE_QUEUE_REQUEST_INTERVAL = 100L;
 
 	/**
 	 * Target cache name to clear write behind queue

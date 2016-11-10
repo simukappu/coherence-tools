@@ -27,8 +27,9 @@ Tools for extend proxy to connect multiple clusters including SelectableCacheFac
 Go to [multi-clusters-proxy](multi-clusters-proxy)
 
 ## Requirements
-Installing Oracle Coherence (Oracle Coherence license is needed)
-<http://www.oracle.com/technetwork/middleware/coherence/overview/index.html>
+Installing Oracle Coherence  
+<http://www.oracle.com/technetwork/middleware/coherence/overview/index.html>  
+(For not development purposes, Oracle Coherence license is needed)
 
 ### For development environment
 1. Download Coherence Stand-Alone Install from here

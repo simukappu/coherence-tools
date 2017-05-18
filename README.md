@@ -36,12 +36,12 @@ Installing Oracle Coherence
 <http://www.oracle.com/technetwork/middleware/coherence/downloads/index.html>
 
 2. Run installer as following command
-    ```sh
+```sh
 $ java -jar fmw_12.2.1.0.0_coherence.jar
 ```
 
 3. Register Coherence to local Maven repository
-    ```sh
+```sh
 $ mvn -DpomFile=$ORACLE_HOME/oracle_common/plugins/maven/com/oracle/maven/oracle-maven-sync/12.2.1/oracle-maven-sync-12.2.1.pom -Dfile=$ORACLE_HOME/oracle_common/plugins/maven/com/oracle/maven/oracle-maven-sync/12.2.1/oracle-maven-sync-12.2.1.jar install:install-file
 $ mvn -Doracle-maven-sync.oracleHome=$ORACLE_HOME -Doracle-maven-sync.testOnly=false com.oracle.maven:oracle-maven-sync:12.2.1-0-0:push
 ```

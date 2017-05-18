@@ -23,12 +23,12 @@ See also <https://github.com/coherence-community/coherence-spring-integration>.
 3. Create table in your Database.  
 Sample SQL script for MySQL and Oracle is provided.  
 For MySQL, 
-    ```sh
+```sh
 $ mysql -u root
 mysql> source spring-mybatis-cachestore/script/create_table_mysql.sql
 ```  
 For Oracle, 
-    ```sh
+```sh
 $ sqlplus scott/tiger@localhost:1521/orcl @spring-mybatis-cachestore/script/create_table_oracle.sql
 ```  
 

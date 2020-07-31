@@ -3,15 +3,15 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.simukappu.coherence</groupId>
 	<artifactId>spring-mybatis-cachestore</artifactId>
-	<version>12.2.1</version>
+	<version>20.06</version>
 	<name>spring-mybatis-cachestore</name>
 	<description>CacheStore implementation integrated with Spring and MyBatis framework</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<java.version>1.8</java.version>
-		<oracle.coherence.version>12.2.1-0-0</oracle.coherence.version>
+		<java.version>11</java.version>
+		<coherence.version>20.06</coherence.version>
 		<spring.version>3.1.1.RELEASE</spring.version>
 		<coherence.spring.version>1.0.1</coherence.spring.version>
 		<mybatis.version>3.1.1</mybatis.version>
@@ -95,9 +95,9 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.oracle.coherence</groupId>
+			<groupId>com.oracle.coherence.ce</groupId>
 			<artifactId>coherence</artifactId>
-			<version>${oracle.coherence.version}</version>
+			<version>${coherence.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>

@@ -27,15 +27,18 @@ Tools for extend proxy to connect multiple clusters including SelectableCacheFac
 Go to [multi-clusters-proxy](multi-clusters-proxy)
 
 ## Requirements
-Installing Oracle Coherence  
-<http://www.oracle.com/technetwork/middleware/coherence/overview/index.html>  
-(Not for development purposes, Oracle Coherence license is needed)
+These tools require Oracle Coherence.
 
-### For development environment
-1. Download Coherence Stand-Alone Install from here
-<http://www.oracle.com/technetwork/middleware/coherence/downloads/index.html>
+### Using Oracle Coherence Community Edition
+All builtin test modules are using [Oracle Coherence Community Edition](https://coherence.community). All required modules are packaged as Maven project.
 
-2. Run installer as following command
+### Using Oracle Coherence Non-Community Edition
+If you would like to use non-community edition, you need to install Oracle Coherence. 
+See [Oracle Coherence](https://www.oracle.com/middleware/technologies/coherence.html) for more details (Not for development purposes, Oracle Coherence license is needed).
+
+1. Download Coherence Stand-Alone Install from [Oracle Technology Network](https://www.oracle.com/middleware/technologies/coherence-downloads.html)
+
+2. Run installer as following command with your Coherence version
 ```sh
 $ java -jar fmw_12.2.1.0.0_coherence.jar
 ```

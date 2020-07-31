@@ -3,8 +3,8 @@
 	xmlns="http://xmlns.oracle.com/coherence/coherence-operational-config"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.oracle.com/coherence/coherence-operational-config http://xmlns.oracle.com/coherence/coherence-operational-config/1.2/coherence-operational-config.xsd">
-	<!--coherence-version:12.2 -->
-	<cluster-config>
+
+  <cluster-config>
 		<member-identity>
 			<cluster-name system-property="tangosol.coherence.cluster">MULTI_CLUSTER_B</cluster-name>
 		</member-identity>

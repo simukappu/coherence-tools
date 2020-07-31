@@ -3,8 +3,8 @@
 	xmlns="http://xmlns.oracle.com/coherence/coherence-operational-config"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.oracle.com/coherence/coherence-operational-config http://xmlns.oracle.com/coherence/coherence-operational-config/1.2/coherence-operational-config.xsd">
-	<!--coherence-version:12.2 -->
-	<cluster-config>
+
+  <cluster-config>
 		<packet-publisher>
 			<enabled system-property="tangosol.coherence.tcmp.enabled">false
 			</enabled>
@@ -20,7 +20,7 @@
 		<init-params>
 			<init-param>
 				<param-type>java.lang.String</param-type>
-				<param-value system-property="tangosol.coherence.cacheconfig">clientA-cache-config.xml</param-value>
+				<param-value system-property="tangosol.coherence.cacheconfig">client-base-cache-config.xml</param-value>
 			</init-param>
 		</init-params>
 	</configurable-cache-factory-config>

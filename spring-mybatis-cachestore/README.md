@@ -34,7 +34,7 @@ $ sqlplus scott/tiger@localhost:1521/orcl @spring-mybatis-cachestore/script/crea
 
 4. Edit pom.xml according to your datasource-context.xml.
 
-5. Run test modules under [test.com.simukappucoherence.cachestore.spring.mybatis](src/test/java/test/com/simukappu/coherence/cachestore/spring/mybatis) package as JUnit Test.
+5. Run test modules under [test.com.simukappu.coherence.cachestore.spring.mybatis](src/test/java/test/com/simukappu/coherence/cachestore/spring/mybatis) package as JUnit Test.
 
 ## API Document
 <https://simukappu.github.io/coherence-tools/spring-mybatis-cachestore/docs/project-reports.html>

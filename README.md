@@ -50,4 +50,4 @@ $ mvn -Doracle-maven-sync.oracleHome=$ORACLE_HOME -Doracle-maven-sync.testOnly=f
 ```
 
 ## License
-[Apache License](LICENSE)
+[MIT License](MIT-LICENSE)

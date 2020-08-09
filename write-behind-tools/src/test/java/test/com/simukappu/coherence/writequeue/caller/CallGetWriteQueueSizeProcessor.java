@@ -1,4 +1,4 @@
-package test.com.simukappu.coherence.writequeue;
+package test.com.simukappu.coherence.writequeue.caller;
 
 import com.simukappu.coherence.writequeue.GetWriteQueueSizeProcessor;
 

@@ -14,6 +14,7 @@ import com.tangosol.util.Filter;
 import com.tangosol.util.extractor.AbstractExtractor;
 import com.tangosol.util.filter.EqualsFilter;
 
+import test.com.simukappu.coherence.distributed.hash.base.BaseMultiProcessHashDistributedProcessingTest;
 import test.com.simukappu.coherence.entity.TestEntity;
 
 /**
@@ -24,7 +25,7 @@ import test.com.simukappu.coherence.entity.TestEntity;
  * 
  * @author Shota Yamazaki
  */
-public class MultiProcessTestReflectionHashModExtractor extends BaseMultiProcessHashDistributedProcessingTest {
+public class CustomTestMultiProcessReflectionHashModExtractor extends BaseMultiProcessHashDistributedProcessingTest {
 
 	/**
 	 * Set a coherence member role and ensure cluster to initialize tests

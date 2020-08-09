@@ -1,6 +1,9 @@
 # Spring MyBatis CacheStore  
 CacheStore implementation integrated with Spring and MyBatis framework
 
+## Dependency
+Current implementation depends on Spring v3.2 (or earlier) and MyBatis v3.3 (or earlier).
+
 ## Usage
 1. Make datasource configuration in Spring context file.  
 See [src/test/resources/META-INF/spring/datasource-context.xml](src/test/resources/META-INF/spring/datasource-context.xml).
@@ -25,6 +28,8 @@ Sample SQL script for MySQL and Oracle is provided.
 For MySQL, 
 ```sh
 $ mysql -u root
+mysql> CREATE DATABASE IF NOT EXISTS coherence_tools_test;
+mysql> use coherence_tools_test
 mysql> source spring-mybatis-cachestore/script/create_table_mysql.sql
 ```  
 For Oracle, 

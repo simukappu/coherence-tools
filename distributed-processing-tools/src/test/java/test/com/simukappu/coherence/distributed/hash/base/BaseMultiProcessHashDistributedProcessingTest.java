@@ -1,4 +1,4 @@
-package test.com.simukappu.coherence.distributed.hash;
+package test.com.simukappu.coherence.distributed.hash.base;
 
 import static org.junit.Assert.assertEquals;
 

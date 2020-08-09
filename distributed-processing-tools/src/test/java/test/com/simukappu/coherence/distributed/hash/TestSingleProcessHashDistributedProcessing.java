@@ -17,6 +17,7 @@ import com.tangosol.util.Filter;
 import com.tangosol.util.extractor.AbstractExtractor;
 import com.tangosol.util.filter.EqualsFilter;
 
+import test.com.simukappu.coherence.distributed.hash.base.BaseHashDistributedProcessingTest;
 import test.com.simukappu.coherence.entity.TestEntity;
 
 /**
@@ -24,7 +25,7 @@ import test.com.simukappu.coherence.entity.TestEntity;
  * 
  * @author Shota Yamazaki
  */
-public class SingleProcessTestHashDistributedProcessing extends BaseHashDistributedProcessingTest {
+public class TestSingleProcessHashDistributedProcessing extends BaseHashDistributedProcessingTest {
 
 	/**
 	 * Ensure cluster to initialize tests

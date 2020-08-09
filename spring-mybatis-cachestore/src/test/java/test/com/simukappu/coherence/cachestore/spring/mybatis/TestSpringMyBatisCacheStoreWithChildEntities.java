@@ -32,7 +32,7 @@ import test.com.simukappu.coherence.entity.TestParentEntity;
  * 
  * @author Shota Yamazaki
  */
-public class IntegrationTestSpringMyBatisCacheStoreWithChildEntities {
+public class TestSpringMyBatisCacheStoreWithChildEntities {
 
 	Connection conn = null;
 	NamedCache<Integer, TestParentEntity> targetWriteThroughCache = null;

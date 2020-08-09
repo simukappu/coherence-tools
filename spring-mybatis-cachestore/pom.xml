@@ -3,14 +3,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.simukappu.coherence</groupId>
 	<artifactId>spring-mybatis-cachestore</artifactId>
-	<version>20.06</version>
+	<version>1.0</version>
 	<name>spring-mybatis-cachestore</name>
 	<description>CacheStore implementation integrated with Spring and MyBatis framework</description>
 
   <parent>
     <groupId>com.simukappu.coherence</groupId>
     <artifactId>coherence-tools</artifactId>
-    <version>20.06</version>
+    <version>1.0</version>
   </parent>
 
   <properties>

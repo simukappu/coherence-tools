@@ -3,13 +3,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.simukappu.coherence</groupId>
 	<artifactId>write-behind-tools</artifactId>
-	<version>20.06</version>
+	<version>1.0</version>
 	<name>write-behind-tools</name>
 	<description>Tools for write behind queue of Oracle Coherence</description>
 
   <parent>
     <groupId>com.simukappu.coherence</groupId>
     <artifactId>coherence-tools</artifactId>
-    <version>20.06</version>
+    <version>1.0</version>
   </parent>
 </project>

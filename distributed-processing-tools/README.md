@@ -1,12 +1,12 @@
 # Distributed Processing Tools
-Tools to run distributed processing task in multi Coherence member processes exclusively. This component can handle dynamic changes in number of processing members. Which provides following functions
+Tools to run distributed processing task in multiple Coherence member processes exclusively. This component enables distributed processing with dynamic changes in number of processing members, which provides following functions
 * FIFO distributed processor: Consumer/Function implementation for distributed processing as first in, first out
-* Hash modulo filter: Filter to get target entries by hashCode modulo of a key/value object or a field of them
+* Hash modulo filter: Filter to get target entries by hashCode modulo of a key/value object or a field of it
 
 ## Usage
 ### FIFO distributed processor
 Call as Consumer/Function interface with extended functional interfaces or implemented abstract classes.  
-For example, process as follows:  
+For example, use as follows:  
 ```java
 // Prepare test data list
 List<Integer> testDataList = IntStream.rangeClosed(1, 10).boxed().collect(Collectors.toList());
@@ -112,8 +112,8 @@ Or, you can simply call these functions as follows:
 ```
 
 ### Hash modulo filter
-Manage the number of distributed members and distributed id for each processes. You can use Coherence member role and the utility class for them (DistributedMemberUtil) is provided. Then, create filter instance from the extractor using the number of distributed members and managed distributed id.  
-For example, process as follows:  
+You can use Coherence member role to manage the number of distributed members and distributed id for each processes. This function provides a utility class (DistributedMemberUtil) to help you. Create filter instance from the extractor using the number of distributed members and managed distributed id.  
+For example, use as follows:  
 ```java
 // Use HashModExtractor as key extractor
 int targetModulo = DistributedMemberUtil.getSequentialIdFromSameRoleMemberSet();

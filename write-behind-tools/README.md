@@ -5,7 +5,7 @@ Tools for write behind queue, which provides following functions
 
 ## Usage
 Invoke Write Behind Tools Processor from invokeAll method in NamedCache\<Object, Object\>.  
-For example, invoke as follows:  
+For example, use as follows:  
 ```java
 NamedCache<Object, Object> namedCache = CacheFactory.getCache("CacheName");
 

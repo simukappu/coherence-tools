@@ -9,36 +9,39 @@ Utility tools for Oracle Coherence
 Utility tools for Oracle Coherence includes following components
 
 ### Distributed Processing Tools  
-Tools to run distributed processing task in multi Coherence member processes exclusively. This component can handle dynamic changes in number of processing members, which provides following functions
+Tools to run distributed processing task in multiple Coherence member processes exclusively. This component enables distributed processing with dynamic changes in number of processing members, which provides following functions
 * FIFO distributed processor: Consumer/Function implementation for distributed processing as first in, first out
-* Hash modulo filter: Filter to get target entries by hashCode modulo of a key/value object or a field of them
+* Hash modulo filter: Filter to get target entries by hashCode modulo of a key/value object or a field of it
 
-Go to [distributed-processing-tools](distributed-processing-tools)
+See [distributed-processing-tools](distributed-processing-tools)
 
 ### Write Behind Tools
 Tools for write behind queue, which provides following functions
 * Get current write behind queue size in the cluster
 * Clear retaining data in write behind queue in the cluster
 
-Go to [write-behind-tools](write-behind-tools)
+See [write-behind-tools](write-behind-tools)
 
 ### Spring MyBatis CacheStore  
-CacheStore implementation integrated with Spring and MyBatis framework  
-Go to [spring-mybatis-cachestore](spring-mybatis-cachestore)
+CacheStore implementation integrated with Spring and MyBatis framework
+
+See [spring-mybatis-cachestore](spring-mybatis-cachestore)
 
 ### Multi Clusters Proxy
-Tools for extend proxy to connect multiple clusters including SelectableCacheFactory to operate multiple named caches in several clusters  
-Go to [multi-clusters-proxy](multi-clusters-proxy)
+Tools for Coherence*Extend proxy to connect with multiple clusters, which provides following components
+* SelectableCacheFactory: Extended CacheFactory class to operate multiple named caches from different clusters
+
+See [multi-clusters-proxy](multi-clusters-proxy)
 
 ## Requirements
 These tools require Oracle Coherence.
 
 ### Using Oracle Coherence Community Edition
-All builtin test modules are using [Oracle Coherence Community Edition](https://coherence.community). All required modules are packaged as Maven project.
+All builtin test modules uses [Oracle Coherence Community Edition](https://coherence.community). All required modules are packaged as Maven project.
 
 ### Using Oracle Coherence Non-Community Edition
 If you would like to use non-community edition, you need to install Oracle Coherence. 
-See [Oracle Coherence](https://www.oracle.com/middleware/technologies/coherence.html) for more details (Not for development purposes, Oracle Coherence license is needed).
+See [Oracle Coherence](https://www.oracle.com/middleware/technologies/coherence.html) for more details (When not for development purposes, Oracle Coherence license is needed).
 
 1. Download Coherence Stand-Alone Install from [Oracle Technology Network](https://www.oracle.com/middleware/technologies/coherence-downloads.html)
 

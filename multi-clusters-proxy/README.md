@@ -1,9 +1,9 @@
 # Multi Clusters Proxy
-Tools for extend proxy to connect multiple clusters, which provides following components
-* SelectableCacheFactory: Selectable cache factory class to operate multiple named caches in several clusters
+Tools for Coherence*Extend proxy to connect with multiple clusters, which provides following components
+* SelectableCacheFactory: Extended CacheFactory class to operate multiple named caches from different clusters
 
 ## Usage
-SelectableCacheFactory needs to be configured with cache configuration files and class loaders for each extend proxy configuration to connect clusters.  
+SelectableCacheFactory needs to be configured with cache configuration files and class loaders for each Coherence*Extend proxy configuration to connect with clusters.  
 After a few configurations, SelectableCacheFactory can be used like com.tangosol.net.CacheFactory.  
 For example, use as follows:  
 ```java

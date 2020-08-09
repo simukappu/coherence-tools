@@ -1,0 +1,19 @@
+language: java
+
+services:
+  - mysql
+
+before_script:
+  - mysql -u root -e "CREATE DATABASE IF NOT EXISTS coherence_tools_test"
+  - mysql -u root -D coherence_tools_test -e "source spring-mybatis-cachestore/script/create_table_mysql.sql"
+  - cd multi-clusters-proxy
+  - mvn exec:java -Dexec.mainClass=test.com.simukappu.coherence.mclusters.proxy.ProxyServerInClusterA -Dexec.classpathScope=test > /dev/null 2>&1 &
+  - PROXY_SERVER_A_PID=$!
+  - mvn exec:java -Dexec.mainClass=test.com.simukappu.coherence.mclusters.proxy.ProxyServerInClusterB -Dexec.classpathScope=test > /dev/null 2>&1 &
+  - PROXY_SERVER_B_PID=$!
+  - sleep 10
+  - cd -
+
+after_script:
+  - kill $PROXY_SERVER_A_PID
+  - kill $PROXY_SERVER_B_PID

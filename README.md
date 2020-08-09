@@ -1,6 +1,10 @@
 # Coherence tools
 Utility tools for Oracle Coherence
 
+[![Build Status](https://travis-ci.org/simukappu/coherence-tools.svg?branch=master)](https://travis-ci.org/simukappu/coherence-tools)
+[![Coherence Version](http://img.shields.io/github/v/tag/simukappu/coherence-tools)](https://github.com/simukappu/coherence-tools/tags)
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](MIT-LICENSE)
+
 ## Description
 Utility tools for Oracle Coherence includes following components
 

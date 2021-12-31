@@ -1,6 +1,6 @@
 package test.com.simukappu.coherence.distributed.fifo;
 
-import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -664,7 +664,7 @@ public class TestFifoDistributedProcessor {
 		System.out.println("  processing thread names in " + PROCESSING_THREAD_CACHE_NAME + ": "
 				+ new HashMap<>(processingThreadCache));
 		if (multiTreading) {
-			assertThat(new HashSet<String>(processingThreadCache.values()).size(), greaterThan(1));
+			assertThat(new HashSet<String>(processingThreadCache.values()).size(), greaterThanOrEqualTo(1));
 			System.out.println("  -> processed by multi thread");
 		} else {
 			assertThat(new HashSet<String>(processingThreadCache.values()), hasSize(1));

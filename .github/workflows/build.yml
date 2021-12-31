@@ -1,0 +1,38 @@
+name: build
+
+on: [ push, pull_request ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: coherence_tools_test
+        options: --health-cmd "mysqladmin ping -h 127.0.0.1" --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+          cache: 'maven'
+      - name: Create MySQL test tables
+        run: |
+          mysql -h 127.0.0.1 -P 3306 -u root -D coherence_tools_test -e "source spring-mybatis-cachestore/script/create_table_mysql.sql"
+      - name: Start cache servers for multi-clusters-proxy
+        working-directory: ./multi-clusters-proxy
+        run: |
+          mvn -B test-compile -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
+          mvn -B exec:java -Dexec.mainClass=test.com.simukappu.coherence.mclusters.proxy.ProxyServerInClusterA -Dexec.classpathScope=test > /dev/null 2>&1 &
+          mvn -B exec:java -Dexec.mainClass=test.com.simukappu.coherence.mclusters.proxy.ProxyServerInClusterB -Dexec.classpathScope=test > /dev/null 2>&1 &
+          sleep 10
+      - name: Build and test with Maven
+        run: mvn -B test

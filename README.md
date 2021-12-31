@@ -1,5 +1,5 @@
 # Coherence tools
-[![Build Status](https://travis-ci.com/simukappu/coherence-tools.svg?branch=master)](https://travis-ci.com/simukappu/coherence-tools)
+[![build](https://github.com/simukappu/coherence-tools/actions/workflows/build.yml/badge.svg)](https://github.com/simukappu/coherence-tools/actions/workflows/build.yml)
 [![Coherence Version](http://img.shields.io/github/v/tag/simukappu/coherence-tools)](https://github.com/simukappu/coherence-tools/tags)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](MIT-LICENSE)
 

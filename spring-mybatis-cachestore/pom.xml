@@ -14,13 +14,13 @@
   </parent>
 
   <properties>
-		<spring.version>3.2.18.RELEASE</spring.version>
-		<coherence.spring.version>2.0.0</coherence.spring.version>
-		<mybatis.version>3.3.1</mybatis.version>
-		<mybatis.spring.version>1.1.1</mybatis.spring.version>
-		<dbcp2.version>2.7.0</dbcp2.version>
-		<mysql.connector.version>8.0.21</mysql.connector.version>
-		<ojdbc.version>19.3.0.0</ojdbc.version>
+		<spring.version>5.3.14</spring.version>
+		<coherence.spring.version>3.0.0</coherence.spring.version>
+		<mybatis.version>3.5.9</mybatis.version>
+		<mybatis.spring.version>2.0.6</mybatis.spring.version>
+		<dbcp2.version>2.9.0</dbcp2.version>
+		<mysql.connector.version>8.0.27</mysql.connector.version>
+		<ojdbc.version>21.4.0.0.1</ojdbc.version>
 	</properties>
 
   <dependencies>
@@ -35,8 +35,13 @@
 			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>com.oracle.coherence.spring</groupId>
-			<artifactId>coherence-spring</artifactId>
+			<artifactId>coherence-spring-core</artifactId>
 			<version>${coherence.spring.version}</version>
 		</dependency>
 		<dependency>
@@ -63,7 +68,7 @@
 		</dependency>
 		<!-- Oracle / -->
 		<!-- dependency>
-			<groupId>com.oracle</groupId>
+			<groupId>com.oracle.database.jdbc</groupId>
 			<artifactId>ojdbc8</artifactId>
 			<version>${ojdbc.version}</version>
 		</dependency -->

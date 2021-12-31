@@ -19,15 +19,15 @@
   <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<java.version>11</java.version>
-		<coherence.version>20.06</coherence.version>
-		<slf4j.version>1.7.30</slf4j.version>
-		<logback.version>1.2.3</logback.version>
-		<junit.version>4.13</junit.version>
+		<java.version>17</java.version>
+		<coherence.version>21.12</coherence.version>
+		<slf4j.version>2.0.0-alpha5</slf4j.version>
+		<logback.version>1.3.0-alpha12</logback.version>
+		<junit.version>4.13.2</junit.version>
 
-		<maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
+		<maven-javadoc-plugin.version>3.3.1</maven-javadoc-plugin.version>
 		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-		<maven-project-info-reports-plugin.version>3.1.0</maven-project-info-reports-plugin.version>
+		<maven-project-info-reports-plugin.version>3.1.2</maven-project-info-reports-plugin.version>
 	</properties>
 
   <reporting>
@@ -44,7 +44,7 @@
 					<charset>${project.build.sourceEncoding}</charset>
 					<locale>en</locale>
 					<links>
-						<link>https://docs.oracle.com/en/java/javase/11/docs/api/</link>
+						<link>https://docs.oracle.com/en/java/javase/</link>
 					</links>
 				</configuration>
 			</plugin>

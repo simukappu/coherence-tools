@@ -48,6 +48,7 @@ You can use *coherence-tools* with Apache Maven from Maven Central Repository. A
   <groupId>io.github.simukappu</groupId>
   <artifactId>coherence-tools</artifactId>
   <version>1.0.0</version>
+  <type>pom</type>
 </dependency>
 ```
 

@@ -1,8 +1,21 @@
 # Multi Clusters Proxy
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.simukappu/multi-clusters-proxy/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.simukappu/multi-clusters-proxy)
+
 Tools for Coherence*Extend proxy to connect with multiple clusters, which provides following components
 * SelectableCacheFactory: Extended CacheFactory class to operate multiple named caches from different clusters
 
 ## Usage
+### Use with Apache Maven
+Add dependency to pom.xml like this:
+```xml
+<dependency>
+  <groupId>io.github.simukappu</groupId>
+  <artifactId>multi-clusters-proxy</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+
+### SelectableCacheFactory
 SelectableCacheFactory needs to be configured with cache configuration files and class loaders for each Coherence*Extend proxy configuration to connect with clusters.  
 After a few configurations, SelectableCacheFactory can be used like com.tangosol.net.CacheFactory.  
 For example, use as follows:  

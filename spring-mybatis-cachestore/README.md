@@ -1,10 +1,23 @@
 # Spring MyBatis CacheStore  
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.simukappu/spring-mybatis-cachestore/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.simukappu/spring-mybatis-cachestore)
+
 CacheStore implementation integrated with Spring and MyBatis framework
 
 ## Dependency
 Current implementation depends on Spring v3.2 (or earlier) and MyBatis v3.3 (or earlier).
 
 ## Usage
+### Use with Apache Maven
+Add dependency to pom.xml like this:
+```xml
+<dependency>
+  <groupId>io.github.simukappu</groupId>
+  <artifactId>spring-mybatis-cachestore</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+
+### Configure with Spring and MyBatis
 1. Make datasource configuration in Spring context file.  
 See [src/test/resources/META-INF/spring/datasource-context.xml](src/test/resources/META-INF/spring/datasource-context.xml).
 

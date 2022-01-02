@@ -1,9 +1,21 @@
 # Distributed Processing Tools
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.simukappu/distributed-processing-tools/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.simukappu/distributed-processing-tools)
+
 Tools to run distributed processing task in multiple Coherence member processes exclusively. This component enables distributed processing with dynamic changes in number of processing members, which provides following functions
 * FIFO distributed processor: Consumer/Function implementation for distributed processing as first in, first out
 * Hash modulo filter: Filter to get target entries by hashCode modulo of a key/value object or a field of it
 
 ## Usage
+### Use with Apache Maven
+Add dependency to pom.xml like this:
+```xml
+<dependency>
+  <groupId>io.github.simukappu</groupId>
+  <artifactId>distributed-processing-tools</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+
 ### FIFO distributed processor
 Call as Consumer/Function interface with extended functional interfaces or implemented abstract classes.  
 For example, use as follows:  

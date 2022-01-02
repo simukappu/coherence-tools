@@ -1,9 +1,22 @@
 # Write Behind Tools
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.simukappu/write-behind-tools/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.simukappu/write-behind-tools)
+
 Tools for write behind queue, which provides following functions
 * Get current write behind queue size in the cluster
 * Clear retaining data in write behind queue in the cluster
 
 ## Usage
+### Use with Apache Maven
+Add dependency to pom.xml like this:
+```xml
+<dependency>
+  <groupId>io.github.simukappu</groupId>
+  <artifactId>write-behind-tools</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+
+### Write Behind Tools Processor
 Invoke Write Behind Tools Processor from invokeAll method in NamedCache\<Object, Object\>.  
 For example, use as follows:  
 ```java

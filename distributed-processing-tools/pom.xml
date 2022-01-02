@@ -3,7 +3,7 @@
 
   <groupId>io.github.simukappu</groupId>
   <artifactId>distributed-processing-tools</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 
   <name>distributed-processing-tools</name>
   <description>Tools for distributed processing using Oracle Coherence</description>
@@ -11,7 +11,7 @@
   <parent>
     <groupId>io.github.simukappu</groupId>
     <artifactId>coherence-tools</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
   </parent>
 
   <properties>

@@ -1,13 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.github.simukappu</groupId>
-	<artifactId>spring-mybatis-cachestore</artifactId>
-	<version>1.0.0</version>
+  <artifactId>spring-mybatis-cachestore</artifactId>
+  <version>1.0.0</version>
 
   <name>spring-mybatis-cachestore</name>
-	<description>CacheStore implementation integrated with Spring and MyBatis framework</description>
+  <description>CacheStore implementation integrated with Spring and MyBatis framework</description>
 
   <parent>
     <groupId>io.github.simukappu</groupId>
@@ -16,63 +15,63 @@
   </parent>
 
   <properties>
-		<spring.version>5.3.14</spring.version>
-		<coherence.spring.version>3.0.0</coherence.spring.version>
-		<mybatis.version>3.5.9</mybatis.version>
-		<mybatis.spring.version>2.0.6</mybatis.spring.version>
-		<dbcp2.version>2.9.0</dbcp2.version>
-		<mysql.connector.version>8.0.27</mysql.connector.version>
-		<ojdbc.version>21.4.0.0.1</ojdbc.version>
-	</properties>
+    <spring.version>5.3.14</spring.version>
+    <coherence.spring.version>3.0.0</coherence.spring.version>
+    <mybatis.version>3.5.9</mybatis.version>
+    <mybatis.spring.version>2.0.6</mybatis.spring.version>
+    <dbcp2.version>2.9.0</dbcp2.version>
+    <mysql.connector.version>8.0.27</mysql.connector.version>
+    <ojdbc.version>21.4.0.0.1</ojdbc.version>
+  </properties>
 
   <dependencies>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-beans</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.oracle.coherence.spring</groupId>
-			<artifactId>coherence-spring-core</artifactId>
-			<version>${coherence.spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
-			<version>${mybatis.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis-spring</artifactId>
-			<version>${mybatis.spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-dbcp2</artifactId>
-			<version>${dbcp2.version}</version>
-		</dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.coherence.spring</groupId>
+      <artifactId>coherence-spring-core</artifactId>
+      <version>${coherence.spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>${mybatis.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis-spring</artifactId>
+      <version>${mybatis.spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-dbcp2</artifactId>
+      <version>${dbcp2.version}</version>
+    </dependency>
 
-		<!-- MySQL / -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql.connector.version}</version>
-		</dependency>
-		<!-- Oracle / -->
-		<!-- dependency>
+    <!-- MySQL / -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>${mysql.connector.version}</version>
+    </dependency>
+    <!-- Oracle / -->
+    <!-- dependency>
 			<groupId>com.oracle.database.jdbc</groupId>
 			<artifactId>ojdbc8</artifactId>
 			<version>${ojdbc.version}</version>
 		</dependency -->
-	</dependencies>
+  </dependencies>
 </project>

@@ -15,13 +15,13 @@
   </parent>
 
   <properties>
-    <spring.version>5.3.18</spring.version>
-    <coherence.spring.version>3.0.0</coherence.spring.version>
+    <spring.version>5.3.19</spring.version>
+    <coherence.spring.version>3.2.0</coherence.spring.version>
     <mybatis.version>3.5.9</mybatis.version>
-    <mybatis.spring.version>2.0.6</mybatis.spring.version>
+    <mybatis.spring.version>2.0.7</mybatis.spring.version>
     <dbcp2.version>2.9.0</dbcp2.version>
-    <mysql.connector.version>8.0.27</mysql.connector.version>
-    <ojdbc.version>21.4.0.0.1</ojdbc.version>
+    <mysql.connector.version>8.0.29</mysql.connector.version>
+    <ojdbc.version>21.5.0.0.0</ojdbc.version>
   </properties>
 
   <dependencies>

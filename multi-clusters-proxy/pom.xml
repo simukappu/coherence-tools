@@ -3,7 +3,7 @@
 
   <groupId>io.github.simukappu</groupId>
   <artifactId>multi-clusters-proxy</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
 
   <name>multi-clusters-proxy</name>
   <description>Extend proxy connecting to multi clusters</description>
@@ -11,6 +11,6 @@
   <parent>
     <groupId>io.github.simukappu</groupId>
     <artifactId>coherence-tools</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
   </parent>
 </project>

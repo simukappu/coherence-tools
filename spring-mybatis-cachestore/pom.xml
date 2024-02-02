@@ -15,7 +15,7 @@
   </parent>
 
   <properties>
-    <spring.version>5.3.19</spring.version>
+    <spring.version>5.3.20</spring.version>
     <coherence.spring.version>3.2.0</coherence.spring.version>
     <mybatis.version>3.5.9</mybatis.version>
     <mybatis.spring.version>2.0.7</mybatis.spring.version>

@@ -1,6 +1,7 @@
 package com.simukappu.coherence.writequeue;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -97,7 +98,12 @@ public class ClearWriteQueueProcessor
 
 		// Clear write behind queue
 		int previousQueueSize = writeQueue.size();
+		Method removeImmediate = getRemoveImmediateMethod();
 		while (!writeQueue.isEmpty()) {
+			if (removeImmediate != null && removeImmediately(writeQueue, removeImmediate)) {
+				continue;
+			}
+			// Fallback: remove ripe or soft-ripe entries only
 			writeQueue.removeNoWait();
 			try {
 				Thread.sleep(REMOVE_WRITE_QUEUE_REQUEST_INTERVAL);
@@ -112,6 +118,42 @@ public class ClearWriteQueueProcessor
 		// Set member ID and previous size of write behind queue and return it
 		// Return previous size of write behind queue
 		return new PortableEntry<Integer, Integer>(memberId, previousQueueSize);
+	}
+
+	/**
+	 * Get protected WriteQueue#removeImmediate method, which removes the first
+	 * entry from the write behind queue regardless of whether it is ripe.<br>
+	 * As of Coherence CE 24.09 (or earlier), the write behind thread also takes
+	 * soft-ripe entries, so {@link WriteQueue#removeNoWait()} competes with the
+	 * write behind thread and cannot clear the queue reliably.
+	 * 
+	 * @return WriteQueue#removeImmediate method or null if it is not available
+	 */
+	private static Method getRemoveImmediateMethod() {
+		try {
+			Method method = WriteQueue.class.getDeclaredMethod("removeImmediate");
+			method.setAccessible(true);
+			return method;
+		} catch (ReflectiveOperationException | RuntimeException e) {
+			return null;
+		}
+	}
+
+	/**
+	 * Remove the first entry from the write behind queue immediately.
+	 * 
+	 * @param writeQueue
+	 *            Target write behind queue
+	 * @param removeImmediate
+	 *            WriteQueue#removeImmediate method
+	 * @return true if an entry was removed
+	 */
+	private static boolean removeImmediately(WriteQueue writeQueue, Method removeImmediate) {
+		try {
+			return removeImmediate.invoke(writeQueue) != null;
+		} catch (ReflectiveOperationException | RuntimeException e) {
+			return false;
+		}
 	}
 
 	/**

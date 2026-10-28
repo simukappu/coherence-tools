@@ -232,7 +232,10 @@
 						</class-scheme>
 					</cachestore-scheme>
 					<write-delay>1s</write-delay>
-					<write-batch-factor>1.0</write-batch-factor>
+					<!-- In recent Coherence CE (24.09+) the write-behind thread itself picks up soft-ripe entries,
+						so a factor of 1.0 would write each entry immediately. 0.5 keeps entries put within
+						the same ripe window batched into a single storeAll() transaction. -->
+					<write-batch-factor>0.5</write-batch-factor>
 				</read-write-backing-map-scheme>
 			</backing-map-scheme>
 			<autostart>true</autostart>
@@ -253,7 +256,10 @@
 						</class-scheme>
 					</cachestore-scheme>
 					<write-delay>1s</write-delay>
-					<write-batch-factor>1.0</write-batch-factor>
+					<!-- In recent Coherence CE (24.09+) the write-behind thread itself picks up soft-ripe entries,
+						so a factor of 1.0 would write each entry immediately. 0.5 keeps entries put within
+						the same ripe window batched into a single storeAll() transaction. -->
+					<write-batch-factor>0.5</write-batch-factor>
 				</read-write-backing-map-scheme>
 			</backing-map-scheme>
 			<autostart>true</autostart>
@@ -274,7 +280,10 @@
 						</class-scheme>
 					</cachestore-scheme>
 					<write-delay>1s</write-delay>
-					<write-batch-factor>1.0</write-batch-factor>
+					<!-- In recent Coherence CE (24.09+) the write-behind thread itself picks up soft-ripe entries,
+						so a factor of 1.0 would write each entry immediately. 0.5 keeps entries put within
+						the same ripe window batched into a single storeAll() transaction. -->
+					<write-batch-factor>0.5</write-batch-factor>
 				</read-write-backing-map-scheme>
 			</backing-map-scheme>
 			<autostart>true</autostart>
@@ -295,7 +304,10 @@
 						</class-scheme>
 					</cachestore-scheme>
 					<write-delay>1s</write-delay>
-					<write-batch-factor>1.0</write-batch-factor>
+					<!-- In recent Coherence CE (24.09+) the write-behind thread itself picks up soft-ripe entries,
+						so a factor of 1.0 would write each entry immediately. 0.5 keeps entries put within
+						the same ripe window batched into a single storeAll() transaction. -->
+					<write-batch-factor>0.5</write-batch-factor>
 				</read-write-backing-map-scheme>
 			</backing-map-scheme>
 			<autostart>true</autostart>
@@ -316,7 +328,10 @@
 						</class-scheme>
 					</cachestore-scheme>
 					<write-delay>1s</write-delay>
-					<write-batch-factor>1.0</write-batch-factor>
+					<!-- In recent Coherence CE (24.09+) the write-behind thread itself picks up soft-ripe entries,
+						so a factor of 1.0 would write each entry immediately. 0.5 keeps entries put within
+						the same ripe window batched into a single storeAll() transaction. -->
+					<write-batch-factor>0.5</write-batch-factor>
 				</read-write-backing-map-scheme>
 			</backing-map-scheme>
 			<autostart>true</autostart>
@@ -337,7 +352,10 @@
 						</class-scheme>
 					</cachestore-scheme>
 					<write-delay>1s</write-delay>
-					<write-batch-factor>1.0</write-batch-factor>
+					<!-- In recent Coherence CE (24.09+) the write-behind thread itself picks up soft-ripe entries,
+						so a factor of 1.0 would write each entry immediately. 0.5 keeps entries put within
+						the same ripe window batched into a single storeAll() transaction. -->
+					<write-batch-factor>0.5</write-batch-factor>
 				</read-write-backing-map-scheme>
 			</backing-map-scheme>
 			<autostart>true</autostart>

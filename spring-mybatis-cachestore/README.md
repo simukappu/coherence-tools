@@ -4,7 +4,7 @@
 CacheStore implementation integrated with Spring and MyBatis framework
 
 ## Dependency
-Current implementation depends on Spring v3.2 (or earlier) and MyBatis v3.3 (or earlier).
+Current implementation depends on Spring Framework 7 and MyBatis-Spring 4.
 
 ## Usage
 ### Use with Apache Maven

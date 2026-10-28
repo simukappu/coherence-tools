@@ -1,7 +1,7 @@
 # Coherence tools
 [![Build Status](https://github.com/simukappu/coherence-tools/actions/workflows/build.yml/badge.svg)](https://github.com/simukappu/coherence-tools/actions/workflows/build.yml)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.simukappu/coherence-tools/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.simukappu/coherence-tools)
-[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](MIT-LICENSE)
+[![Maven Central](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fio%2Fgithub%2Fsimukappu%2Fcoherence-tools%2Fmaven-metadata.xml&label=maven%20central)](https://central.sonatype.com/artifact/io.github.simukappu/coherence-tools)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](MIT-LICENSE)
 
 Utility tools for Oracle Coherence
 
@@ -9,7 +9,7 @@ Utility tools for Oracle Coherence
 Utility tools for Oracle Coherence includes following components
 
 ### Distributed Processing Tools  
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.simukappu/distributed-processing-tools/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.simukappu/distributed-processing-tools)
+[![Maven Central](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fio%2Fgithub%2Fsimukappu%2Fdistributed-processing-tools%2Fmaven-metadata.xml&label=maven%20central)](https://central.sonatype.com/artifact/io.github.simukappu/distributed-processing-tools)
 
 Tools to run distributed processing task in multiple Coherence member processes exclusively. This component enables distributed processing with dynamic changes in number of processing members, which provides following functions
 * FIFO distributed processor: Consumer/Function implementation for distributed processing as first in, first out
@@ -18,7 +18,7 @@ Tools to run distributed processing task in multiple Coherence member processes 
 See [distributed-processing-tools](distributed-processing-tools)
 
 ### Write Behind Tools
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.simukappu/write-behind-tools/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.simukappu/write-behind-tools)
+[![Maven Central](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fio%2Fgithub%2Fsimukappu%2Fwrite-behind-tools%2Fmaven-metadata.xml&label=maven%20central)](https://central.sonatype.com/artifact/io.github.simukappu/write-behind-tools)
 
 Tools for write behind queue, which provides following functions
 * Get current write behind queue size in the cluster
@@ -27,14 +27,14 @@ Tools for write behind queue, which provides following functions
 See [write-behind-tools](write-behind-tools)
 
 ### Spring MyBatis CacheStore  
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.simukappu/spring-mybatis-cachestore/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.simukappu/spring-mybatis-cachestore)
+[![Maven Central](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fio%2Fgithub%2Fsimukappu%2Fspring-mybatis-cachestore%2Fmaven-metadata.xml&label=maven%20central)](https://central.sonatype.com/artifact/io.github.simukappu/spring-mybatis-cachestore)
 
 CacheStore implementation integrated with Spring and MyBatis framework
 
 See [spring-mybatis-cachestore](spring-mybatis-cachestore)
 
 ### Multi Clusters Proxy
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.simukappu/multi-clusters-proxy/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.simukappu/multi-clusters-proxy)
+[![Maven Central](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fio%2Fgithub%2Fsimukappu%2Fmulti-clusters-proxy%2Fmaven-metadata.xml&label=maven%20central)](https://central.sonatype.com/artifact/io.github.simukappu/multi-clusters-proxy)
 
 Tools for Coherence*Extend proxy to connect with multiple clusters, which provides following components
 * SelectableCacheFactory: Extended CacheFactory class to operate multiple named caches from different clusters

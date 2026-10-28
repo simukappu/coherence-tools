@@ -1,5 +1,5 @@
 # Write Behind Tools
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.simukappu/write-behind-tools/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.simukappu/write-behind-tools)
+[![Maven Central](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fio%2Fgithub%2Fsimukappu%2Fwrite-behind-tools%2Fmaven-metadata.xml&label=maven%20central)](https://central.sonatype.com/artifact/io.github.simukappu/write-behind-tools)
 
 Tools for write behind queue, which provides following functions
 * Get current write behind queue size in the cluster

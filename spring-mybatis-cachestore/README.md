@@ -1,5 +1,5 @@
 # Spring MyBatis CacheStore  
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.simukappu/spring-mybatis-cachestore/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.simukappu/spring-mybatis-cachestore)
+[![Maven Central](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fio%2Fgithub%2Fsimukappu%2Fspring-mybatis-cachestore%2Fmaven-metadata.xml&label=maven%20central)](https://central.sonatype.com/artifact/io.github.simukappu/spring-mybatis-cachestore)
 
 CacheStore implementation integrated with Spring and MyBatis framework
 

@@ -1,5 +1,5 @@
 # Distributed Processing Tools
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.simukappu/distributed-processing-tools/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.simukappu/distributed-processing-tools)
+[![Maven Central](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fio%2Fgithub%2Fsimukappu%2Fdistributed-processing-tools%2Fmaven-metadata.xml&label=maven%20central)](https://central.sonatype.com/artifact/io.github.simukappu/distributed-processing-tools)
 
 Tools to run distributed processing task in multiple Coherence member processes exclusively. This component enables distributed processing with dynamic changes in number of processing members, which provides following functions
 * FIFO distributed processor: Consumer/Function implementation for distributed processing as first in, first out

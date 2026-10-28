@@ -1,5 +1,5 @@
 # Multi Clusters Proxy
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.simukappu/multi-clusters-proxy/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.simukappu/multi-clusters-proxy)
+[![Maven Central](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fio%2Fgithub%2Fsimukappu%2Fmulti-clusters-proxy%2Fmaven-metadata.xml&label=maven%20central)](https://central.sonatype.com/artifact/io.github.simukappu/multi-clusters-proxy)
 
 Tools for Coherence*Extend proxy to connect with multiple clusters, which provides following components
 * SelectableCacheFactory: Extended CacheFactory class to operate multiple named caches from different clusters

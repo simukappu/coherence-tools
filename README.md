@@ -47,7 +47,7 @@ You can use *coherence-tools* with Apache Maven from Maven Central Repository. A
 <dependency>
   <groupId>io.github.simukappu</groupId>
   <artifactId>coherence-tools</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   <type>pom</type>
 </dependency>
 ```
@@ -57,12 +57,12 @@ If you would like to use specific module, add dependency to pom.xml like this:
 <dependency>
   <groupId>io.github.simukappu</groupId>
   <artifactId>distributed-processing-tools</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
 </dependency>
 ```
 
 ## Requirements
-These tools require Oracle Coherence.
+These tools require Java 17 or later and Oracle Coherence. Version 1.1.0 is tested with Oracle Coherence Community Edition 26.07, and *spring-mybatis-cachestore* requires Spring Framework 7 and MyBatis-Spring 4.
 
 ### Using Oracle Coherence Community Edition
 All builtin test modules uses [Oracle Coherence Community Edition](https://coherence.community). All required modules are packaged as Maven project.

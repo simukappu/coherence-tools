@@ -13,7 +13,7 @@ Add dependency to pom.xml like this:
 <dependency>
   <groupId>io.github.simukappu</groupId>
   <artifactId>spring-mybatis-cachestore</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
 </dependency>
 ```
 

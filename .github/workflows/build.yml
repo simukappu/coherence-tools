@@ -2,6 +2,9 @@ name: build
 
 on: [ push, pull_request ]
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,12 +20,12 @@ jobs:
         options: --health-cmd "mysqladmin ping -h 127.0.0.1" --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Set up JDK
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
         with:
           java-version: '17'
-          distribution: 'adopt'
+          distribution: 'temurin'
           cache: 'maven'
       - name: Create MySQL test tables
         run: |

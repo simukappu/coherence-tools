@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Classes of multi-clusters-proxy that Coherence security hardening (Coherence CE 26.10 or later) allows to deserialize and execute -->
+<security-config version="1.0" xmlns="http://xmlns.oracle.com/coherence/coherence-security-config">
+  <allowed-classes>
+    <class executable="true" name="com.simukappu.coherence.mclusters.processor.GetClusterNameProcessor"/>
+  </allowed-classes>
+</security-config>

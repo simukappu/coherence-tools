@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Classes of write-behind-tools that Coherence security hardening (Coherence CE 26.10 or later) allows to deserialize and execute -->
+<security-config version="1.0" xmlns="http://xmlns.oracle.com/coherence/coherence-security-config">
+  <allowed-classes>
+    <class executable="true" name="com.simukappu.coherence.writequeue.ClearWriteQueueProcessor"/>
+    <class executable="true" name="com.simukappu.coherence.writequeue.GetWriteQueueSizeProcessor"/>
+    <class name="com.simukappu.coherence.writequeue.PortableEntry"/>
+  </allowed-classes>
+</security-config>

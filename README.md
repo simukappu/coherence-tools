@@ -62,7 +62,9 @@ If you would like to use specific module, add dependency to pom.xml like this:
 ```
 
 ## Requirements
-These tools require Java 17 or later and Oracle Coherence. Version 1.1.0 is tested with Oracle Coherence Community Edition 26.07, and *spring-mybatis-cachestore* requires Spring Framework 7 and MyBatis-Spring 4.
+These tools require Java 21 or later and Oracle Coherence. Version 1.2.0 is tested with Oracle Coherence Community Edition 26.10, and *spring-mybatis-cachestore* requires Spring Framework 7 and MyBatis-Spring 4.
+
+Oracle Coherence CE 26.10 or later enables security hardening, which allows Coherence to deserialize and execute only allowed classes. Each module of *coherence-tools* includes `META-INF/coherence/security-config.xml` that allows its classes, such as the entry processors of *write-behind-tools* and *multi-clusters-proxy*. Add the classes of your application, such as your cache entries and entry processors, to `security-config.xml` of your application as well.
 
 ### Using Oracle Coherence Community Edition
 All builtin test modules uses [Oracle Coherence Community Edition](https://coherence.community). All required modules are packaged as Maven project.

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Classes of distributed-processing-tools that Coherence security hardening (Coherence CE 26.10 or later) allows to deserialize and execute -->
+<security-config version="1.0" xmlns="http://xmlns.oracle.com/coherence/coherence-security-config">
+  <allowed-classes>
+    <class name="com.simukappu.coherence.distributed.hash.HashModExtractor"/>
+    <class name="com.simukappu.coherence.distributed.hash.ReflectionHashModExtractor"/>
+  </allowed-classes>
+</security-config>

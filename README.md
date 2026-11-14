@@ -47,7 +47,7 @@ You can use *coherence-tools* with Apache Maven from Maven Central Repository. A
 <dependency>
   <groupId>io.github.simukappu</groupId>
   <artifactId>coherence-tools</artifactId>
-  <version>1.1.0</version>
+  <version>1.2.0</version>
   <type>pom</type>
 </dependency>
 ```
@@ -57,7 +57,7 @@ If you would like to use specific module, add dependency to pom.xml like this:
 <dependency>
   <groupId>io.github.simukappu</groupId>
   <artifactId>distributed-processing-tools</artifactId>
-  <version>1.1.0</version>
+  <version>1.2.0</version>
 </dependency>
 ```
 

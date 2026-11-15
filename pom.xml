@@ -152,8 +152,10 @@
         <extensions>true</extensions>
         <configuration>
           <publishingServerId>central</publishingServerId>
-          <!-- Review the validated deployment on the Central Portal before publishing it -->
-          <autoPublish>false</autoPublish>
+          <!-- Publish the deployment automatically after it is validated -->
+          <autoPublish>true</autoPublish>
+          <!-- Wait until the deployment is published, so mvn deploy fails if publishing fails -->
+          <waitUntil>published</waitUntil>
         </configuration>
       </plugin>
       <plugin>

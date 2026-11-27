@@ -16,7 +16,7 @@
 
   <properties>
     <spring.version>7.0.10</spring.version>
-    <coherence.spring.version>4.3.1</coherence.spring.version>
+    <coherence.spring.version>5.0.0</coherence.spring.version>
     <mybatis.version>3.6.0</mybatis.version>
     <mybatis.spring.version>4.1.0</mybatis.spring.version>
     <dbcp2.version>2.14.0</dbcp2.version>
